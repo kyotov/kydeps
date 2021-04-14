@@ -26,6 +26,7 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/install
 
 execute_process(
         COMMAND git rev-parse HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_REVISION
         OUTPUT_STRIP_TRAILING_WHITESPACE
 )
