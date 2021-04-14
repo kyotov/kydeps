@@ -5,8 +5,12 @@ project(kydeps
 
 include(KyDeps.cmake)
 
-KyDepsAdd(
-        gflags
+if ("${KYDEPS}" STREQUAL "")
+    set(KYDEPS gflags)
+endif ()
+
+KyDepsAdd(${KYDEPS})
+#gflags
 #        glog
 #        gprotobuf
 #        gtest
@@ -16,7 +20,6 @@ KyDepsAdd(
 #        xxhash
 #        zlib
 #       zstd
-)
 
 install(DIRECTORY ${CMAKE_BINARY_DIR}/install
         DESTINATION deps)
