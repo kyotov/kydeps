@@ -1,0 +1,17 @@
+include_guard(GLOBAL)
+
+#
+# ensure that all options passed to the compiler and the linker using add_X_options are passed on to child cmakes
+#
+get_property(KYDEPS_COMPILE_OPTIONS DIRECTORY PROPERTY COMPILE_OPTIONS)
+message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using COMPILE_OPTIONS = ${KYDEPS_COMPILE_OPTIONS}")
+
+get_property(KYDEPS_LINK_OPTIONS DIRECTORY PROPERTY LINK_OPTIONS)
+message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using LINK_OPTIONS = ${KYDEPS_LINK_OPTIONS}")
+
+set(CMAKE_COMMAND
+        ${CMAKE_COMMAND} -E env
+        CFLAGS=${KYDEPS_COMPILE_OPTIONS}
+        CXXFLAGS=${KYDEPS_COMPILE_OPTIONS}
+        LDFLAGS=${KYDEPS_LINK_OPTIONS}
+        ${CMAKE_COMMAND})
