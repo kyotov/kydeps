@@ -22,27 +22,31 @@ function(KyDepsBoot)
     include(${KYDEPS_SOURCE_DIR}/utils/KyDepsPackage.cmake)
     get_package_name("${KYDEPS_SOURCE_DIR}" "${KYDEPS_DEPENDS}" KYDEPS_PACKAGE_NAME)
 
-    if (${KYDEPS_USE_PREBUILT_PACKAGE})
-        FetchAndPopulate(kydeps_prebuilt
-                URL "${KYDEPS_PREBUILT_URL_PREFIX}/${KYDEPS_PACKAGE_NAME}.zip")
+    if (NOT ${KYDEPS_USE_PREBUILT_PACKAGE})
+        if (NOT EXISTS ${CMAKE_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip)
+            message(STATUS, "didn't found ${KYDEPS_PACKAGE_NAME}.zip in ${CMAKE_BINARY_DIR}. building it...")
 
-        set(CMAKE_PREFIX_PATH "${kydeps_prebuilt_SOURCE_DIR}/deps/install" PARENT_SCOPE)
-    else ()
-        execute_process(
-                COMMAND_ECHO STDOUT
-                COMMAND ${CMAKE_COMMAND}
-                -S ${KYDEPS_SOURCE_DIR}
-                -B ${KYDEPS_BINARY_DIR}
-                -G ${CMAKE_GENERATOR}
-                -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-                "-DKYDEPS=${KYDEPS_DEPENDS}")
+            execute_process(
+                    COMMAND_ECHO STDOUT
+                    COMMAND ${CMAKE_COMMAND}
+                    -S ${KYDEPS_SOURCE_DIR}
+                    -B ${KYDEPS_BINARY_DIR}
+                    -G ${CMAKE_GENERATOR}
+                    -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+                    "-DKYDEPS=${KYDEPS_DEPENDS}")
 
-        execute_process(
-                COMMAND ${CMAKE_COMMAND} --build ${KYDEPS_BINARY_DIR} --target package)
-        execute_process(
-                COMMAND ${CMAKE_COMMAND} -E copy_if_different ${KYDEPS_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip ${CMAKE_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip)
-
-        set(CMAKE_PREFIX_PATH "${KYDEPS_BINARY_DIR}/install" PARENT_SCOPE)
+            execute_process(
+                    COMMAND ${CMAKE_COMMAND} --build ${KYDEPS_BINARY_DIR} --target package)
+            execute_process(
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${KYDEPS_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip ${CMAKE_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip)
+        else ()
+            message(STATUS, "found ${KYDEPS_PACKAGE_NAME}.zip in ${CMAKE_BINARY_DIR}. going to use it...")
+        endif ()
     endif ()
+
+    FetchAndPopulate(kydeps_prebuilt
+            URL "${KYDEPS_PREBUILT_URL_PREFIX}/${KYDEPS_PACKAGE_NAME}.zip")
+
+    set(CMAKE_PREFIX_PATH "${kydeps_prebuilt_SOURCE_DIR}/deps/install" PARENT_SCOPE)
 
 endfunction()
