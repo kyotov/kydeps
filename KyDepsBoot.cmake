@@ -34,7 +34,6 @@ function(KyDepsBoot)
                     -G ${CMAKE_GENERATOR}
                     -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
                     "-DKYDEPS=${KYDEPS_DEPENDS}")
-
             execute_process(
                     COMMAND ${CMAKE_COMMAND} --build ${KYDEPS_BINARY_DIR} --target package)
             execute_process(
