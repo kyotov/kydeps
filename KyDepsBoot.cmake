@@ -11,11 +11,9 @@ endmacro()
 function(KyDepsBoot)
 
     set(options USE_PREBUILT_PACKAGE)
-    set(singeValueArgs PREBUILT_URL_PREFIX SOURCE_DIR BINARY_DIR)
+    set(singleValueArgs PREBUILT_URL_PREFIX SOURCE_DIR BINARY_DIR)
     set(multiValueArgs DEPENDS)
     cmake_parse_arguments(KYDEPS "${options}" "${singleValueArgs}" "${multiValueArgs}" ${ARGN})
-
-    message(${ARGN})
 
     if (NOT DEFINED KYDEPS_PREBUILT_URL_PREFIX)
         set(KYDEPS_PREBUILT_URL_PREFIX "file://${CMAKE_BINARY_DIR}")
