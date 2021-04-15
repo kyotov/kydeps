@@ -24,7 +24,7 @@ function(KyDepsBoot)
 
     if (NOT ${KYDEPS_USE_PREBUILT_PACKAGE})
         if (NOT EXISTS ${CMAKE_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip)
-            message(STATUS, "didn't found ${KYDEPS_PACKAGE_NAME}.zip in ${CMAKE_BINARY_DIR}. building it...")
+            message(STATUS "didn't find ${KYDEPS_PACKAGE_NAME}.zip in ${CMAKE_BINARY_DIR}. building it...")
 
             execute_process(
                     COMMAND_ECHO STDOUT
@@ -40,7 +40,7 @@ function(KyDepsBoot)
             execute_process(
                     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${KYDEPS_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip ${CMAKE_BINARY_DIR}/${KYDEPS_PACKAGE_NAME}.zip)
         else ()
-            message(STATUS, "found ${KYDEPS_PACKAGE_NAME}.zip in ${CMAKE_BINARY_DIR}. going to use it...")
+            message(STATUS "found ${KYDEPS_PACKAGE_NAME}.zip in ${CMAKE_BINARY_DIR}. going to use it...")
         endif ()
     endif ()
 
