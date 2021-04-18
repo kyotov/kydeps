@@ -13,5 +13,6 @@ list(APPEND CMAKE_MODULE_PATH
 include(KyDepsPrologue)
 include(KyDepsOptions)
 include(KyDepsInstall)
+include(KyDepsPackage)
 include(KyDepsInclude)
 include(KyDepsEpilogue)

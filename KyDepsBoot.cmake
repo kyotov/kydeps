@@ -43,6 +43,8 @@ function(KyDepsBoot)
         endif ()
     endif ()
 
+    # TODO: skip the population if it is "up-to-date"... particularly important when remote and fetching is expensive
+    #       https://app.asana.com/0/1200197137515364/1200201316220330/f
     FetchAndPopulate(kydeps_prebuilt
             URL "${KYDEPS_PREBUILT_URL_PREFIX}/${KYDEPS_PACKAGE_NAME}.zip")
 
