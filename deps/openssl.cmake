@@ -17,6 +17,8 @@ IF (WIN32)
             INSTALL_COMMAND ""
     )
 
+    message(${CMAKE_C_FLAGS})
+
     KyDepsInstallGit(https://github.com/openssl/openssl.git OpenSSL_1_1_1k
             DEPENDS perl zlib
 
@@ -27,7 +29,7 @@ IF (WIN32)
             PATCH_COMMAND ${CMAKE_COMMAND} -E copy_if_different <INSTALL_DIR>/install/include/zlib.h <SOURCE_DIR>/zlib.h
             COMMAND ${CMAKE_COMMAND} -E copy_if_different <INSTALL_DIR>/install/include/zconf.h <SOURCE_DIR>/zconf.h
 
-            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> <INSTALL_DIR>/src/perl/perl/bin/perl Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR>/install --openssldir=<INSTALL_DIR>/install -MT
+            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> <INSTALL_DIR>/src/perl/perl/bin/perl Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR>/install --openssldir=<INSTALL_DIR>/install ${CMAKE_C_FLAGS}
 
             # NOTE: this used to be necessary when building any linked artifacts (shared libraries, executables, etc.)
             #       because we only build static libraries, it is not needed anymore!

@@ -57,7 +57,6 @@ function(KyDepsInstall GIT_REPO GIT_REF)
             -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/install
             -DCMAKE_MSVC_RUNTIME_LIBRARY=${CMAKE_MSVC_RUNTIME_LIBRARY}
             -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
-            # TODO: check it is ok to remove
-            # -DBUILD_SHARED_LIBS=FALSE
+            -DBUILD_SHARED_LIBS=FALSE
             ${ARGN})
 endfunction()
