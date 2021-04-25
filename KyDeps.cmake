@@ -5,25 +5,33 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/utils)
 include(KyDepsTools)
 include(KyDepsOptions)
 
+set(KYDEPS_URL_PREFIX_DEFAULT "https://kydeps.s3.us-east-2.amazonaws.com")
+set(KYDEPS_S3_PREFIX_DEFAULT "s3://kydeps")
+
 set_if_empty(CMAKE_BUILD_TYPE Debug)
 
 function(KyDeps)
     list(APPEND CMAKE_MESSAGE_INDENT "  KyDeps: ")
 
-    set(options CACHED)
-    set(one_value_args URL_PREFIX EXPECTED_SHA256)
+    set(options CACHED UPLOAD)
+    set(one_value_args URL_PREFIX)
     set(multi_value_args DEPENDS)
     cmake_parse_arguments(KYDEPS "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
     check_not_empty(KYDEPS_DEPENDS)
 
+    get_package_name("${CMAKE_CURRENT_FUNCTION_LIST_DIR}" "${KYDEPS_DEPENDS}" PACKAGE_NAME)
+
+    set(EXPECTED_SHA256_PATH ${CMAKE_SOURCE_DIR}/kydeps_sha256_${CMAKE_SYSTEM_NAME}_${CMAKE_BUILD_TYPE}.cmake)
+
     if (KYDEPS_CACHED)
-        set_if_empty(KYDEPS_URL_PREFIX "https://kydeps.s3.us-east-2.amazonaws.com")
+        set_if_empty(KYDEPS_URL_PREFIX ${KYDEPS_URL_PREFIX_DEFAULT})
         check_not_empty(KYDEPS_EXPECTED_SHA256)
 
-        get_package_name("${CMAKE_CURRENT_FUNCTION_LIST_DIR}" "${KYDEPS_DEPENDS}" PACKAGE_NAME)
         set(PACKAGE_URL "${KYDEPS_URL_PREFIX}/${PACKAGE_NAME}.zip")
         set(PACKAGE_PATH "${CMAKE_BINARY_DIR}/${PACKAGE_NAME}.zip")
+
+        include(${EXPECTED_SHA256_PATH})
 
         if (NOT EXISTS ${PACKAGE_PATH})
             message(STATUS "downloading ${PACKAGE_URL} ...")
@@ -56,17 +64,25 @@ function(KyDeps)
                 "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
                 "-DKYDEPS=${KYDEPS_DEPENDS}"
                 RESULT_VARIABLE RESULT)
-        if (NOT "${RESULT}" EQUAL "0")
-            message(FATAL_ERROR "unable to configure")
-        endif ()
-
+        check_result(${RESULT} "unable to configure")
         execute_process(COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/kydeps
                 RESULT_VARIABLE RESULT)
-        if (NOT "${RESULT}" EQUAL "0")
-            message(FATAL_ERROR "unable to build")
-        endif ()
+        check_result(${RESULT} "unable to build")
 
         set(CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/kydeps/deps/install")
+
+        set(PACKAGE_PATH "${CMAKE_BINARY_DIR}/kydeps/deps/${PACKAGE_NAME}.zip")
+        set(PACKAGE_URL "${KYDEPS_S3_PREFIX_DEFAULT}/${PACKAGE_NAME}.zip")
+
+        if (KYDEPS_UPLOAD)
+            execute_process(COMMAND aws s3 cp ${PACKAGE_PATH} ${PACKAGE_URL}
+                    RESULT_VARIABLE RESULT)
+            check_result(${RESULT} "unable to upload")
+
+            file(SHA256 "${PACKAGE_PATH}" KYDEPS_ACTUAL_SHA256)
+            file(CONFIGURE OUTPUT ${CMAKE_SOURCE_DIR}/kydeps_sha256_${CMAKE_SYSTEM_NAME}_${CMAKE_BUILD_TYPE}.cmake
+                    CONTENT "set(KYDEPS_EXPECTED_SHA256 ${KYDEPS_ACTUAL_SHA256})")
+        endif ()
     endif ()
 
     set(httplib_FIND_PACKAGE_OPTIONS PATHS ${CMAKE_PREFIX_PATH}/CMake/httplib)
@@ -74,11 +90,7 @@ function(KyDeps)
     message(STATUS "finding ...")
     foreach (DEP ${KYDEPS_DEPENDS})
         message(STATUS "  ${DEP}")
-        #        if (${DEP}_FIND_PACKAGE_OPTIONS)
         find_package(${DEP} REQUIRED NO_MODULE ${${DEP}_FIND_PACKAGE_OPTIONS})
-        #        else ()
-        #            find_package(${DEP} REQUIRED NO_MODULE)
-        #        endif ()
     endforeach ()
 
     set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
