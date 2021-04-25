@@ -9,17 +9,16 @@ include(KyDepsTools)
 
 check_not_empty(KYDEPS)
 
+# FIXME: the hash in this is not correct if there are changed files in the repo
 get_package_name(${CMAKE_SOURCE_DIR} "${KYDEPS}" PACKAGE_NAME)
 file(WRITE ${CMAKE_BINARY_DIR}/package_name.current ${PACKAGE_NAME})
 
-add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/package_name.target
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_BINARY_DIR}/package_name.current
-        ${CMAKE_BINARY_DIR}/package_name.target)
+# FIXME: this should be done with implicit dependencies...
+file(GLOB_RECURSE FILES ${CMAKE_SOURCE_DIR}/*.*)
 
 add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/package_generate.target
+        OUTPUT ${CMAKE_BINARY_DIR}/deps/${PACKAGE_NAME}.zip
+
         COMMAND ${CMAKE_COMMAND}
         -S ${CMAKE_SOURCE_DIR}/deps
         -B ${CMAKE_BINARY_DIR}/deps
@@ -27,26 +26,16 @@ add_custom_command(
         "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
         "-DKYDEPS=${KYDEPS}"
 
-        COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/package_generate.target
-        USES_TERMINAL
-        DEPENDS ${CMAKE_BINARY_DIR}/package_name.target)
-
-add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/package_build.target ${CMAKE_BINARY_DIR}/deps/${PACKAGE_NAME}.zip
         COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/deps --target package
+
         COMMAND ${CMAKE_COMMAND} -E echo_append ">>>>> SHA256 "
         COMMAND ${CMAKE_COMMAND} -E sha256sum ${CMAKE_BINARY_DIR}/deps/${PACKAGE_NAME}.zip
-        COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/package_build.target
-        USES_TERMINAL
-        DEPENDS ${CMAKE_BINARY_DIR}/package_generate.target)
 
-add_custom_command(
-        OUTPUT ${CMAKE_BINARY_DIR}/package_done.target
-        COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/package_done.target
-        DEPENDS ${CMAKE_BINARY_DIR}/package_build.target)
+        USES_TERMINAL
+        DEPENDS ${FILES})
 
 add_custom_target(package ALL
         ${CMAKE_COMMAND} -E true
-        DEPENDS ${CMAKE_BINARY_DIR}/package_done.target)
+        DEPENDS ${CMAKE_BINARY_DIR}/deps/${PACKAGE_NAME}.zip)
 
 list(POP_BACK CMAKE_MESSAGE_INDENT)

@@ -54,8 +54,17 @@ function(KyDeps)
                 -B ${CMAKE_BINARY_DIR}/kydeps
                 -G ${CMAKE_GENERATOR}
                 "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
-                "-DKYDEPS=${KYDEPS_DEPENDS}")
-        execute_process(COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/kydeps)
+                "-DKYDEPS=${KYDEPS_DEPENDS}"
+                RESULT_VARIABLE RESULT)
+        if (NOT "${RESULT}" EQUAL "0")
+            message(FATAL_ERROR "unable to configure")
+        endif ()
+
+        execute_process(COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/kydeps
+                RESULT_VARIABLE RESULT)
+        if (NOT "${RESULT}" EQUAL "0")
+            message(FATAL_ERROR "unable to configure")
+        endif ()
 
         set(CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/kydeps/deps/install")
     endif ()
@@ -65,11 +74,11 @@ function(KyDeps)
     message(STATUS "finding ...")
     foreach (DEP ${KYDEPS_DEPENDS})
         message(STATUS "  ${DEP}")
-#        if (${DEP}_FIND_PACKAGE_OPTIONS)
-            find_package(${DEP} REQUIRED NO_MODULE ${${DEP}_FIND_PACKAGE_OPTIONS})
-#        else ()
-#            find_package(${DEP} REQUIRED NO_MODULE)
-#        endif ()
+        #        if (${DEP}_FIND_PACKAGE_OPTIONS)
+        find_package(${DEP} REQUIRED NO_MODULE ${${DEP}_FIND_PACKAGE_OPTIONS})
+        #        else ()
+        #            find_package(${DEP} REQUIRED NO_MODULE)
+        #        endif ()
     endforeach ()
 
     set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)

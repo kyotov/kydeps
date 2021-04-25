@@ -28,7 +28,7 @@ function(get_git_revision GIT_REPO_DIR GIT_REVISION)
 endfunction()
 
 function(get_package_name DEPS_GIT_REPO_DIR DEPS_LIST OUTPUT_VARIABLE)
-    get_git_revision(DEPS_GIT_REPO_DIR GIT_REVISION)
+    get_git_revision(${DEPS_GIT_REPO_DIR} GIT_REVISION)
     string(JOIN "-" DEPS_STR ${DEPS_LIST})
     set(${OUTPUT_VARIABLE} "${GIT_REVISION}-${CMAKE_SYSTEM_NAME}-${CMAKE_BUILD_TYPE}-${DEPS_STR}" PARENT_SCOPE)
 endfunction()
