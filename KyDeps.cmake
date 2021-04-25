@@ -33,7 +33,9 @@ function(KyDeps)
 
         include(${EXPECTED_SHA256_PATH})
 
-        if (NOT EXISTS ${PACKAGE_PATH})
+        file(SIZE ${PACKAGE_PATH} PACKAGE_SIZE)
+
+        if (NOT EXISTS ${PACKAGE_PATH} OR "${PACKAGE_SIZE}" EQUAL "0")
             message(STATUS "downloading ${PACKAGE_URL} ...")
             file(DOWNLOAD "${PACKAGE_URL}" "${PACKAGE_PATH}" EXPECTED_HASH SHA256=${KYDEPS_EXPECTED_SHA256})
             message(STATUS "  done!")
