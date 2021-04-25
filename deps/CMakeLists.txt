@@ -13,7 +13,7 @@ foreach (MODULE ${KYDEPS})
     include(${MODULE}.cmake)
 endforeach ()
 
-install(DIRECTORY ${CMAKE_BINARY_DIR}/install DESTINATION ".")
+install(DIRECTORY ${CMAKE_BINARY_DIR}/install DESTINATION "." USE_SOURCE_PERMISSIONS)
 
 get_package_name("${CMAKE_SOURCE_DIR}" "${KYDEPS}" PACKAGE_NAME)
 set(CPACK_PACKAGE_FILE_NAME "${PACKAGE_NAME}")
