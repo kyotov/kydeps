@@ -1,8 +1,12 @@
 include_guard(GLOBAL)
 
+include(zlib)
+
 KyDepsInstall(
         https://github.com/protocolbuffers/protobuf.git
         v3.15.8
+
+        DEPENDS zlib
 
         SOURCE_SUBDIR cmake
 

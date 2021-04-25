@@ -63,7 +63,7 @@ function(KyDeps)
         execute_process(COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/kydeps
                 RESULT_VARIABLE RESULT)
         if (NOT "${RESULT}" EQUAL "0")
-            message(FATAL_ERROR "unable to configure")
+            message(FATAL_ERROR "unable to build")
         endif ()
 
         set(CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/kydeps/deps/install")
