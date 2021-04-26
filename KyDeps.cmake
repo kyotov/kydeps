@@ -105,9 +105,6 @@ function(KyDeps)
         endif ()
     endif ()
 
-    set(httplib_FIND_PACKAGE_OPTIONS PATHS ${CMAKE_PREFIX_PATH}/CMake/httplib)
-
-    message(STATUS "finding ...")
     foreach (DEP ${KYDEPS_DEPENDS})
         message(STATUS "  ${DEP}")
         find_package(${DEP} REQUIRED NO_MODULE ${${DEP}_FIND_PACKAGE_OPTIONS})
