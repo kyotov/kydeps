@@ -17,6 +17,12 @@ macro(check_not_empty NAME)
     endif ()
 endmacro()
 
+function(check_result RESULT MESSAGE)
+    if (NOT "${RESULT}" EQUAL "0")
+        message(FATAL_ERROR ${ARG_MESSAGE})
+    endif ()
+endfunction()
+
 function(get_git_revision GIT_REPO_DIR GIT_REVISION)
     execute_process(
             COMMAND git rev-parse HEAD

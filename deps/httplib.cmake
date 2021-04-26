@@ -3,8 +3,8 @@ include_guard(GLOBAL)
 include(openssl)
 
 KyDepsInstall(
-        https://github.com/yhirose/cpp-httplib.git
-        v0.8.4
+        https://github.com/kyotov/cpp-httplib.git
+        v0.8.8-windows-patch
 
         DEPENDS openssl
 

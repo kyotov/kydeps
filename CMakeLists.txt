@@ -28,9 +28,7 @@ add_custom_command(
 
         COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/deps --target package
 
-        COMMAND ${CMAKE_COMMAND} -E echo_append ">>>>> SHA256 "
-        COMMAND ${CMAKE_COMMAND} -E sha256sum ${CMAKE_BINARY_DIR}/deps/${PACKAGE_NAME}.zip
-
+        VERBATIM
         USES_TERMINAL
         DEPENDS ${FILES})
 
