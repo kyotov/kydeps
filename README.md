@@ -31,7 +31,7 @@ TL;DR:
             gflags
             glog::glog)
         ```
-    1. configure the project with `cmake -S ... -B ...`. among other things, this will:
+    1. configure the project with `cmake -STATEMENT ... -B ...`. among other things, this will:
         1. build `gflags` and `glog` as external projects
         1. make them available to your code using `find_package`
         1. generate `<git-sha>-<os>-Debug-gflags-glog.zip`
