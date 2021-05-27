@@ -29,7 +29,7 @@ IF (WIN32)
             PATCH_COMMAND ${CMAKE_COMMAND} -E copy_if_different <INSTALL_DIR>/install/include/zlib.h <SOURCE_DIR>/zlib.h
             COMMAND ${CMAKE_COMMAND} -E copy_if_different <INSTALL_DIR>/install/include/zconf.h <SOURCE_DIR>/zconf.h
 
-            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> <INSTALL_DIR>/src/perl/perl/bin/perl Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR>/install --openssldir=<INSTALL_DIR>/install ${CMAKE_C_FLAGS}
+            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> <INSTALL_DIR>/src/perl/perl/bin/perl Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR>/install --openssldir=<INSTALL_DIR>/install CC=cl ${CMAKE_C_FLAGS}
 
             # NOTE: there is some non-determinism in the configuration that looks like `RANLIB => "CODE(0x273a5f0)"`
             #       ranlib is not used on windows, so we just remove the lines about it to remove the non-determinism
