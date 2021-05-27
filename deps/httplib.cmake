@@ -4,7 +4,7 @@ include(openssl)
 
 KyDepsInstall(
         https://github.com/kyotov/cpp-httplib.git
-        v0.8.8-windows-patch
+        v0.8.9-windows-patch
 
         DEPENDS openssl
 
