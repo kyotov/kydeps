@@ -18,6 +18,7 @@ endif ()
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        # consider -Ob3
         add_compile_options(-MT -GL)
         add_link_options(-LTCG -ignore:4099)
     elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
