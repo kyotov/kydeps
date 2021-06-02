@@ -48,11 +48,11 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     set(MANIFEST "-- package --" "${PACKAGE_NAME} ${FLAVOR}")
 
     # FIXME: re-enable when done testing!
-    #    file(GLOB FILES
-    #            RELATIVE ${CMAKE_SOURCE_DIR}
-    #            ${CMAKE_SOURCE_DIR}/CMakeLists.txt
-    #            ${CMAKE_SOURCE_DIR}/utils/**
-    #            ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
+    file(GLOB FILES
+            RELATIVE ${CMAKE_SOURCE_DIR}
+            ${CMAKE_SOURCE_DIR}/CMakeLists.txt
+            ${CMAKE_SOURCE_DIR}/utils/**
+            ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
 
     list(APPEND MANIFEST "-- files --")
     foreach (FILE ${FILES})
