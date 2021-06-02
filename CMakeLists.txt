@@ -11,7 +11,7 @@ include(KyDepsTools)
 include(KyDepsOptions)
 include(KyDepsEpilogue)
 
-set_if_empty(KYDEPS_UPLOAD ON)
+set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_DOWNLOAD OFF)
 set_if_empty(KYDEPS_PACKAGES "gflags;glog")
 set_if_empty(KYDEPS_SHOW_MANIFEST OFF)
