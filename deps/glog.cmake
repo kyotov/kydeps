@@ -2,7 +2,7 @@ include_guard(GLOBAL)
 
 include(gflags)
 
-KyDepsInstall(
+KyDepsInstall(glog
         https://github.com/google/glog.git
         v0.4.0
 

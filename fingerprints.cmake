@@ -1,0 +1,12 @@
+set(gflags_dcacd3a281e57fed9d66a5c96b3bc768ae64d784_sha1sum
+  b70c2a1941eccdbc526ffed9712d9bed256a1e9f  package/gflags_dcacd3a281e57fed9d66a5c96b3bc768ae64d784.zip
+  64-bit Windows Debug)
+set(glog_564556efe731e2b96645013757b92bc2a8c405df_sha1sum
+  e320d9fab89b026673e2f4858d24561c9ce1618c  package/glog_564556efe731e2b96645013757b92bc2a8c405df.zip
+  64-bit Windows Debug)
+set(gflags_b97e64a9eced6112cc086269207e8165c0f695dc_sha1sum
+  e471490b0a59bf89f1e88441118f92213be42ab2  package/gflags_b97e64a9eced6112cc086269207e8165c0f695dc.zip
+  64-bit Windows Debug)
+set(glog_5d8872086e6acdcb08d6419d7cf8fe8e6915cc99_sha1sum
+  322d3b8fd3cfaac91cc191a33b91de77690667b0  package/glog_5d8872086e6acdcb08d6419d7cf8fe8e6915cc99.zip
+  64-bit Windows Debug)

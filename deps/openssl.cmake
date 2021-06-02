@@ -17,8 +17,6 @@ IF (WIN32)
             INSTALL_COMMAND ""
     )
 
-    message(${CMAKE_C_FLAGS})
-
     KyDepsInstallGit(https://github.com/openssl/openssl.git OpenSSL_1_1_1k
             DEPENDS perl zlib
 

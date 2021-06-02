@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-KyDepsInstall(
+KyDepsInstall(gflags
         https://github.com/gflags/gflags.git
         v2.2.0
 
