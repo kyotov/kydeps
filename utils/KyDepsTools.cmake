@@ -104,6 +104,12 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
     set(INSTALL_PATH ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH})
     set(PACKAGE_PATH ${CMAKE_BINARY_DIR}/package/${PACKAGE_NAME}_${HASH}.zip)
 
+    list(APPEND PACKAGE_NAMES ${PACKAGE_NAME})
+    set(PACKAGE_NAMES ${PACKAGE_NAMES} PARENT_SCOPE)
+
+    list(APPEND INSTALL_PATHS ${INSTALL_PATH})
+    set(INSTALL_PATHS ${INSTALL_PATHS} PARENT_SCOPE)
+
     list(APPEND PACKAGE_PATHS ${PACKAGE_PATH})
     set(PACKAGE_PATHS ${PACKAGE_PATHS} PARENT_SCOPE)
 
@@ -130,7 +136,7 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 GIT_PROGRESS TRUE
                 USES_TERMINAL_INSTALL FALSE
                 PREFIX ${CMAKE_BINARY_DIR}/build/${PACKAGE_NAME}_${HASH}
-                INSTALL_DIR ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH}
+                INSTALL_DIR ${INSTALL_PATH}
                 CMAKE_ARGS
                 -DBUILD_SHARED_LIBS=FALSE
                 -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
@@ -175,4 +181,10 @@ function(add_fingerprints_target)
             ${COMMANDS}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             DEPENDS ${PACKAGE_PATHS})
+endfunction()
+
+function(add_deep_clean_target)
+    add_custom_target(deep_clean ALL)
+    set_target_properties(deep_clean
+            PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/build;${CMAKE_BINARY_DIR}/download")
 endfunction()

@@ -3,7 +3,7 @@ include_guard(GLOBAL)
 include(${CMAKE_CURRENT_LIST_DIR}/utils/KyDepsTools.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/utils/KyDepsOptions.cmake)
 
-function(kydeps PACKAGES)
+macro(kydeps PACKAGES)
     execute_process(
             COMMAND ${CMAKE_COMMAND}
             -S ${CMAKE_SOURCE_DIR}/kydeps
@@ -22,7 +22,5 @@ function(kydeps PACKAGES)
             RESULT_VARIABLE RESULT)
     check_result(${RESULT} "kydeps build failure")
 
-    file(GLOB X ${CMAKE_BINARY_DIR}/kydeps/install/*)
-    list(APPEND CMAKE_PREFIX_PATH ${X})
-    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
-endfunction()
+    include(${CMAKE_BINARY_DIR}/kydeps/config.cmake)
+endmacro()
