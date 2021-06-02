@@ -2,11 +2,11 @@ include_guard(GLOBAL)
 
 include(openssl)
 
-KyDepsInstall(
+KyDepsInstall(httplib
         https://github.com/kyotov/cpp-httplib.git
         v0.8.9-windows-patch
 
-        DEPENDS openssl
-
         CMAKE_ARGS
-        -DOPENSSL_USE_STATIC_LIBS=ON)
+        -DOPENSSL_USE_STATIC_LIBS=ON
+
+        DEPENDS openssl)

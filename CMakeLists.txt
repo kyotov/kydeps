@@ -10,12 +10,16 @@ include(KyDepsTools)
 include(KyDepsOptions)
 include(KyDepsEpilogue)
 
+file(GLOB_RECURSE PACKAGES RELATIVE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/deps/**)
+list(TRANSFORM PACKAGES REPLACE "\\.cmake$" "")
+
 set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_DOWNLOAD OFF)
-set_if_empty(KYDEPS_SHOW_MANIFEST OFF)
+set_if_empty(KYDEPS_SHOW_MANIFEST ON)
+#set_if_empty(KYDEPS_DEEP_CLEAN ON)
 set_if_empty(KYDEPS_URL_PREFIX_DEFAULT "https://kydeps.s3.us-east-2.amazonaws.com")
 set_if_empty(KYDEPS_S3_PREFIX_DEFAULT "s3://kydeps")
-set_if_empty(KYDEPS_PACKAGES "google/flags;google/log;google/test;google/protobuf;fmt;zstd;xxHash")
+set_if_empty(KYDEPS_PACKAGES "${PACKAGES}")
 
 if (KYDEPS_DOWNLOAD)
     if (KYDEPS_UPLOAD)
@@ -23,6 +27,14 @@ if (KYDEPS_DOWNLOAD)
     endif ()
     include(fingerprints.cmake)
 endif ()
+
+#if (KYDEPS_DEEP_CLEAN)
+#    set(ADDITIONAL_CLEAN_FILES
+#            ${CMAKE_BINARY_DIR}/build
+#            ${CMAKE_BINARY_DIR}/download
+#            ${CMAKE_BINARY_DIR}/install
+#            ${CMAKE_BINARY_DIR}/package)
+#endif ()
 
 foreach (PACKAGE ${KYDEPS_PACKAGES})
     include(${PACKAGE})

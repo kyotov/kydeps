@@ -63,17 +63,19 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     get_git_remote_revision(${GIT_REPO} ${GIT_REF} GIT_REVISION)
     list(APPEND MANIFEST "-- source --" "${GIT_REF} (${GIT_REVISION}) @ ${GIT_REPO}")
 
-    cmake_parse_arguments(X "" "" "DEPENDS;CMAKE_ARGS;SOURCE_SUBDIR" ${ARGN})
+    #    cmake_parse_arguments(X "" "" "DEPENDS;CMAKE_ARGS;SOURCE_SUBDIR" ${ARGN})
+    cmake_parse_arguments(X "" "" "DEPENDS" ${ARGN})
 
     list(APPEND MANIFEST "-- depends --")
     foreach (DEPEND ${X_DEPENDS})
+        if ("${${DEPEND}_HASH}" STREQUAL "")
+            message(FATAL_ERROR "ERROR: dependency '${DEPEND}' not found for package '${PACKAGE_NAME}'!\nHINT: Make sure DEPENDS is the last section on KyDepsInstall call.")
+        endif ()
         list(APPEND MANIFEST "${DEPEND} -> ${${DEPEND}_HASH}")
         list(APPEND PREFIX_PATH "${CMAKE_BINARY_DIR}/install/${DEPEND}_${${DEPEND}_HASH}")
     endforeach ()
 
-    list(APPEND MANIFEST "-- args --" ${X_UNPARSED_ARGUMENTS})
-    list(APPEND MANIFEST CMAKE_ARGS ${X_CMAKE_ARGS})
-    list(APPEND MANIFEST SOURCE_SUBDIR ${X_SOURCE_SUBDIR})
+    list(APPEND MANIFEST "-- args --" ${ARGN})
     list(APPEND MANIFEST "-- end --")
 
     string(SHA1 HASH "${MANIFEST}")
@@ -124,7 +126,11 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
         ExternalProject_Add(${PACKAGE_NAME}
                 GIT_REPOSITORY ${GIT_REPO}
                 GIT_TAG ${GIT_REF}
-                PREFIX ${CMAKE_BINARY_DIR}/build
+                GIT_SHALLOW TRUE
+                GIT_PROGRESS TRUE
+                USES_TERMINAL_INSTALL FALSE
+                PREFIX ${CMAKE_BINARY_DIR}/build/${PACKAGE_NAME}_${HASH}
+                INSTALL_DIR ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH}
                 CMAKE_ARGS
                 -DBUILD_SHARED_LIBS=FALSE
                 -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
@@ -132,6 +138,7 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 -DCMAKE_INSTALL_PREFIX:PATH=${INSTALL_PATH}
                 -DCMAKE_MSVC_RUNTIME_LIBRARY=${CMAKE_MSVC_RUNTIME_LIBRARY}
                 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
+                -DCMAKE_POLICY_DEFAULT_CMP0097=NEW
                 ${ARGN})
 
         if (KYDEPS_UPLOAD)
