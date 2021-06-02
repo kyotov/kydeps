@@ -34,35 +34,11 @@ endforeach ()
 
 set(CONFIG ${CMAKE_BINARY_DIR}/config.cmake)
 
-set(COMMANDS_1)
-foreach (INSTALL_PATH ${INSTALL_PATHS})
-    list(APPEND COMMANDS_1 COMMAND ${CMAKE_COMMAND} -E echo "  ${INSTALL_PATH}" >> ${CONFIG})
-endforeach ()
-
-set(COMMANDS_2)
-foreach (PACKAGE_NAME ${PACKAGE_NAMES})
-    list(APPEND COMMANDS_2 COMMAND ${CMAKE_COMMAND} -E echo "find_package(${PACKAGE_NAME} REQUIRED NO_MODULE)" >> ${CONFIG})
-endforeach ()
-
-add_custom_command(
-        OUTPUT ${CONFIG}
-        DEPENDS ${PACKAGE_PATHS}
-        COMMAND ${CMAKE_COMMAND} -E echo "list(APPEND CMAKE_PREFIX_PATH" > ${CONFIG}
-        ${COMMANDS_1}
-        COMMAND ${CMAKE_COMMAND} -E echo ")" >> ${CONFIG}
-        COMMAND ${CMAKE_COMMAND} -E echo "" >> ${CONFIG}
-        ${COMMANDS_2}
-)
+add_config_target()
 
 add_custom_target(packages ALL DEPENDS ${PACKAGE_PATHS} ${CONFIG})
 set_target_properties(packages
         PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/install;${CMAKE_BINARY_DIR}/package")
-
-#
-#add_custom_target()
-#message(STATUS "PACKAGE NAMES = ${PACKAGE_NAMES}")
-#message(STATUS "PACKAGE PATHS = ${PACKAGE_PATHS}")
-#message(STATUS "INSTALL PATHS = ${INSTALL_PATHS}")
 
 if (KYDEPS_DEEP_CLEAN)
     add_deep_clean_target()

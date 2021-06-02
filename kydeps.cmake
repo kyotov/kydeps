@@ -22,5 +22,9 @@ macro(kydeps PACKAGES)
             RESULT_VARIABLE RESULT)
     check_result(${RESULT} "kydeps build failure")
 
+    add_custom_target(kdeps_clean ALL)
+    set_target_properties(kdeps_clean
+            PROPERTIES ADDITIONAL_CLEAN_FILES ${CMAKE_BINARY_DIR}/kydeps)
+
     include(${CMAKE_BINARY_DIR}/kydeps/config.cmake)
 endmacro()

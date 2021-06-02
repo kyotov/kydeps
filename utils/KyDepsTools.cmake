@@ -188,3 +188,25 @@ function(add_deep_clean_target)
     set_target_properties(deep_clean
             PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/build;${CMAKE_BINARY_DIR}/download")
 endfunction()
+
+function(add_config_target)
+    set(COMMANDS_1)
+    foreach (INSTALL_PATH ${INSTALL_PATHS})
+        list(APPEND COMMANDS_1 COMMAND ${CMAKE_COMMAND} -E echo "  ${INSTALL_PATH}" >> ${CONFIG})
+    endforeach ()
+
+    set(COMMANDS_2)
+    foreach (PACKAGE_NAME ${PACKAGE_NAMES})
+        list(APPEND COMMANDS_2 COMMAND ${CMAKE_COMMAND} -E echo "find_package(${PACKAGE_NAME} REQUIRED NO_MODULE)" >> ${CONFIG})
+    endforeach ()
+
+    add_custom_command(
+            OUTPUT ${CONFIG}
+            DEPENDS ${PACKAGE_PATHS}
+            COMMAND ${CMAKE_COMMAND} -E echo "list(APPEND CMAKE_PREFIX_PATH" > ${CONFIG}
+            ${COMMANDS_1}
+            COMMAND ${CMAKE_COMMAND} -E echo ")" >> ${CONFIG}
+            COMMAND ${CMAKE_COMMAND} -E echo "" >> ${CONFIG}
+            ${COMMANDS_2}
+    )
+endfunction()
