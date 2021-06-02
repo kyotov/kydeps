@@ -63,7 +63,7 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     get_git_remote_revision(${GIT_REPO} ${GIT_REF} GIT_REVISION)
     list(APPEND MANIFEST "-- source --" "${GIT_REF} (${GIT_REVISION}) @ ${GIT_REPO}")
 
-    cmake_parse_arguments(X "" "" "DEPENDS;CMAKE_ARGS" ${ARGN})
+    cmake_parse_arguments(X "" "" "DEPENDS;CMAKE_ARGS;SOURCE_SUBDIR" ${ARGN})
 
     list(APPEND MANIFEST "-- depends --")
     foreach (DEPEND ${X_DEPENDS})
@@ -71,8 +71,9 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
         list(APPEND PREFIX_PATH "${CMAKE_BINARY_DIR}/install/${DEPEND}_${${DEPEND}_HASH}")
     endforeach ()
 
-    list(APPEND MANIFEST "-- cmake args --" ${X_CMAKE_ARGS})
-    list(APPEND MANIFEST "-- other args --" ${X_UNPARSED_ARGUMENTS})
+    list(APPEND MANIFEST "-- args --" ${X_UNPARSED_ARGUMENTS})
+    list(APPEND MANIFEST CMAKE_ARGS ${X_CMAKE_ARGS})
+    list(APPEND MANIFEST SOURCE_SUBDIR ${X_SOURCE_SUBDIR})
     list(APPEND MANIFEST "-- end --")
 
     string(SHA1 HASH "${MANIFEST}")

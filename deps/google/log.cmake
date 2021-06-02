@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-include(gflags)
+include(google/flags)
 
 KyDepsInstall(glog
         https://github.com/google/glog.git
