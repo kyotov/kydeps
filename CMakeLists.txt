@@ -13,6 +13,8 @@ include(KyDepsEpilogue)
 file(GLOB_RECURSE PACKAGES RELATIVE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/deps/**)
 list(TRANSFORM PACKAGES REPLACE "\\.cmake$" "")
 
+set(PACKAGES "google/flags")
+
 set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_DOWNLOAD OFF)
 set_if_empty(KYDEPS_SHOW_MANIFEST OFF)

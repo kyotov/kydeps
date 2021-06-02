@@ -163,6 +163,14 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
     list(POP_BACK CMAKE_MESSAGE_INDENT)
 endfunction()
 
+if (WIN32)
+    set(LP "(")
+    set(RP ")")
+else ()
+    set(LP "\\(")
+    set(RP "\\)")
+endif ()
+
 function(add_fingerprints_target)
     set(FINGERPRINTS "${CMAKE_SOURCE_DIR}/fingerprints.cmake")
 
@@ -171,10 +179,10 @@ function(add_fingerprints_target)
     foreach (PACKAGE_PATH ${PACKAGE_PATHS})
         get_filename_component(KEY ${PACKAGE_PATH} NAME_WE)
         list(APPEND COMMANDS
-                COMMAND ${CMAKE_COMMAND} -E echo "set\\(${KEY}_sha1sum" >> ${FINGERPRINTS}
+                COMMAND ${CMAKE_COMMAND} -E echo "set${LP}${KEY}_sha1sum" >> ${FINGERPRINTS}
                 COMMAND ${CMAKE_COMMAND} -E echo_append "  " >> ${FINGERPRINTS}
                 COMMAND ${CMAKE_COMMAND} -E sha1sum package/${KEY}.zip >> ${FINGERPRINTS}
-                COMMAND ${CMAKE_COMMAND} -E echo "  ${FLAVOR}\\)" >> ${FINGERPRINTS})
+                COMMAND ${CMAKE_COMMAND} -E echo "  ${FLAVOR}${RP}" >> ${FINGERPRINTS})
     endforeach ()
 
     add_custom_target(fingerprints ALL
@@ -199,15 +207,15 @@ function(add_targets)
 
     set(COMMANDS_2)
     foreach (PACKAGE_NAME ${PACKAGE_NAMES})
-        list(APPEND COMMANDS_2 COMMAND ${CMAKE_COMMAND} -E echo "find_package\\(${PACKAGE_NAME} REQUIRED NO_MODULE\\)" >> ${CONFIG})
+        list(APPEND COMMANDS_2 COMMAND ${CMAKE_COMMAND} -E echo "find_package${LP}${PACKAGE_NAME} REQUIRED NO_MODULE${RP}" >> ${CONFIG})
     endforeach ()
 
     add_custom_command(
             OUTPUT ${CONFIG}
             DEPENDS ${PACKAGE_PATHS}
-            COMMAND ${CMAKE_COMMAND} -E echo "list\\(APPEND CMAKE_PREFIX_PATH" > ${CONFIG}
+            COMMAND ${CMAKE_COMMAND} -E echo "list${LP}APPEND CMAKE_PREFIX_PATH" > ${CONFIG}
             ${COMMANDS_1}
-            COMMAND ${CMAKE_COMMAND} -E echo "\\)" >> ${CONFIG}
+            COMMAND ${CMAKE_COMMAND} -E echo "${RP}" >> ${CONFIG}
             COMMAND ${CMAKE_COMMAND} -E echo "" >> ${CONFIG}
             ${COMMANDS_2}
     )
