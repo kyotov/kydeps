@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-KyDepsInstall(
+KyDepsInstall(zstd
         https://github.com/facebook/zstd.git
         v1.4.7
 

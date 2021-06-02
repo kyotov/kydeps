@@ -15,7 +15,7 @@ set_if_empty(KYDEPS_DOWNLOAD OFF)
 set_if_empty(KYDEPS_SHOW_MANIFEST OFF)
 set_if_empty(KYDEPS_URL_PREFIX_DEFAULT "https://kydeps.s3.us-east-2.amazonaws.com")
 set_if_empty(KYDEPS_S3_PREFIX_DEFAULT "s3://kydeps")
-set_if_empty(KYDEPS_PACKAGES "google/flags;google/log;google/test;google/protobuf;fmt")
+set_if_empty(KYDEPS_PACKAGES "google/flags;google/log;google/test;google/protobuf;fmt;zstd;xxHash")
 
 if (KYDEPS_DOWNLOAD)
     if (KYDEPS_UPLOAD)

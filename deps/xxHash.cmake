@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-KyDepsInstall(
+KyDepsInstall(xxHash
         https://github.com/Cyan4973/xxHash.git
         v0.8.0
 
