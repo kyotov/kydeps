@@ -32,20 +32,6 @@ foreach (PACKAGE ${KYDEPS_PACKAGES})
     include(${PACKAGE})
 endforeach ()
 
-set(CONFIG ${CMAKE_BINARY_DIR}/config.cmake)
-
-add_config_target()
-
-add_custom_target(packages ALL DEPENDS ${PACKAGE_PATHS} ${CONFIG})
-set_target_properties(packages
-        PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/install;${CMAKE_BINARY_DIR}/package")
-
-if (KYDEPS_DEEP_CLEAN)
-    add_deep_clean_target()
-endif ()
-
-if (KYDEPS_UPLOAD)
-    add_fingerprints_target()
-endif ()
+add_targets()
 
 list(POP_BACK CMAKE_MESSAGE_INDENT)

@@ -189,7 +189,9 @@ function(add_deep_clean_target)
             PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/build;${CMAKE_BINARY_DIR}/download")
 endfunction()
 
-function(add_config_target)
+function(add_targets)
+    set(CONFIG ${CMAKE_BINARY_DIR}/config.cmake)
+
     set(COMMANDS_1)
     foreach (INSTALL_PATH ${INSTALL_PATHS})
         list(APPEND COMMANDS_1 COMMAND ${CMAKE_COMMAND} -E echo "  ${INSTALL_PATH}" >> ${CONFIG})
@@ -209,4 +211,17 @@ function(add_config_target)
             COMMAND ${CMAKE_COMMAND} -E echo "" >> ${CONFIG}
             ${COMMANDS_2}
     )
+
+    add_custom_target(packages ALL DEPENDS ${PACKAGE_PATHS} ${CONFIG})
+    set_target_properties(packages
+            PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/install;${CMAKE_BINARY_DIR}/package")
+
+    if (KYDEPS_DEEP_CLEAN)
+        add_deep_clean_target()
+    endif ()
+
+    if (KYDEPS_UPLOAD)
+        add_fingerprints_target()
+    endif ()
+
 endfunction()
