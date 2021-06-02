@@ -48,11 +48,11 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     set(MANIFEST "-- package --" "${PACKAGE_NAME} ${FLAVOR}")
 
     # FIXME: re-enable when done testing!
-#    file(GLOB FILES
-#            RELATIVE ${CMAKE_SOURCE_DIR}
-#            ${CMAKE_SOURCE_DIR}/CMakeLists.txt
-#            ${CMAKE_SOURCE_DIR}/utils/**
-#            ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
+    #    file(GLOB FILES
+    #            RELATIVE ${CMAKE_SOURCE_DIR}
+    #            ${CMAKE_SOURCE_DIR}/CMakeLists.txt
+    #            ${CMAKE_SOURCE_DIR}/utils/**
+    #            ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
 
     list(APPEND MANIFEST "-- files --")
     foreach (FILE ${FILES})
@@ -147,4 +147,24 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
     endif ()
 
     list(POP_BACK CMAKE_MESSAGE_INDENT)
+endfunction()
+
+function(add_fingerprints_target)
+    set(FINGERPRINTS "${CMAKE_SOURCE_DIR}/fingerprints.cmake")
+
+    get_flavor(FLAVOR)
+
+    foreach (PACKAGE_PATH ${PACKAGE_PATHS})
+        get_filename_component(KEY ${PACKAGE_PATH} NAME_WE)
+        list(APPEND COMMANDS
+                COMMAND ${CMAKE_COMMAND} -E echo "set(${KEY}_sha1sum" >> ${FINGERPRINTS}
+                COMMAND ${CMAKE_COMMAND} -E echo_append "  " >> ${FINGERPRINTS}
+                COMMAND ${CMAKE_COMMAND} -E sha1sum package/${KEY}.zip >> ${FINGERPRINTS}
+                COMMAND ${CMAKE_COMMAND} -E echo "  ${FLAVOR})" >> ${FINGERPRINTS})
+    endforeach ()
+
+    add_custom_target(fingerprints ALL
+            ${COMMANDS}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            DEPENDS ${PACKAGE_PATHS})
 endfunction()
