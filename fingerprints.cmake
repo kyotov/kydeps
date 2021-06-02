@@ -1,4 +1,4 @@
-set(fmt_6aea3b4ed9ee396c5f74a05a51cb80e3a743f35d_sha1sum
+∫set(fmt_6aea3b4ed9ee396c5f74a05a51cb80e3a743f35d_sha1sum
   1257ee0c9ccf99ea5261505cc1fde13611ccdd1a  package/fmt_6aea3b4ed9ee396c5f74a05a51cb80e3a743f35d.zip
   64-bit Windows Debug)
 set(gflags_0df81ee1afdbb612552cd653ed32e188e6af85bd_sha1sum
@@ -118,3 +118,63 @@ set(xxHash_782debce46c91abce2b07f8330c604384e3f3846_sha1sum
 set(zstd_038687e8302cdcb5df5dea86037f154add1cd651_sha1sum
   8e8ec625c90b604efb2bb06ddb083b61c557c665  package/zstd_038687e8302cdcb5df5dea86037f154add1cd651.zip
   64-bit Linux Release)
+set(fmt_06ae9d686773b309280ac33edef2b65d74fa7180_sha1sum
+  b8bb9f0f77e7b41b8b18295d0c30dfb49342b1ec  package/fmt_06ae9d686773b309280ac33edef2b65d74fa7180.zip
+  64-bit Darwin Debug)
+set(gflags_37af7e6a16619315ce6477bcab789631c6dbb9e2_sha1sum
+  2898a6392caafeec8463035d06c1fa18a315bfff  package/gflags_37af7e6a16619315ce6477bcab789631c6dbb9e2.zip
+  64-bit Darwin Debug)
+set(glog_c54da9a5bea2d9b49a879f7e00661ec67d63f222_sha1sum
+  296029e2f2f9845266f60726af1dbfb9eee8d90a  package/glog_c54da9a5bea2d9b49a879f7e00661ec67d63f222.zip
+  64-bit Darwin Debug)
+set(zlib_85e3373b8353e7cda9f721cccb76c447b00d8120_sha1sum
+  def9196f8e9d7a90d6855e5c2b9e0d730da6b818  package/zlib_85e3373b8353e7cda9f721cccb76c447b00d8120.zip
+  64-bit Darwin Debug)
+set(protobuf_5cba6d040fd85476581cabcc325311c0704600d7_sha1sum
+  cf61138a4e505fc4947a680283ec09dfb08a06d0  package/protobuf_5cba6d040fd85476581cabcc325311c0704600d7.zip
+  64-bit Darwin Debug)
+set(GTest_c25db33ccb218de2397f917564504a49380945b2_sha1sum
+  b9295136bdbada4398101a2b7447c8cd86b97650  package/GTest_c25db33ccb218de2397f917564504a49380945b2.zip
+  64-bit Darwin Debug)
+set(openssl_781b111bd104bc74a89ae8899d28614ae281971e_sha1sum
+  1919258e9a9341903d53c0036ade69f64044e91a  package/openssl_781b111bd104bc74a89ae8899d28614ae281971e.zip
+  64-bit Darwin Debug)
+set(httplib_9ee82a3b7f396d9859ba23998fb2e16d5564fc8c_sha1sum
+  fae5b0927a56d7d49a309d586a4635efce84c735  package/httplib_9ee82a3b7f396d9859ba23998fb2e16d5564fc8c.zip
+  64-bit Darwin Debug)
+set(xxHash_12089ece3900b6daeee51047dd08f6711e13b1d1_sha1sum
+  9eed557fd3de890e944f73229946f7f6c3abd2da  package/xxHash_12089ece3900b6daeee51047dd08f6711e13b1d1.zip
+  64-bit Darwin Debug)
+set(zstd_30e51efb2c4bbb0da6d59ac7f13013513570a624_sha1sum
+  b48270a8520020878d9584c53512499d2153c633  package/zstd_30e51efb2c4bbb0da6d59ac7f13013513570a624.zip
+  64-bit Darwin Debug)
+set(fmt_51a9458fc0616592345902401062d81142114a01_sha1sum
+  c6caa830cc5c71147c2887a3138ea39ea5a6872b  package/fmt_51a9458fc0616592345902401062d81142114a01.zip
+  64-bit Darwin Release)
+set(gflags_ba4c499deb8d3cd076f1cbc0668a7dcd3a9bfe65_sha1sum
+  cdb76625ff047eee796ccd1c7f0d068af45287f7  package/gflags_ba4c499deb8d3cd076f1cbc0668a7dcd3a9bfe65.zip
+  64-bit Darwin Release)
+set(glog_7e7ddd512a3c62b454f2ac0c2c5c2588765ecd89_sha1sum
+  98e1fd65292fdf4ff875de62511e47ffd00fff8f  package/glog_7e7ddd512a3c62b454f2ac0c2c5c2588765ecd89.zip
+  64-bit Darwin Release)
+set(zlib_7d75feb9eff66f3c9c9ed4f3ca9e0ede69e5d16c_sha1sum
+  81470ebf33d27e8c9337593c0ddcbfbc5ee61547  package/zlib_7d75feb9eff66f3c9c9ed4f3ca9e0ede69e5d16c.zip
+  64-bit Darwin Release)
+set(protobuf_f4d3e42ada570edbe60e7be7d00c4d42a20a6b70_sha1sum
+  aa5cef63a4c3a284f50c569be286158cb0128021  package/protobuf_f4d3e42ada570edbe60e7be7d00c4d42a20a6b70.zip
+  64-bit Darwin Release)
+set(GTest_751694b218fdddc27a187bd4164dfbe25360dd99_sha1sum
+  42fde9cb4302bedcb9ccee8868f51eb16de2f0c5  package/GTest_751694b218fdddc27a187bd4164dfbe25360dd99.zip
+  64-bit Darwin Release)
+set(openssl_faea1f55395beb952bbd16dd93aa518df56f8046_sha1sum
+  7688c4f9903d91c25ae4f9ed22b7f070bd868db4  package/openssl_faea1f55395beb952bbd16dd93aa518df56f8046.zip
+  64-bit Darwin Release)
+set(httplib_2d790dd4f966b71a6c8637739be62f736102fe21_sha1sum
+  33336d03e1579ea8d36ee8c7f18835fd736ac9a5  package/httplib_2d790dd4f966b71a6c8637739be62f736102fe21.zip
+  64-bit Darwin Release)
+set(xxHash_1669fd3f55e5037afc9d5cd612fdf9b1edd37882_sha1sum
+  5e40eb8d1cf119c005d2b52186c5d8e8fc7d0e34  package/xxHash_1669fd3f55e5037afc9d5cd612fdf9b1edd37882.zip
+  64-bit Darwin Release)
+set(zstd_fab5ba1d2c04a08a44893373b448ec90dfd607ad_sha1sum
+  b71eae56bc3cee132d0da2e317207fb906cb266b  package/zstd_fab5ba1d2c04a08a44893373b448ec90dfd607ad.zip
+  64-bit Darwin Release)
