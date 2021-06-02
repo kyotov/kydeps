@@ -1,6 +1,6 @@
 set(gflags_b97e64a9eced6112cc086269207e8165c0f695dc_sha1sum
-  27ce935891ef89b758f3a51db4ab8f63c7437135  package/gflags_b97e64a9eced6112cc086269207e8165c0f695dc.zip
+  9bab401473bec8b57acdf9fc9c049bcb4d744163  package/gflags_b97e64a9eced6112cc086269207e8165c0f695dc.zip
   64-bit Windows Debug)
 set(glog_5d8872086e6acdcb08d6419d7cf8fe8e6915cc99_sha1sum
-  c377b59cf663fab45acdc6d54c8fedc6ee94d9e5  package/glog_5d8872086e6acdcb08d6419d7cf8fe8e6915cc99.zip
+  17ddf2f4a38b4e043e85e9dd0b49fa469ce4673a  package/glog_5d8872086e6acdcb08d6419d7cf8fe8e6915cc99.zip
   64-bit Windows Debug)

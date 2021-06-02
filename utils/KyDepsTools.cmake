@@ -1,6 +1,5 @@
 include_guard(GLOBAL)
 
-include(FetchContent)
 include(ExternalProject)
 
 macro(set_if_empty NAME)

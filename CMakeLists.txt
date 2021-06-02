@@ -26,17 +26,15 @@ set(FINGERPRINTS "${CMAKE_SOURCE_DIR}/fingerprints.cmake")
 
 if (KYDEPS_DOWNLOAD)
     include(${FINGERPRINTS})
+endif ()
 
-    foreach (PACKAGE ${KYDEPS_PACKAGES})
-        include(${PACKAGE})
-    endforeach ()
+foreach (PACKAGE ${KYDEPS_PACKAGES})
+    include(${PACKAGE})
+endforeach ()
 
-    add_custom_target(packages ALL DEPENDS ${PACKAGE_PATHS})
-else ()
-    foreach (PACKAGE ${KYDEPS_PACKAGES})
-        include(${PACKAGE})
-    endforeach ()
+add_custom_target(packages ALL DEPENDS ${PACKAGE_PATHS})
 
+if (KYDEPS_UPLOAD)
     get_flavor(FLAVOR)
     message(STATUS "FLAVOR : ${FLAVOR}")
 
@@ -55,7 +53,7 @@ else ()
             ${COMMANDS}
             DEPENDS ${PACKAGE_PATHS})
 
-    add_custom_target(packages ALL DEPENDS ${FINGERPRINTS})
-endif ()
+    add_custom_target(fingerprints ALL DEPENDS ${FINGERPRINTS})
+endif()
 
 list(POP_BACK CMAKE_MESSAGE_INDENT)
