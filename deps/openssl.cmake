@@ -5,18 +5,6 @@ include(zlib)
 IF (WIN32)
     # based on https://stackoverflow.com/a/41815728/4720732
 
-    ExternalProject_Add(
-            perl
-            URL https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit-portable.zip
-            PREFIX ${CMAKE_BINARY_DIR}/build
-
-            USES_TERMINAL_DOWNLOAD TRUE
-
-            CONFIGURE_COMMAND ""
-            BUILD_COMMAND ""
-            INSTALL_COMMAND ""
-    )
-
     KyDepsInstall(openssl
             https://github.com/openssl/openssl.git
             OpenSSL_1_1_1k
@@ -53,7 +41,22 @@ IF (WIN32)
             INSTALL_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> nmake install_dev
 
             DEPENDS zlib)
-    add_dependencies(openssl perl)
+
+    if (NOT KYDEPS_DOWNLOAD)
+        ExternalProject_Add(
+                perl
+                URL https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit-portable.zip
+                PREFIX ${CMAKE_BINARY_DIR}/build
+
+                USES_TERMINAL_DOWNLOAD TRUE
+
+                CONFIGURE_COMMAND ""
+                BUILD_COMMAND ""
+                INSTALL_COMMAND ""
+        )
+
+        add_dependencies(openssl perl)
+    endif ()
 ELSE ()
     KyDepsInstallGit(https://github.com/openssl/openssl.git OpenSSL_1_1_1k
             CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./config no-shared no-dso --prefix=<INSTALL_DIR>/install --openssldir=<INSTALL_DIR>/install

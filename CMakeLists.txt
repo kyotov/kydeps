@@ -13,10 +13,12 @@ include(KyDepsEpilogue)
 file(GLOB_RECURSE PACKAGES RELATIVE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/deps/**)
 list(TRANSFORM PACKAGES REPLACE "\\.cmake$" "")
 
+#set(KYDEPS_PACKAGES "google/log")
+
 set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_DOWNLOAD OFF)
-set_if_empty(KYDEPS_SHOW_MANIFEST ON)
-#set_if_empty(KYDEPS_DEEP_CLEAN ON)
+set_if_empty(KYDEPS_SHOW_MANIFEST OFF)
+set_if_empty(KYDEPS_DEEP_CLEAN OFF)
 set_if_empty(KYDEPS_URL_PREFIX_DEFAULT "https://kydeps.s3.us-east-2.amazonaws.com")
 set_if_empty(KYDEPS_S3_PREFIX_DEFAULT "s3://kydeps")
 set_if_empty(KYDEPS_PACKAGES "${PACKAGES}")
@@ -28,19 +30,19 @@ if (KYDEPS_DOWNLOAD)
     include(fingerprints.cmake)
 endif ()
 
-#if (KYDEPS_DEEP_CLEAN)
-#    set(ADDITIONAL_CLEAN_FILES
-#            ${CMAKE_BINARY_DIR}/build
-#            ${CMAKE_BINARY_DIR}/download
-#            ${CMAKE_BINARY_DIR}/install
-#            ${CMAKE_BINARY_DIR}/package)
-#endif ()
-
 foreach (PACKAGE ${KYDEPS_PACKAGES})
     include(${PACKAGE})
 endforeach ()
 
 add_custom_target(packages ALL DEPENDS ${PACKAGE_PATHS})
+set_target_properties(packages
+        PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/install;${CMAKE_BINARY_DIR}/package")
+
+if (KYDEPS_DEEP_CLEAN)
+    add_custom_target(deep_clean ALL)
+    set_target_properties(deep_clean
+            PROPERTIES ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/build;${CMAKE_BINARY_DIR}/download")
+endif ()
 
 if (KYDEPS_UPLOAD)
     add_fingerprints_target()

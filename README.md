@@ -1,3 +1,10 @@
+# TODO
+
+WIP: This is outdated... needs to be refreshed.
+
+* introduce a mixed mode where we downloaded if available and build otherwise
+* introduce different types of dependencies (build time vs. runtime) 
+
 # kydeps
 
 TL;DR:
