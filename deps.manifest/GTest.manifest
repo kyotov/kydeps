@@ -1,0 +1,13 @@
+15fe4cb599c6c3d4d732355d545b142fe75a5d51
+-- package --
+GTest 64-bit Windows Release
+-- files --
+922b22b993a2f583ea91cd6d76888796b73e5b55 CMakeLists.txt
+f5092b03982f83daba16c9d387647b26c7f51810 utils/KyDepsEpilogue.cmake
+9a6076847ac92b5e9d904b05c8bcfb558702591e utils/KyDepsOptions.cmake
+e545b0d84327c5ffa43427c3e509b517f43f4cbd utils/KyDepsTools.cmake
+-- source --
+release-1.10.0 (703bd9caab50b139428cea1aaff9974ebee5742e) @ https://github.com/google/googletest.git
+-- depends --
+-- args --
+-- end --

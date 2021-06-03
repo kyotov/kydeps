@@ -11,7 +11,6 @@ macro(kydeps PACKAGES)
             -G ${CMAKE_GENERATOR}
             "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
             "-DKYDEPS_DOWNLOAD=ON"
-            "-DKYDEPS_SHOW_MANIFEST=ON"
             "-DKYDEPS_PACKAGES=${PACKAGES}"
             RESULT_VARIABLE RESULT)
     check_result(${RESULT} "kydeps configure failure")

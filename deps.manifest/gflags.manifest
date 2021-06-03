@@ -1,0 +1,18 @@
+41601246f5f0f21d2fd631b93350ad27ce5ab3f8
+-- package --
+gflags 64-bit Windows Release
+-- files --
+922b22b993a2f583ea91cd6d76888796b73e5b55 CMakeLists.txt
+f5092b03982f83daba16c9d387647b26c7f51810 utils/KyDepsEpilogue.cmake
+9a6076847ac92b5e9d904b05c8bcfb558702591e utils/KyDepsOptions.cmake
+e545b0d84327c5ffa43427c3e509b517f43f4cbd utils/KyDepsTools.cmake
+-- source --
+v2.2.0 (9d2736aa99e6ded33bd4824c63adb41d7d5e806f) @ https://github.com/gflags/gflags.git
+-- depends --
+-- args --
+CMAKE_ARGS
+-DREGISTER_INSTALL_PREFIX=FALSE
+-DGFLAGS_BUILD_STATIC_LIBS=TRUE
+-DGFLAGS_BUILD_SHARED_LIBS=FALSE
+-DGFLAGS_BUILD_TESTING=FALSE
+-- end --

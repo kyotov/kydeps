@@ -1,0 +1,21 @@
+4965d89706be39024ca275d7b8df83db225736eb
+-- package --
+protobuf 64-bit Windows Release
+-- files --
+922b22b993a2f583ea91cd6d76888796b73e5b55 CMakeLists.txt
+f5092b03982f83daba16c9d387647b26c7f51810 utils/KyDepsEpilogue.cmake
+9a6076847ac92b5e9d904b05c8bcfb558702591e utils/KyDepsOptions.cmake
+e545b0d84327c5ffa43427c3e509b517f43f4cbd utils/KyDepsTools.cmake
+-- source --
+v3.15.8 (436bd7880e458532901c58f4d9d1ea23fa7edd52) @ https://github.com/protocolbuffers/protobuf.git
+-- depends --
+zlib -> 407fb2cec8366addb7ed15af203122321f516944
+-- args --
+SOURCE_SUBDIR
+cmake
+CMAKE_ARGS
+-Dprotobuf_BUILD_TESTS=OFF
+-Dprotobuf_MSVC_STATIC_RUNTIME=ON
+DEPENDS
+zlib
+-- end --

@@ -1,0 +1,19 @@
+1bf10fbfade57293159d872afafb390f54988580
+-- package --
+httplib 64-bit Windows Release
+-- files --
+922b22b993a2f583ea91cd6d76888796b73e5b55 CMakeLists.txt
+c9d6f8eee71b47652f0887f77a2dde9a6c2ca0e3 deps/httplib.cmake
+f5092b03982f83daba16c9d387647b26c7f51810 utils/KyDepsEpilogue.cmake
+9a6076847ac92b5e9d904b05c8bcfb558702591e utils/KyDepsOptions.cmake
+e545b0d84327c5ffa43427c3e509b517f43f4cbd utils/KyDepsTools.cmake
+-- source --
+v0.8.9-windows-patch (2e4fbb5c286a3cad5e7f88304ffc0acfe2b8575c) @ https://github.com/kyotov/cpp-httplib.git
+-- depends --
+OpenSSL -> 317cbf80a2f0e4521307c95969a1eefbe76e3271
+-- args --
+CMAKE_ARGS
+-DOPENSSL_USE_STATIC_LIBS=ON
+DEPENDS
+OpenSSL
+-- end --

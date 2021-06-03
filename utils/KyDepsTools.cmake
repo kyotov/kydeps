@@ -63,7 +63,8 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     get_git_remote_revision(${GIT_REPO} ${GIT_REF} GIT_REVISION)
     list(APPEND MANIFEST "-- source --" "${GIT_REF} (${GIT_REVISION}) @ ${GIT_REPO}")
 
-    #    cmake_parse_arguments(X "" "" "DEPENDS;CMAKE_ARGS;SOURCE_SUBDIR" ${ARGN})
+    # NOTE: for the sake of simplicity, we require DEPENDS to be last and we don't need others
+    # cmake_parse_arguments(X "" "" "DEPENDS;CMAKE_ARGS;SOURCE_SUBDIR" ${ARGN})
     cmake_parse_arguments(X "" "" "DEPENDS" ${ARGN})
 
     list(APPEND MANIFEST "-- depends --")
@@ -75,7 +76,8 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
         list(APPEND PREFIX_PATH "${CMAKE_BINARY_DIR}/install/${DEPEND}_${${DEPEND}_HASH}")
     endforeach ()
 
-    list(APPEND MANIFEST "-- args --" ${ARGN})
+    # NOTE: we have the hash of the .cmake module, which subsumes the arguments!
+    # list(APPEND MANIFEST "-- args --" ${ARGN})
     list(APPEND MANIFEST "-- end --")
 
     list(TRANSFORM MANIFEST REPLACE "${CMAKE_BINARY_DIR}" "\${CMAKE_BINARY_DIR}")
@@ -83,10 +85,8 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
 
     string(SHA1 HASH "${MANIFEST}")
 
-    if (KYDEPS_SHOW_MANIFEST)
-        string(JOIN "\n" STRING_MANIFEST ${HASH} ${MANIFEST})
-        message(STATUS "${STRING_MANIFEST}")
-    endif ()
+    string(JOIN "\n" STRING_MANIFEST ${HASH} ${MANIFEST})
+    file(WRITE "${CMAKE_BINARY_DIR}/deps.manifest/${PACKAGE_NAME}.manifest" "${STRING_MANIFEST}")
 
     set("${PACKAGE_NAME}_HASH" ${HASH} PARENT_SCOPE)
     set(PREFIX_PATH ${PREFIX_PATH} PARENT_SCOPE)
@@ -175,8 +175,6 @@ else ()
 endif ()
 
 function(add_fingerprints_target)
-    set(FINGERPRINTS "${CMAKE_SOURCE_DIR}/fingerprints.cmake")
-
     get_flavor(FLAVOR)
 
     foreach (PACKAGE_PATH ${PACKAGE_PATHS})
@@ -189,8 +187,9 @@ function(add_fingerprints_target)
     endforeach ()
 
     add_custom_target(fingerprints ALL
-            ${COMMANDS}
             COMMAND ${CMAKE_COMMAND} -E echo "#" >> ${FINGERPRINTS}
+            ${COMMANDS}
+            COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/deps.manifest" "${CMAKE_SOURCE_DIR}/deps.manifest"
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             DEPENDS ${PACKAGE_PATHS})
 endfunction()
@@ -202,6 +201,7 @@ function(add_deep_clean_target)
 endfunction()
 
 function(add_targets)
+    set(FINGERPRINTS "${CMAKE_SOURCE_DIR}/deps.manifest/fingerprints.cmake")
     set(CONFIG ${CMAKE_BINARY_DIR}/config.cmake)
 
     set(COMMANDS_1)

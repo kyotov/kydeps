@@ -1,0 +1,136 @@
+317cbf80a2f0e4521307c95969a1eefbe76e3271
+-- package --
+OpenSSL 64-bit Windows Release
+-- files --
+922b22b993a2f583ea91cd6d76888796b73e5b55 CMakeLists.txt
+eda27bcb363b4fa716c2ce505ddce0fc332e77a8 deps/openssl.cmake
+f5092b03982f83daba16c9d387647b26c7f51810 utils/KyDepsEpilogue.cmake
+9a6076847ac92b5e9d904b05c8bcfb558702591e utils/KyDepsOptions.cmake
+e545b0d84327c5ffa43427c3e509b517f43f4cbd utils/KyDepsTools.cmake
+-- source --
+OpenSSL_1_1_1k (6503afba18b24332d3160a013179258a8edff959) @ https://github.com/openssl/openssl.git
+-- depends --
+zlib -> 407fb2cec8366addb7ed15af203122321f516944
+-- args --
+GIT_SUBMODULES
+krb5
+boringssl
+USES_TERMINAL_BUILD
+TRUE
+PATCH_COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+copy_if_different
+${CMAKE_BINARY_DIR}/install/zlib_407fb2cec8366addb7ed15af203122321f516944/include/zlib.h
+<SOURCE_DIR>/zlib.h
+COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+copy_if_different
+${CMAKE_BINARY_DIR}/install/zlib_407fb2cec8366addb7ed15af203122321f516944/include/zconf.h
+<SOURCE_DIR>/zconf.h
+CONFIGURE_COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+chdir
+<SOURCE_DIR>
+${CMAKE_BINARY_DIR}/build/src/perl/perl/bin/perl
+Configure
+VC-WIN64A-masm
+zlib
+no-shared
+no-zlib-dynamic
+threads
+--prefix=<INSTALL_DIR>
+--openssldir=<INSTALL_DIR>
+CC=@cl
+/DWIN32 /D_WINDOWS
+COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+chdir
+<SOURCE_DIR>
+${CMAKE_BINARY_DIR}/build/src/perl/perl/bin/perl
+-pi.orig
+-e
+s/RANLIB => .*,//g
+configdata.pm
+COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+copy_if_different
+<SOURCE_DIR>/configdata.pm
+<SOURCE_DIR>/configdata.cache
+COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+chdir
+<SOURCE_DIR>
+cmd
+/c
+copy /y configdata.cache configdata.pm
+BUILD_COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+chdir
+<SOURCE_DIR>
+nmake
+build_libs
+INSTALL_COMMAND
+${CMAKE_COMMAND}
+-E
+env
+CFLAGS=-nologo -MT -GL
+CXXFLAGS=-nologo -MT -GL
+LDFLAGS=-nologo -LTCG -ignore:4099
+${CMAKE_COMMAND}
+-E
+chdir
+<SOURCE_DIR>
+nmake
+install_dev
+DEPENDS
+zlib
+-- end --

@@ -1,0 +1,19 @@
+d7e9e761e5936c2f603fd84bfd09adbaf3732012
+-- package --
+zstd 64-bit Windows Release
+-- files --
+922b22b993a2f583ea91cd6d76888796b73e5b55 CMakeLists.txt
+13b2bbcd0aec635409770d7a6b2c0cf563a5de87 deps/zstd.cmake
+f5092b03982f83daba16c9d387647b26c7f51810 utils/KyDepsEpilogue.cmake
+9a6076847ac92b5e9d904b05c8bcfb558702591e utils/KyDepsOptions.cmake
+e545b0d84327c5ffa43427c3e509b517f43f4cbd utils/KyDepsTools.cmake
+-- source --
+v1.4.7 (645a2975c394dc115b57a652cf175cd4c2b59292) @ https://github.com/facebook/zstd.git
+-- depends --
+-- args --
+SOURCE_SUBDIR
+build/cmake
+CMAKE_ARGS
+-DZSTD_BUILD_STATIC=TRUE
+-DZSTD_BUILD_SHARED=FALSE
+-- end --
