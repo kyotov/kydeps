@@ -130,8 +130,8 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
 
         add_custom_command(
                 OUTPUT ${PACKAGE_PATH}
-                WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/package
-                COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/download/src/${PACKAGE_NAME}_${HASH}.zip ${PACKAGE_NAME}_${HASH}.zip
+                COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/package
+                COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/download/src/${PACKAGE_NAME}_${HASH}.zip ${CMAKE_BINARY_DIR}/package/${PACKAGE_NAME}_${HASH}.zip
                 DEPENDS ${PACKAGE_NAME})
     else ()
         ExternalProject_Add(${PACKAGE_NAME}
