@@ -1,0 +1,8 @@
+536177e0cd64c7cfe5bd04ee68fb8595db63e768
+-- package --
+OpenSSL 64-bit Linux Release
+-- files --
+-- source --
+OpenSSL_1_1_1k (6503afba18b24332d3160a013179258a8edff959) @ https://github.com/openssl/openssl.git
+-- depends --
+-- end --

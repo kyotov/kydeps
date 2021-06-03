@@ -1,0 +1,8 @@
+0117c6b0b76db21736a532f946cb28411e93a9c5
+-- package --
+xxHash 64-bit Linux Debug
+-- files --
+-- source --
+v0.8.0 (94e5f23e736f2bb67ebdf90727353e65344f9fc0) @ https://github.com/Cyan4973/xxHash.git
+-- depends --
+-- end --

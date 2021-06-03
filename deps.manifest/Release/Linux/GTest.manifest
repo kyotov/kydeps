@@ -1,0 +1,8 @@
+0be8beaeb34057ffcbd2cc5ef38e9f4a42f8a528
+-- package --
+GTest 64-bit Linux Release
+-- files --
+-- source --
+release-1.10.0 (703bd9caab50b139428cea1aaff9974ebee5742e) @ https://github.com/google/googletest.git
+-- depends --
+-- end --

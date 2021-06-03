@@ -1,0 +1,9 @@
+b6f8fa1332c1c8730a3019a63ec5f44c133edb6a
+-- package --
+httplib 64-bit Linux Release
+-- files --
+-- source --
+v0.8.9-windows-patch (2e4fbb5c286a3cad5e7f88304ffc0acfe2b8575c) @ https://github.com/kyotov/cpp-httplib.git
+-- depends --
+OpenSSL -> 536177e0cd64c7cfe5bd04ee68fb8595db63e768
+-- end --

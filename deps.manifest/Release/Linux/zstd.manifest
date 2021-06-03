@@ -1,0 +1,8 @@
+e2bc56202a57aa1bfbeff29ac8bfa1610e0d2275
+-- package --
+zstd 64-bit Linux Release
+-- files --
+-- source --
+v1.4.7 (645a2975c394dc115b57a652cf175cd4c2b59292) @ https://github.com/facebook/zstd.git
+-- depends --
+-- end --

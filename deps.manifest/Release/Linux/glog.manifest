@@ -1,0 +1,9 @@
+c36ee270809d010042abbbb69d561c8893c6f531
+-- package --
+glog 64-bit Linux Release
+-- files --
+-- source --
+v0.4.0 (09b1aaa971e0b2c658f2521c942ff7841e0cfec3) @ https://github.com/google/glog.git
+-- depends --
+gflags -> b06864ffcb4e977a922dd093785cb0e3b534d851
+-- end --
