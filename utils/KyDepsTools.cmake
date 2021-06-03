@@ -211,7 +211,10 @@ function(add_targets)
 
     set(COMMANDS_2)
     foreach (PACKAGE_NAME ${PACKAGE_NAMES})
-        list(APPEND COMMANDS_2 COMMAND ${CMAKE_COMMAND} -E echo "find_package${LP}${PACKAGE_NAME} REQUIRED NO_MODULE${RP}" >> ${CONFIG})
+        if ("${${PACKAGE_NAME}_find_package_options}" STREQUAL "")
+            set(${PACKAGE_NAME}_find_package_options NO_MODULE)
+        endif ()
+        list(APPEND COMMANDS_2 COMMAND ${CMAKE_COMMAND} -E echo "find_package${LP}${PACKAGE_NAME} REQUIRED ${${PACKAGE_NAME}_find_package_options}${RP}" >> ${CONFIG})
     endforeach ()
 
     add_custom_command(

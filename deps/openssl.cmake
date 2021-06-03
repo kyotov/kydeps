@@ -5,7 +5,7 @@ include(zlib)
 IF (WIN32)
     # based on https://stackoverflow.com/a/41815728/4720732
 
-    KyDepsInstall(openssl
+    KyDepsInstall(OpenSSL
             https://github.com/openssl/openssl.git
             OpenSSL_1_1_1k
 
@@ -28,6 +28,7 @@ IF (WIN32)
             #       then we copy the cache over the new configuration.
             #       the effect is that if the configuration is unchanged, its timestamp does not increase!!!
             COMMAND ${CMAKE_COMMAND} -E copy_if_different <SOURCE_DIR>/configdata.pm <SOURCE_DIR>/configdata.cache
+
             # NOTE: we need a copy command that preserves the timestamp of the source...
             #       `cmake -E copy` does not
             #       the system one does... note we are in windows specific section here so using windows syntax
@@ -55,10 +56,10 @@ IF (WIN32)
                 INSTALL_COMMAND ""
         )
 
-        add_dependencies(openssl perl)
+        add_dependencies(OpenSSL perl)
     endif ()
 ELSE ()
-    KyDepsInstall(openssl
+    KyDepsInstall(OpenSSL
             https://github.com/openssl/openssl.git
             OpenSSL_1_1_1k
 
@@ -66,3 +67,5 @@ ELSE ()
             BUILD_COMMAND make -C <SOURCE_DIR> build_libs
             INSTALL_COMMAND make -C <SOURCE_DIR> install_dev)
 ENDIF ()
+
+set(OpenSSL_find_package_options MODULE)

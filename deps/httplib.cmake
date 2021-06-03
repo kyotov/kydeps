@@ -9,4 +9,4 @@ KyDepsInstall(httplib
         CMAKE_ARGS
         -DOPENSSL_USE_STATIC_LIBS=ON
 
-        DEPENDS openssl)
+        DEPENDS OpenSSL)
