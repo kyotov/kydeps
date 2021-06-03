@@ -273,3 +273,96 @@ set(zstd_b7b497efd41ebd72ecd48a1a5dbb3c29b66482ef_sha1sum
   49b8da4052d431ef23a6d22b423a9dfce847e05c  package/zstd_b7b497efd41ebd72ecd48a1a5dbb3c29b66482ef.zip
   64-bit Windows Debug)
 #
+set(fmt_a424fb131d527e952706b3290f566760bf54c2ae_sha1sum
+  596fcfb793e447f157fedb8da7f50fffab047abd  package/fmt_a424fb131d527e952706b3290f566760bf54c2ae.zip
+  64-bit Windows Debug)
+set(gflags_cca9faa7056a61bbe7497eacc56ba14d832ddd7f_sha1sum
+  84acfe96b1ceed4aa8968ccfeeafd7417c2eb193  package/gflags_cca9faa7056a61bbe7497eacc56ba14d832ddd7f.zip
+  64-bit Windows Debug)
+set(glog_e0109fc0530bc603aee34b0856298dee3cf271de_sha1sum
+  29bb1958b992a80755ca99d69626ebd2c1ed99ae  package/glog_e0109fc0530bc603aee34b0856298dee3cf271de.zip
+  64-bit Windows Debug)
+set(zlib_72664e24212bdae3f9221d6cd3edb486fac3709e_sha1sum
+  604008f20cf80654116b8ebd72381747b013e6a0  package/zlib_72664e24212bdae3f9221d6cd3edb486fac3709e.zip
+  64-bit Windows Debug)
+set(protobuf_c015e04e1e6be4706bbddb5b51da880fb9bf1ea1_sha1sum
+  aaa76a136bbad9ef1f52ef347a665dd6a85f1a4e  package/protobuf_c015e04e1e6be4706bbddb5b51da880fb9bf1ea1.zip
+  64-bit Windows Debug)
+set(GTest_525f843617e033126287f10da806cc449afbaf89_sha1sum
+  18e4b2749da531aee633fbe0211714f66e747c87  package/GTest_525f843617e033126287f10da806cc449afbaf89.zip
+  64-bit Windows Debug)
+set(openssl_005d1c48573979c7774c3ff3609c4177ebcae66a_sha1sum
+  4664f25fb3e27542fa6da7e484e6c25e44908eb5  package/openssl_005d1c48573979c7774c3ff3609c4177ebcae66a.zip
+  64-bit Windows Debug)
+set(httplib_e4916ebe91cf5479d5065d357f565cc0b48167f6_sha1sum
+  d613f2dcfe4821933cd6b39cd0c423312736eb6e  package/httplib_e4916ebe91cf5479d5065d357f565cc0b48167f6.zip
+  64-bit Windows Debug)
+set(xxHash_bfc5ea861d9f5a5c322c0f242034168ae1f396e6_sha1sum
+  e6ffde06d729d067eb2fdc797d1c9ad1dda4223a  package/xxHash_bfc5ea861d9f5a5c322c0f242034168ae1f396e6.zip
+  64-bit Windows Debug)
+set(zstd_17c1c4a9510ba32923ffdf84c6d98312696ba129_sha1sum
+  b32cf71b170332a78092cd92f8aeca2fee591260  package/zstd_17c1c4a9510ba32923ffdf84c6d98312696ba129.zip
+  64-bit Windows Debug)
+#
+set(fmt_11078bc47bf2d3431842916100f8d2bcdf4c7b83_sha1sum
+  95b478bb16324893e823c7e4b7d94effa3b6df76  package/fmt_11078bc47bf2d3431842916100f8d2bcdf4c7b83.zip
+  64-bit Windows Debug)
+set(gflags_e15fe83c526d2f23748753cec7857e6f7d28fd80_sha1sum
+  41a4816e1af9f98ae5c21548250546b9f36dcdd6  package/gflags_e15fe83c526d2f23748753cec7857e6f7d28fd80.zip
+  64-bit Windows Debug)
+set(glog_535cba20cc1889695071febb192ae99c67492343_sha1sum
+  998fb7d01702ea278f0cd0b71361439bafb799a6  package/glog_535cba20cc1889695071febb192ae99c67492343.zip
+  64-bit Windows Debug)
+set(zlib_bddfbd5f92df966583f7902d179600ece35034f2_sha1sum
+  8f93cd06a645b984bd81a92b136f5b1109f24c97  package/zlib_bddfbd5f92df966583f7902d179600ece35034f2.zip
+  64-bit Windows Debug)
+set(protobuf_f3c7a08b64a3fd3066373aa40f258f9afe13b96b_sha1sum
+  603ca848e2724c9d4081fb5b162746b8cf9e9c36  package/protobuf_f3c7a08b64a3fd3066373aa40f258f9afe13b96b.zip
+  64-bit Windows Debug)
+set(GTest_7446d7add7c9094ab4e0416e442fafcd07af5fb3_sha1sum
+  acff6f19dc1bd4014cd1fb36810abcfbbc81eac6  package/GTest_7446d7add7c9094ab4e0416e442fafcd07af5fb3.zip
+  64-bit Windows Debug)
+set(openssl_7668da00b9b28e38bb43210a6d4718da30e81c90_sha1sum
+  925e06c1d30fe2bd897f932cbdda50279780b1e5  package/openssl_7668da00b9b28e38bb43210a6d4718da30e81c90.zip
+  64-bit Windows Debug)
+set(httplib_48e0330d6e022f4e41fa6b709faf5e381de52d49_sha1sum
+  587d588273d21a739eb25bc17b06f4a2e04dcc7d  package/httplib_48e0330d6e022f4e41fa6b709faf5e381de52d49.zip
+  64-bit Windows Debug)
+set(xxHash_dc9ae4e68ebf2da9c6732c60c62830da577b4133_sha1sum
+  601e6bf5e0e989a6e89676bd8462b3946005e9e7  package/xxHash_dc9ae4e68ebf2da9c6732c60c62830da577b4133.zip
+  64-bit Windows Debug)
+set(zstd_c0eb7da82d9dcb297f3c11fb137c6ddb72943cb1_sha1sum
+  789a4281bd91a5e887398ace7634ce62e6b20d86  package/zstd_c0eb7da82d9dcb297f3c11fb137c6ddb72943cb1.zip
+  64-bit Windows Debug)
+#
+set(fmt_11078bc47bf2d3431842916100f8d2bcdf4c7b83_sha1sum
+  95b478bb16324893e823c7e4b7d94effa3b6df76  package/fmt_11078bc47bf2d3431842916100f8d2bcdf4c7b83.zip
+  64-bit Windows Debug)
+set(gflags_e15fe83c526d2f23748753cec7857e6f7d28fd80_sha1sum
+  41a4816e1af9f98ae5c21548250546b9f36dcdd6  package/gflags_e15fe83c526d2f23748753cec7857e6f7d28fd80.zip
+  64-bit Windows Debug)
+set(glog_535cba20cc1889695071febb192ae99c67492343_sha1sum
+  998fb7d01702ea278f0cd0b71361439bafb799a6  package/glog_535cba20cc1889695071febb192ae99c67492343.zip
+  64-bit Windows Debug)
+set(zlib_bddfbd5f92df966583f7902d179600ece35034f2_sha1sum
+  8f93cd06a645b984bd81a92b136f5b1109f24c97  package/zlib_bddfbd5f92df966583f7902d179600ece35034f2.zip
+  64-bit Windows Debug)
+set(protobuf_f3c7a08b64a3fd3066373aa40f258f9afe13b96b_sha1sum
+  603ca848e2724c9d4081fb5b162746b8cf9e9c36  package/protobuf_f3c7a08b64a3fd3066373aa40f258f9afe13b96b.zip
+  64-bit Windows Debug)
+set(GTest_7446d7add7c9094ab4e0416e442fafcd07af5fb3_sha1sum
+  acff6f19dc1bd4014cd1fb36810abcfbbc81eac6  package/GTest_7446d7add7c9094ab4e0416e442fafcd07af5fb3.zip
+  64-bit Windows Debug)
+set(openssl_6a2754bf1dd031d17e1d5bbc260d26e251e8846f_sha1sum
+  554bea734a73fdb7daf5ac01a29f3bd444c01bfb  package/openssl_6a2754bf1dd031d17e1d5bbc260d26e251e8846f.zip
+  64-bit Windows Debug)
+set(httplib_daa5944498ad1f7a4b9177c62f901948094dbdcf_sha1sum
+  2c61341da6a89243e77316299a776f06ffd96f4d  package/httplib_daa5944498ad1f7a4b9177c62f901948094dbdcf.zip
+  64-bit Windows Debug)
+set(xxHash_dc9ae4e68ebf2da9c6732c60c62830da577b4133_sha1sum
+  601e6bf5e0e989a6e89676bd8462b3946005e9e7  package/xxHash_dc9ae4e68ebf2da9c6732c60c62830da577b4133.zip
+  64-bit Windows Debug)
+set(zstd_c0eb7da82d9dcb297f3c11fb137c6ddb72943cb1_sha1sum
+  789a4281bd91a5e887398ace7634ce62e6b20d86  package/zstd_c0eb7da82d9dcb297f3c11fb137c6ddb72943cb1.zip
+  64-bit Windows Debug)
+#
