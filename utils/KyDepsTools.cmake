@@ -78,10 +78,10 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     list(APPEND MANIFEST "-- args --" ${ARGN})
     list(APPEND MANIFEST "-- end --")
 
-    string(SHA1 HASH "${MANIFEST}")
-
     list(TRANSFORM MANIFEST REPLACE "${CMAKE_BINARY_DIR}" "\${CMAKE_BINARY_DIR}")
     list(TRANSFORM MANIFEST REPLACE "^.*/cmake.exe$" "\${CMAKE_COMMAND}")
+
+    string(SHA1 HASH "${MANIFEST}")
 
     if (KYDEPS_SHOW_MANIFEST)
         string(JOIN "\n" STRING_MANIFEST ${HASH} ${MANIFEST})

@@ -366,3 +366,34 @@ set(zstd_c0eb7da82d9dcb297f3c11fb137c6ddb72943cb1_sha1sum
   789a4281bd91a5e887398ace7634ce62e6b20d86  package/zstd_c0eb7da82d9dcb297f3c11fb137c6ddb72943cb1.zip
   64-bit Windows Debug)
 #
+set(fmt_6595b47dce97ff7f9d6ee0805ba7177f8237170c_sha1sum
+  655eea5b79951cf74361683a069b63e90360eadb  package/fmt_6595b47dce97ff7f9d6ee0805ba7177f8237170c.zip
+  64-bit Windows Debug)
+set(gflags_4548de3be306ea0856fec85ba92e18192bf46a04_sha1sum
+  2ac393a49b1bfb35627247003fb7101e09309ece  package/gflags_4548de3be306ea0856fec85ba92e18192bf46a04.zip
+  64-bit Windows Debug)
+set(glog_4c5ab497d14d400321a9566bdae490049f034b28_sha1sum
+  0ff824a314f9729bda92a93d5b717c5b6fda7fa3  package/glog_4c5ab497d14d400321a9566bdae490049f034b28.zip
+  64-bit Windows Debug)
+set(zlib_6a6fc84976998d911ddfc8574c2cafa751213d7c_sha1sum
+  f8391b0e8c09d751501e3786c411fc535db88362  package/zlib_6a6fc84976998d911ddfc8574c2cafa751213d7c.zip
+  64-bit Windows Debug)
+set(protobuf_806ec2facb782f5316786738385f3035e7acc520_sha1sum
+  468e6f2f1c57c864b152d4d537563018e6f44753  package/protobuf_806ec2facb782f5316786738385f3035e7acc520.zip
+  64-bit Windows Debug)
+set(GTest_6e3b91fb31716cd5c8dab9fbb83e6b31caa05fae_sha1sum
+  f1ec6d158d2523b465b0913aa96662ba10430a77  package/GTest_6e3b91fb31716cd5c8dab9fbb83e6b31caa05fae.zip
+  64-bit Windows Debug)
+set(openssl_36a4b993663319a9e2d031942b761cde5a60ae49_sha1sum
+  84dc50a508247e83b376d46e70947350313c416f  package/openssl_36a4b993663319a9e2d031942b761cde5a60ae49.zip
+  64-bit Windows Debug)
+set(httplib_4c0e28949ba56cb0ddd95ff5d07124bc6ea1c1a4_sha1sum
+  36b41f104fa1d2939381047951c6d81c2aea6aaa  package/httplib_4c0e28949ba56cb0ddd95ff5d07124bc6ea1c1a4.zip
+  64-bit Windows Debug)
+set(xxHash_37ad96a4a1b6612f6081b655a7814de3e31cf121_sha1sum
+  bf3f67b2a7f72420e775bd44b9589dd1da6b0f88  package/xxHash_37ad96a4a1b6612f6081b655a7814de3e31cf121.zip
+  64-bit Windows Debug)
+set(zstd_264b8da8f7f7d102d5af672d487f4c6c36c8b7e0_sha1sum
+  0dd9d41fc50137691e04007122d8b5b1881bd0af  package/zstd_264b8da8f7f7d102d5af672d487f4c6c36c8b7e0.zip
+  64-bit Windows Debug)
+#
