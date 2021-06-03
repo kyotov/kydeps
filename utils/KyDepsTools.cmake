@@ -204,6 +204,14 @@ function(add_targets)
     set(FINGERPRINTS "${CMAKE_SOURCE_DIR}/deps.manifest/fingerprints.cmake")
     set(CONFIG ${CMAKE_BINARY_DIR}/config.cmake)
 
+    if (KYDEPS_DOWNLOAD)
+        include(${FINGERPRINTS})
+    endif ()
+
+    foreach (PACKAGE ${KYDEPS_PACKAGES})
+        include(${PACKAGE})
+    endforeach ()
+
     set(COMMANDS_1)
     foreach (INSTALL_PATH ${INSTALL_PATHS})
         list(APPEND COMMANDS_1 COMMAND ${CMAKE_COMMAND} -E echo "  ${INSTALL_PATH}" >> ${CONFIG})

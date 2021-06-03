@@ -17,22 +17,14 @@ list(TRANSFORM PACKAGES REPLACE "\\.cmake$" "")
 
 set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_DOWNLOAD OFF)
-set_if_empty(KYDEPS_SHOW_MANIFEST OFF)
 set_if_empty(KYDEPS_DEEP_CLEAN OFF)
 set_if_empty(KYDEPS_URL_PREFIX_DEFAULT "https://kydeps.s3.us-east-2.amazonaws.com")
 set_if_empty(KYDEPS_S3_PREFIX_DEFAULT "s3://kydeps")
 set_if_empty(KYDEPS_PACKAGES "${PACKAGES}")
 
-if (KYDEPS_DOWNLOAD)
-    if (KYDEPS_UPLOAD)
-        message(FATAL_ERROR "KYDEPS_DOWNLOAD and KYDEPS_UPLOAD should not both be ON")
-    endif ()
-    include(fingerprints.cmake)
+if (KYDEPS_DOWNLOAD AND KYDEPS_UPLOAD)
+    message(FATAL_ERROR "KYDEPS_DOWNLOAD and KYDEPS_UPLOAD should not both be ON")
 endif ()
-
-foreach (PACKAGE ${KYDEPS_PACKAGES})
-    include(${PACKAGE})
-endforeach ()
 
 add_targets()
 
