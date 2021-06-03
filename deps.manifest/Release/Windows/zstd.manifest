@@ -1,0 +1,8 @@
+b05395caf2549391e434e893dcaf218a3022f94e
+-- package --
+zstd 64-bit Windows Release
+-- files --
+-- source --
+v1.4.7 (645a2975c394dc115b57a652cf175cd4c2b59292) @ https://github.com/facebook/zstd.git
+-- depends --
+-- end --

@@ -47,12 +47,13 @@ function(get_package_hash PACKAGE_NAME GIT_REPO GIT_REF)
     get_flavor(FLAVOR)
     set(MANIFEST "-- package --" "${PACKAGE_NAME} ${FLAVOR}")
 
-    # FIXME: re-enable when done testing!
-    file(GLOB FILES
-            RELATIVE ${CMAKE_SOURCE_DIR}
-            ${CMAKE_SOURCE_DIR}/CMakeLists.txt
-            ${CMAKE_SOURCE_DIR}/utils/**
-            ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
+    if (NOT KYDEPS_RELAX_PACKAGE_HASH)
+        file(GLOB FILES
+                RELATIVE ${CMAKE_SOURCE_DIR}
+                ${CMAKE_SOURCE_DIR}/CMakeLists.txt
+                ${CMAKE_SOURCE_DIR}/utils/**
+                ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
+    endif ()
 
     list(APPEND MANIFEST "-- files --")
     foreach (FILE ${FILES})
@@ -186,10 +187,13 @@ function(add_fingerprints_target)
                 COMMAND ${CMAKE_COMMAND} -E echo "  ${FLAVOR}${RP}" >> ${FINGERPRINTS})
     endforeach ()
 
+    set(DEPS_MANIFEST_DIR "${CMAKE_SOURCE_DIR}/deps.manifest/${CMAKE_BUILD_TYPE}/${CMAKE_SYSTEM_NAME}")
+
     add_custom_target(fingerprints ALL
             COMMAND ${CMAKE_COMMAND} -E echo "#" >> ${FINGERPRINTS}
             ${COMMANDS}
-            COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/deps.manifest" "${CMAKE_SOURCE_DIR}/deps.manifest"
+            COMMAND ${CMAKE_COMMAND} -E make_directory "${DEPS_MANIFEST_DIR}"
+            COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_BINARY_DIR}/deps.manifest" "${DEPS_MANIFEST_DIR}"
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             DEPENDS ${PACKAGE_PATHS})
 endfunction()

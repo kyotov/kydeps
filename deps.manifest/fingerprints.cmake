@@ -705,3 +705,65 @@ set(xxHash_62ed3b278b0145d9791f4cd9a9defe9eb7b57830_sha1sum
 set(zstd_d7e9e761e5936c2f603fd84bfd09adbaf3732012_sha1sum
   fa355bf54a68cff88991f87847b91e7bfddee415  package/zstd_d7e9e761e5936c2f603fd84bfd09adbaf3732012.zip
   64-bit Windows Release)
+#
+set(fmt_3060b077587024a4e8ba364e6a2426aa4546da7a_sha1sum
+  666710152af3748130c92a16330c4f20e835a6ec  package/fmt_3060b077587024a4e8ba364e6a2426aa4546da7a.zip
+  64-bit Windows Release)
+set(gflags_91e2a780f3955c59fdeec1716e9181bf1181cf9e_sha1sum
+  825fba0407862ce38b6e88b0a48d33cc139a0961  package/gflags_91e2a780f3955c59fdeec1716e9181bf1181cf9e.zip
+  64-bit Windows Release)
+set(glog_94a31e49fa92da921906c2cb253a3c1111e9be49_sha1sum
+  0124f19566336006d43de6f855f0112b413d95fb  package/glog_94a31e49fa92da921906c2cb253a3c1111e9be49.zip
+  64-bit Windows Release)
+set(zlib_1aa529dff3d598dd22a68332b90f0c4b6d6933f1_sha1sum
+  3a83e88c9dbb4c72dbb8a8c2759785027ee4a460  package/zlib_1aa529dff3d598dd22a68332b90f0c4b6d6933f1.zip
+  64-bit Windows Release)
+set(protobuf_bc53988f5b4d86b94efa21373e0791c2222f5f89_sha1sum
+  b1ec2485a75217bd328ec95affbefeb20efedf2b  package/protobuf_bc53988f5b4d86b94efa21373e0791c2222f5f89.zip
+  64-bit Windows Release)
+set(GTest_2d905b087fc90c9107d165389c9074a0f18ed3d4_sha1sum
+  4546ca7cfe4b9928a58762536dcc99497aa9a0f5  package/GTest_2d905b087fc90c9107d165389c9074a0f18ed3d4.zip
+  64-bit Windows Release)
+set(OpenSSL_509ad21712c8ec6d6b4e50579ce216695d45c240_sha1sum
+  ea878be569e6f086dec6ae58d748217cb8d61769  package/OpenSSL_509ad21712c8ec6d6b4e50579ce216695d45c240.zip
+  64-bit Windows Release)
+set(httplib_17bf1b36c4923bbca903e94a485ce7cc28bc01af_sha1sum
+  69c026df27c6d8fc5654461c5b21134288f2504c  package/httplib_17bf1b36c4923bbca903e94a485ce7cc28bc01af.zip
+  64-bit Windows Release)
+set(xxHash_d73715ab9f540b88d5f85f442991753382fa70e0_sha1sum
+  4d8d3da6f045fed0f61654e1a123660aefe90aa2  package/xxHash_d73715ab9f540b88d5f85f442991753382fa70e0.zip
+  64-bit Windows Release)
+set(zstd_1165e9f344cae885ec2fb193baf94081d4e5e3ea_sha1sum
+  e83643dfea71e20464389c2a9ddbace4b28a852e  package/zstd_1165e9f344cae885ec2fb193baf94081d4e5e3ea.zip
+  64-bit Windows Release)
+#
+set(fmt_3a008bf331edff24e246563da3a1f45caafc9003_sha1sum
+  0e7d19af2a8ca3b8797ba2b32b43499401d8b43b  package/fmt_3a008bf331edff24e246563da3a1f45caafc9003.zip
+  64-bit Windows Release)
+set(gflags_9e19173742c668e096f131429a678129901046de_sha1sum
+  f45149cfacc6d728e215dcf32bcaee827e574f81  package/gflags_9e19173742c668e096f131429a678129901046de.zip
+  64-bit Windows Release)
+set(glog_d39bb778f76851eb68ad0aa02a1c2ce84c5ca507_sha1sum
+  3f9a27d40b69719067d186e6d82c764b373db2df  package/glog_d39bb778f76851eb68ad0aa02a1c2ce84c5ca507.zip
+  64-bit Windows Release)
+set(zlib_bf5965089e9bd4f8a60eb26b3b849c198682f8fa_sha1sum
+  9373cae10d683dc62e48790e57b1412232853ec6  package/zlib_bf5965089e9bd4f8a60eb26b3b849c198682f8fa.zip
+  64-bit Windows Release)
+set(protobuf_e508bc38cf7f213b3aa561562b96605a0407e56d_sha1sum
+  fc1e9096bf0dcea81cdb6f3fb96a2a46a7187ff3  package/protobuf_e508bc38cf7f213b3aa561562b96605a0407e56d.zip
+  64-bit Windows Release)
+set(GTest_c4a244defda5fe5bdc3c7f08a98bcd5ab1e99a79_sha1sum
+  bc1fec559f90b53d7d8128794ddc0e82e7accad7  package/GTest_c4a244defda5fe5bdc3c7f08a98bcd5ab1e99a79.zip
+  64-bit Windows Release)
+set(OpenSSL_cbe879e32ad47b665a1989b45392cedf217ae011_sha1sum
+  f6c69fb847bfbd2fa3ec68b3445103749e97ec42  package/OpenSSL_cbe879e32ad47b665a1989b45392cedf217ae011.zip
+  64-bit Windows Release)
+set(httplib_91d770d3d84bb48dc400e46246f5ea5d7f3883ec_sha1sum
+  64ddf044fd7fb6f27322ff23e15a3d6c2d2126e2  package/httplib_91d770d3d84bb48dc400e46246f5ea5d7f3883ec.zip
+  64-bit Windows Release)
+set(xxHash_d754e74598d5dd525eec63f09602c4986979ae8d_sha1sum
+  61c141dcb1f11673d918f45d82db7e10f9b20dff  package/xxHash_d754e74598d5dd525eec63f09602c4986979ae8d.zip
+  64-bit Windows Release)
+set(zstd_b05395caf2549391e434e893dcaf218a3022f94e_sha1sum
+  0fb8c0d080ef8887047ef96633945dc07398ac2e  package/zstd_b05395caf2549391e434e893dcaf218a3022f94e.zip
+  64-bit Windows Release)

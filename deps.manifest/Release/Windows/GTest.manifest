@@ -1,0 +1,8 @@
+c4a244defda5fe5bdc3c7f08a98bcd5ab1e99a79
+-- package --
+GTest 64-bit Windows Release
+-- files --
+-- source --
+release-1.10.0 (703bd9caab50b139428cea1aaff9974ebee5742e) @ https://github.com/google/googletest.git
+-- depends --
+-- end --

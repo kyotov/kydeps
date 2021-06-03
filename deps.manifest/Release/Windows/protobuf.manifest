@@ -1,0 +1,9 @@
+e508bc38cf7f213b3aa561562b96605a0407e56d
+-- package --
+protobuf 64-bit Windows Release
+-- files --
+-- source --
+v3.15.8 (436bd7880e458532901c58f4d9d1ea23fa7edd52) @ https://github.com/protocolbuffers/protobuf.git
+-- depends --
+zlib -> bf5965089e9bd4f8a60eb26b3b849c198682f8fa
+-- end --

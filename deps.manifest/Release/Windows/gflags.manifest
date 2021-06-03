@@ -1,0 +1,8 @@
+9e19173742c668e096f131429a678129901046de
+-- package --
+gflags 64-bit Windows Release
+-- files --
+-- source --
+v2.2.0 (9d2736aa99e6ded33bd4824c63adb41d7d5e806f) @ https://github.com/gflags/gflags.git
+-- depends --
+-- end --
