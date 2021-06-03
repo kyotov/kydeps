@@ -2,7 +2,7 @@ include_guard(GLOBAL)
 
 KyDepsInstall(zlib
         https://github.com/kyotov/zlib.git
-        v1.2.11-fix-cmake-masm
+        kyotov-fix
 
         CMAKE_ARGS
         -DAMD64=TRUE)
