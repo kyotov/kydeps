@@ -180,3 +180,34 @@ set(xxHash_1e2d33bd3e9bf92289265264df5f9b22632e9566_sha1sum
 set(zstd_85931611a20a0ee9dac154592d6c1c0c22231b6b_sha1sum
         f4bd44f352aceed4b0c809a87cad464bfcc15617 package/zstd_85931611a20a0ee9dac154592d6c1c0c22231b6b.zip
         64-bit Darwin Release)
+
+set(fmt_4c6d6d1004b97ee42630567e97cf54789ddb4d00_sha1sum
+        006145780a17d42a06cbf11527d00114324a36e6 package/fmt_4c6d6d1004b97ee42630567e97cf54789ddb4d00.zip
+        64-bit Windows Debug)
+set(gflags_a93d668ab95f0f736fb18b0077d3f0fa6f65bc19_sha1sum
+        fe7ba0c8da8160bf96157aa07cb9ef1cf77886f5 package/gflags_a93d668ab95f0f736fb18b0077d3f0fa6f65bc19.zip
+        64-bit Windows Debug)
+set(glog_a405b5e588dd0546af45d40d74fcbea9ecafc7a1_sha1sum
+        589c3e18a719cca5d500c7590aa0e232e3e478d0 package/glog_a405b5e588dd0546af45d40d74fcbea9ecafc7a1.zip
+        64-bit Windows Debug)
+set(zlib_5bda8ed91e54cc3f06e30a767f7a0c40e734e750_sha1sum
+        8068036b68677c24d23f8c513e63d436f8dddd03 package/zlib_5bda8ed91e54cc3f06e30a767f7a0c40e734e750.zip
+        64-bit Windows Debug)
+set(protobuf_a71990be7d51c303386b0d2dda57e88f1adea9ce_sha1sum
+        4eb321d706c333eec20680ec328dd17b0d496a0d package/protobuf_a71990be7d51c303386b0d2dda57e88f1adea9ce.zip
+        64-bit Windows Debug)
+set(GTest_2a1420709bccdb5d2fb542ec2610c465c2f5e9a7_sha1sum
+        e33f2772f79d88a695e6fa520a04580bde2fe427 package/GTest_2a1420709bccdb5d2fb542ec2610c465c2f5e9a7.zip
+        64-bit Windows Debug)
+set(openssl_31de22a915cf98310d2e38b849f9cfe9893794e3_sha1sum
+        62fe62ea0ca6e331b7f5fc42d5803a49cb24899a package/openssl_31de22a915cf98310d2e38b849f9cfe9893794e3.zip
+        64-bit Windows Debug)
+set(httplib_5f5be053953e4b94c0f06bb544e7a256f5f3c355_sha1sum
+        edfb28443a2809f744bec9af25565ff96325f955 package/httplib_5f5be053953e4b94c0f06bb544e7a256f5f3c355.zip
+        64-bit Windows Debug)
+set(xxHash_7d5c09220d6df9ec3ade70970011cfa7804dda25_sha1sum
+        194471216242dc6ef2b89000cbb4733095d6a02a package/xxHash_7d5c09220d6df9ec3ade70970011cfa7804dda25.zip
+        64-bit Windows Debug)
+set(zstd_b7b497efd41ebd72ecd48a1a5dbb3c29b66482ef_sha1sum
+        d1896b9d4b4e54627933454cdf0a305514d8af04 package/zstd_b7b497efd41ebd72ecd48a1a5dbb3c29b66482ef.zip
+        64-bit Windows Debug)

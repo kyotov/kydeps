@@ -118,6 +118,7 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
         ExternalProject_Add(${PACKAGE_NAME}
                 URL ${KYDEPS_URL_PREFIX_DEFAULT}/${PACKAGE_NAME}_${HASH}.zip
                 URL_HASH SHA1=${SHA1}
+                DOWNLOAD_NO_PROGRESS TRUE
                 PREFIX ${CMAKE_BINARY_DIR}/download
                 CONFIGURE_COMMAND ""
                 BUILD_COMMAND ""
@@ -133,8 +134,6 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 GIT_REPOSITORY ${GIT_REPO}
                 GIT_TAG ${GIT_REF}
                 GIT_SHALLOW TRUE
-                GIT_PROGRESS TRUE
-                USES_TERMINAL_INSTALL FALSE
                 PREFIX ${CMAKE_BINARY_DIR}/build/${PACKAGE_NAME}_${HASH}
                 INSTALL_DIR ${INSTALL_PATH}
                 CMAKE_ARGS
@@ -145,6 +144,7 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 -DCMAKE_MSVC_RUNTIME_LIBRARY=${CMAKE_MSVC_RUNTIME_LIBRARY}
                 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
                 -DCMAKE_POLICY_DEFAULT_CMP0097=NEW
+                -DCMAKE_INSTALL_MESSAGE=NEVER
                 ${ARGN})
 
         if (KYDEPS_UPLOAD)
@@ -187,6 +187,7 @@ function(add_fingerprints_target)
 
     add_custom_target(fingerprints ALL
             ${COMMANDS}
+            COMMAND ${CMAKE_COMMAND} -E echo "#" >> ${FINGERPRINTS}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             DEPENDS ${PACKAGE_PATHS})
 endfunction()
