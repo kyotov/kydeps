@@ -1,0 +1,8 @@
+da4c5de949829a83ced1db0c8d88c966dc1c5765
+-- package --
+zstd 64-bit Darwin Release
+-- files --
+-- source --
+v1.4.7 (645a2975c394dc115b57a652cf175cd4c2b59292) @ https://github.com/facebook/zstd.git
+-- depends --
+-- end --

@@ -1,0 +1,8 @@
+8d0f003592e27b5995feab8a25af715b5ba105a2
+-- package --
+GTest 64-bit Darwin Release
+-- files --
+-- source --
+release-1.10.0 (703bd9caab50b139428cea1aaff9974ebee5742e) @ https://github.com/google/googletest.git
+-- depends --
+-- end --

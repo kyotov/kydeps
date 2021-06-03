@@ -1,0 +1,8 @@
+94ed844bebbcacabbc99c729d4cba58cded0b40f
+-- package --
+fmt 64-bit Darwin Release
+-- files --
+-- source --
+7.1.3 (7bdf0628b1276379886c7f6dda2cef2b3b374f0b) @ https://github.com/fmtlib/fmt.git
+-- depends --
+-- end --

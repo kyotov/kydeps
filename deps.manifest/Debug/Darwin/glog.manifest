@@ -1,0 +1,9 @@
+c44bd8d7fa424db6309cf9bff9d36a11d23f3734
+-- package --
+glog 64-bit Darwin Debug
+-- files --
+-- source --
+v0.4.0 (09b1aaa971e0b2c658f2521c942ff7841e0cfec3) @ https://github.com/google/glog.git
+-- depends --
+gflags -> 3ed2c25044dc6a15e0f1537f4cf69f1b025f6c56
+-- end --

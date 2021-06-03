@@ -1,0 +1,8 @@
+3ed2c25044dc6a15e0f1537f4cf69f1b025f6c56
+-- package --
+gflags 64-bit Darwin Debug
+-- files --
+-- source --
+v2.2.0 (9d2736aa99e6ded33bd4824c63adb41d7d5e806f) @ https://github.com/gflags/gflags.git
+-- depends --
+-- end --
