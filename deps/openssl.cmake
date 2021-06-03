@@ -63,7 +63,7 @@ ELSE ()
             https://github.com/openssl/openssl.git
             OpenSSL_1_1_1k
 
-            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./config no-shared no-dso --prefix=<INSTALL_DIR>/install --openssldir=<INSTALL_DIR>/install
+            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./config no-shared no-dso --prefix=<INSTALL_DIR> --openssldir=<INSTALL_DIR>
             BUILD_COMMAND make -C <SOURCE_DIR> build_libs
             INSTALL_COMMAND make -C <SOURCE_DIR> install_dev)
 ENDIF ()

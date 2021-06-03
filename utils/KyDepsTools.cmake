@@ -190,7 +190,6 @@ function(add_fingerprints_target)
     set(DEPS_MANIFEST_DIR "${CMAKE_SOURCE_DIR}/deps.manifest/${CMAKE_BUILD_TYPE}/${CMAKE_SYSTEM_NAME}")
 
     add_custom_target(fingerprints ALL
-            COMMAND ${CMAKE_COMMAND} -E echo "generating fingerprints and copying manifests!"
             COMMAND ${CMAKE_COMMAND} -E echo "" >> ${FINGERPRINTS}
             ${COMMANDS}
             COMMAND ${CMAKE_COMMAND} -E make_directory "${DEPS_MANIFEST_DIR}"
