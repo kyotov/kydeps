@@ -1,0 +1,8 @@
+3d8a7009b70e2641084b4fe1fe1627cd3a5eee38
+-- package --
+fmt 64-bit Windows Debug
+-- files --
+-- source --
+7.1.3 (7bdf0628b1276379886c7f6dda2cef2b3b374f0b) @ https://github.com/fmtlib/fmt.git
+-- depends --
+-- end --

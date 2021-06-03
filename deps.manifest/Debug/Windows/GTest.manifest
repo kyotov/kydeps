@@ -1,0 +1,8 @@
+35e4fe81d850e6dd157127dc89edfede6a347919
+-- package --
+GTest 64-bit Windows Debug
+-- files --
+-- source --
+release-1.10.0 (703bd9caab50b139428cea1aaff9974ebee5742e) @ https://github.com/google/googletest.git
+-- depends --
+-- end --
