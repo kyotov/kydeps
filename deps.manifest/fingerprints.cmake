@@ -184,3 +184,65 @@ set(xxHash_c02043eb65fb1f6a836c85f57e2ec1425dff1ca8_sha1sum
 set(zstd_e2bc56202a57aa1bfbeff29ac8bfa1610e0d2275_sha1sum
         f5006efee9c4e6ec4cbbb3cc9a01d223912d03ed package/zstd_e2bc56202a57aa1bfbeff29ac8bfa1610e0d2275.zip
         64-bit Linux Release)
+
+set(fmt_e4afb87cdc64d2f391388d858a319d3dbc40071c_sha1sum
+  a3490eae3769b6c3c1647fdcb630858067760f80  package/fmt_e4afb87cdc64d2f391388d858a319d3dbc40071c.zip
+  64-bit Linux Debug)
+set(gflags_066490b2d8adde30f62e785792749e7c95dfea24_sha1sum
+  07da7343a802b3cd0ee65b2cd173894e12dd330c  package/gflags_066490b2d8adde30f62e785792749e7c95dfea24.zip
+  64-bit Linux Debug)
+set(glog_7a619ff30abc1928519841e3ff9727649bd3f06d_sha1sum
+  aea829673f0dd9f54b1cedcb0bad8ff3b1015087  package/glog_7a619ff30abc1928519841e3ff9727649bd3f06d.zip
+  64-bit Linux Debug)
+set(zlib_cf477e0e4450fb6d911237cb4b86de26caf941b7_sha1sum
+  651733d021d09dbe12facbf7fb92c81121939c65  package/zlib_cf477e0e4450fb6d911237cb4b86de26caf941b7.zip
+  64-bit Linux Debug)
+set(protobuf_5ab4359c5bb1f9905f8434c51c141fd5b786069f_sha1sum
+  0179da8f20534d4a50f5a3854baceb8854e44f1b  package/protobuf_5ab4359c5bb1f9905f8434c51c141fd5b786069f.zip
+  64-bit Linux Debug)
+set(GTest_1e67d83d1fa7807980d1a8b0b434497e8065ad18_sha1sum
+  bcb79fd7d7014b6f41443864f0398882745cbc5f  package/GTest_1e67d83d1fa7807980d1a8b0b434497e8065ad18.zip
+  64-bit Linux Debug)
+set(OpenSSL_e0572de678198556fa0058a359fb19c2b3aca23a_sha1sum
+  1673044258ac448cf19c64313c21f6ff3c5cca16  package/OpenSSL_e0572de678198556fa0058a359fb19c2b3aca23a.zip
+  64-bit Linux Debug)
+set(httplib_e61ea51baf2190b45c3722cb446a0b3d1be01881_sha1sum
+  e511e6a938b71b3558d97ee4c57e4292b605677d  package/httplib_e61ea51baf2190b45c3722cb446a0b3d1be01881.zip
+  64-bit Linux Debug)
+set(xxHash_0117c6b0b76db21736a532f946cb28411e93a9c5_sha1sum
+  91ffc047dd469339049c6e9dfa590ea6989b72dd  package/xxHash_0117c6b0b76db21736a532f946cb28411e93a9c5.zip
+  64-bit Linux Debug)
+set(zstd_ac275e7bc41f1bba79436a489e434eb531826d34_sha1sum
+  aaeb020d9982d431ddeec001627480640fd5d92e  package/zstd_ac275e7bc41f1bba79436a489e434eb531826d34.zip
+  64-bit Linux Debug)
+
+set(fmt_d4f776333a26d29977eabe677af597f4692160bc_sha1sum
+  6031a879fb9bd00b3d81007ef03c853713b6bac5  package/fmt_d4f776333a26d29977eabe677af597f4692160bc.zip
+  64-bit Linux Release)
+set(gflags_b06864ffcb4e977a922dd093785cb0e3b534d851_sha1sum
+  6a6f6692b46715a553502ae9d17de20babdced48  package/gflags_b06864ffcb4e977a922dd093785cb0e3b534d851.zip
+  64-bit Linux Release)
+set(glog_c36ee270809d010042abbbb69d561c8893c6f531_sha1sum
+  25b4a467350ec42a2eae5fae2248453944da13f4  package/glog_c36ee270809d010042abbbb69d561c8893c6f531.zip
+  64-bit Linux Release)
+set(zlib_fd5bc24a19af3b2d427a7dde1755e4bd895242cd_sha1sum
+  0added280aae5055ebc8db40edf50a88317585f5  package/zlib_fd5bc24a19af3b2d427a7dde1755e4bd895242cd.zip
+  64-bit Linux Release)
+set(protobuf_c04eb4d8302aea7278ab62090da22f0ef433d8b1_sha1sum
+  7ddae763f2f37e17c01bded0622a3b7984d788f5  package/protobuf_c04eb4d8302aea7278ab62090da22f0ef433d8b1.zip
+  64-bit Linux Release)
+set(GTest_0be8beaeb34057ffcbd2cc5ef38e9f4a42f8a528_sha1sum
+  c309052530562516935cb1faf0666ad3387aca10  package/GTest_0be8beaeb34057ffcbd2cc5ef38e9f4a42f8a528.zip
+  64-bit Linux Release)
+set(OpenSSL_536177e0cd64c7cfe5bd04ee68fb8595db63e768_sha1sum
+  3eaf2743efc0c39c76a0662d4bd01838f47ecec6  package/OpenSSL_536177e0cd64c7cfe5bd04ee68fb8595db63e768.zip
+  64-bit Linux Release)
+set(httplib_b6f8fa1332c1c8730a3019a63ec5f44c133edb6a_sha1sum
+  2c12db12925246ecd2151540f7e208be7b482280  package/httplib_b6f8fa1332c1c8730a3019a63ec5f44c133edb6a.zip
+  64-bit Linux Release)
+set(xxHash_c02043eb65fb1f6a836c85f57e2ec1425dff1ca8_sha1sum
+  05535c693a8e9d0c4dd9eb1a3eff1e58fe9f372d  package/xxHash_c02043eb65fb1f6a836c85f57e2ec1425dff1ca8.zip
+  64-bit Linux Release)
+set(zstd_e2bc56202a57aa1bfbeff29ac8bfa1610e0d2275_sha1sum
+  f216e5eeeb0ccb11b8ab163c085b0284647f1c2d  package/zstd_e2bc56202a57aa1bfbeff29ac8bfa1610e0d2275.zip
+  64-bit Linux Release)

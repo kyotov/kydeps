@@ -1,9 +1,9 @@
-c612b38fa11dc6ebd1c438a1f1dd6dfff7a265da
+c04eb4d8302aea7278ab62090da22f0ef433d8b1
 -- package --
 protobuf 64-bit Linux Release
 -- files --
 -- source --
 v3.15.8 (436bd7880e458532901c58f4d9d1ea23fa7edd52) @ https://github.com/protocolbuffers/protobuf.git
 -- depends --
-zlib -> d23198601ba2092e59e963caf4238daf39a8c934
+zlib -> fd5bc24a19af3b2d427a7dde1755e4bd895242cd
 -- end --
