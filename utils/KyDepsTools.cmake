@@ -159,7 +159,7 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
         add_custom_command(
                 OUTPUT ${PACKAGE_PATH}
                 COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/package
-                COMMAND ${CMAKE_COMMAND} -E tar c ${CMAKE_BINARY_DIR}/package/${PACKAGE_PATH} --format=zip ${INSTALL_PATH}
+                COMMAND ${CMAKE_COMMAND} -E tar c ${PACKAGE_PATH} --format=zip ${INSTALL_PATH}
                 ${UPLOAD_COMMAND}
                 DEPENDS ${PACKAGE_NAME})
     endif ()
