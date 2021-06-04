@@ -126,7 +126,8 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 PREFIX ${CMAKE_BINARY_DIR}/download
                 CONFIGURE_COMMAND ""
                 BUILD_COMMAND ""
-                INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/download/src/install/${PACKAGE_NAME}_${HASH} ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH})
+                INSTALL_COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH}
+                COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/download/src/${PACKAGE_NAME}/${PACKAGE_NAME}_${HASH} ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH})
 
         add_custom_command(
                 OUTPUT ${PACKAGE_PATH}
