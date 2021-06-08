@@ -119,6 +119,13 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
 
     if (KYDEPS_DOWNLOAD)
         list(GET ${PACKAGE_NAME}_${HASH}_sha1sum 0 SHA1)
+
+        if (APPLE)
+            set(EXTRACT_DIR ${PACKAGE_NAME})
+        else ()
+            set(EXTRACT_DIR install)
+        endif ()
+
         ExternalProject_Add(${PACKAGE_NAME}
                 URL ${KYDEPS_URL_PREFIX_DEFAULT}/${PACKAGE_NAME}_${HASH}.zip
                 URL_HASH SHA1=${SHA1}
@@ -126,12 +133,11 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 PREFIX ${CMAKE_BINARY_DIR}/download
                 CONFIGURE_COMMAND ""
                 BUILD_COMMAND ""
-                INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/download/src/install/${PACKAGE_NAME}_${HASH} ${CMAKE_BINARY_DIR}/install/${PACKAGE_NAME}_${HASH})
+                INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/../${EXTRACT_DIR}/${PACKAGE_NAME}_${HASH} ${INSTALL_PATH}
+                COMMAND ${CMAKE_COMMAND} -E copy <DOWNLOAD_DIR>/${PACKAGE_NAME}_${HASH}.zip ${PACKAGE_PATH})
 
         add_custom_command(
                 OUTPUT ${PACKAGE_PATH}
-                COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/package
-                COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/download/src/${PACKAGE_NAME}_${HASH}.zip ${CMAKE_BINARY_DIR}/package/${PACKAGE_NAME}_${HASH}.zip
                 DEPENDS ${PACKAGE_NAME})
     else ()
         ExternalProject_Add(${PACKAGE_NAME}
