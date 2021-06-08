@@ -308,3 +308,34 @@ set(xxHash_d754e74598d5dd525eec63f09602c4986979ae8d_sha1sum
 set(zstd_b05395caf2549391e434e893dcaf218a3022f94e_sha1sum
   d486aa20b6a4bef51855f7c25d1e6986cb61f56f  package/zstd_b05395caf2549391e434e893dcaf218a3022f94e.zip
   64-bit Windows Release)
+
+set(fmt_3d8a7009b70e2641084b4fe1fe1627cd3a5eee38_sha1sum
+  8832555bbecbe1c9b3d70288035a05cfbdf39047  package/fmt_3d8a7009b70e2641084b4fe1fe1627cd3a5eee38.zip
+  64-bit Windows Debug)
+set(gflags_06dd5ae6bf533592195151159eac18504fc2557b_sha1sum
+  9093996e09ef4577d61673648f686ea13583ac07  package/gflags_06dd5ae6bf533592195151159eac18504fc2557b.zip
+  64-bit Windows Debug)
+set(glog_4203870f63db65637a74308079454c1d1f6b1f20_sha1sum
+  d1a52bc2580809bda8e36483cb16eb97c5f9e5f2  package/glog_4203870f63db65637a74308079454c1d1f6b1f20.zip
+  64-bit Windows Debug)
+set(zlib_f74d9ee78555187f598fd1ee7bb6bcfc3f2bce92_sha1sum
+  9e96621201f5eca3c6511689232c3c80b57e694e  package/zlib_f74d9ee78555187f598fd1ee7bb6bcfc3f2bce92.zip
+  64-bit Windows Debug)
+set(protobuf_6c1b9f62536c8aeb13d7135fbcd1a13c94de524c_sha1sum
+  7943c0521171b5ea13a589a119431af4f3a109bb  package/protobuf_6c1b9f62536c8aeb13d7135fbcd1a13c94de524c.zip
+  64-bit Windows Debug)
+set(GTest_35e4fe81d850e6dd157127dc89edfede6a347919_sha1sum
+  770fd2f2dec0ffb3760824985d0fc0f33147dbb7  package/GTest_35e4fe81d850e6dd157127dc89edfede6a347919.zip
+  64-bit Windows Debug)
+set(OpenSSL_330adf14696dac60f17586a8bba136d286fb5eb6_sha1sum
+  e779498d43e5771f9eb8874a47612548265ec007  package/OpenSSL_330adf14696dac60f17586a8bba136d286fb5eb6.zip
+  64-bit Windows Debug)
+set(httplib_df9f7282acd01cd83f3cd1fbb8fb2b47627e505e_sha1sum
+  5bcffc4410882f8bfb5b7305b9c17c0f0026cdba  package/httplib_df9f7282acd01cd83f3cd1fbb8fb2b47627e505e.zip
+  64-bit Windows Debug)
+set(xxHash_dfb7b40ce609a624e2913870786d4105f259861d_sha1sum
+  c24773ae4d7aff4590d62fd18901272b9d612360  package/xxHash_dfb7b40ce609a624e2913870786d4105f259861d.zip
+  64-bit Windows Debug)
+set(zstd_6cd2979fa0aedae72051ee582641ef62a2dff08c_sha1sum
+  c39023fbc7b80e1b0957631d67280dbe6c885273  package/zstd_6cd2979fa0aedae72051ee582641ef62a2dff08c.zip
+  64-bit Windows Debug)

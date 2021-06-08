@@ -140,6 +140,15 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
                 GIT_SHALLOW TRUE
                 PREFIX ${CMAKE_BINARY_DIR}/build/${PACKAGE_NAME}_${HASH}
                 INSTALL_DIR ${INSTALL_PATH}
+
+                GIT_PROGRESS TRUE
+                USES_TERMINAL_DOWNLOAD TRUE
+                USES_TERMINAL_UPDATE TRUE
+                USES_TERMINAL_CONFIGURE TRUE
+                USES_TERMINAL_BUILD TRUE
+                USES_TERMINAL_INSTALL TRUE
+                USES_TERMINAL_TEST TRUE
+
                 CMAKE_ARGS
                 -DBUILD_SHARED_LIBS=FALSE
                 -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
@@ -159,7 +168,7 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
         add_custom_command(
                 OUTPUT ${PACKAGE_PATH}
                 COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/package
-                COMMAND ${CMAKE_COMMAND} -E tar c ${CMAKE_BINARY_DIR}/package/${PACKAGE_PATH} --format=zip ${INSTALL_PATH}
+                COMMAND ${CMAKE_COMMAND} -E tar c ${PACKAGE_PATH} --format=zip ${INSTALL_PATH}
                 ${UPLOAD_COMMAND}
                 DEPENDS ${PACKAGE_NAME})
     endif ()
