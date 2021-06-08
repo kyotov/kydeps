@@ -171,6 +171,8 @@ function(KyDepsInstall PACKAGE_NAME GIT_REPO GIT_REF)
             set(UPLOAD_COMMAND COMMAND aws s3 cp ${PACKAGE_PATH} ${PACKAGE_S3_URI})
         endif ()
 
+        # FIXME(kyotov): this does not always trigger -- if the zip is already there it is a noop.
+        #   I would have expected that rebuilding ${PACKAGE_NAME} would invalidate it!
         add_custom_command(
                 OUTPUT ${PACKAGE_PATH}
                 COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/package

@@ -4,7 +4,7 @@ include(zlib)
 
 KyDepsInstall(protobuf
         https://github.com/protocolbuffers/protobuf.git
-        v3.17.2
+        v3.15.8
 
         SOURCE_SUBDIR cmake
 
