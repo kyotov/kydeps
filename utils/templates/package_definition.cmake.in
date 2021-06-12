@@ -1,0 +1,18 @@
+#[[ -------------------------------------------
+
+@X_MANIFEST@
+HASH
+@X_HASH@
+
+-------------------------------------------- ]]
+
+include_guard(GLOBAL)
+@X_DEPENDS@
+
+KyDepsPopulate("@X_CONTENT@"
+    "@X_URL@"
+    "@X_SHA1@")
+
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/@X_CONTENT@/@PACKAGE_NAME@_@X_HASH@/install")
+
+find_package(@PACKAGE_NAME@ REQUIRED @X_FIND_PACKAGE_OPTIONS@)

@@ -1,8 +1,0 @@
-1e67d83d1fa7807980d1a8b0b434497e8065ad18
--- package --
-GTest 64-bit Linux Debug
--- files --
--- source --
-release-1.10.0 (703bd9caab50b139428cea1aaff9974ebee5742e) @ https://github.com/google/googletest.git
--- depends --
--- end --

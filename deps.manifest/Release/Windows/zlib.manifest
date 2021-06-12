@@ -1,8 +1,0 @@
-96b983cf928ae6bf82ba20eed2015e76efac0352
--- package --
-zlib 64-bit Windows Release
--- files --
--- source --
-kyotov-fix (68cf39d20a32cf9659e62b10f95fccc0575b0b31) @ https://github.com/kyotov/zlib.git
--- depends --
--- end --

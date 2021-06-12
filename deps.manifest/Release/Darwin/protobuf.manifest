@@ -1,9 +1,0 @@
-6af2ae3f959b11d4614eccf5701fe026e67d1161
--- package --
-protobuf 64-bit Darwin Release
--- files --
--- source --
-v3.15.8 (436bd7880e458532901c58f4d9d1ea23fa7edd52) @ https://github.com/protocolbuffers/protobuf.git
--- depends --
-zlib -> 0153f5667e5fe6a25ba82e08e7c056e9dca86315
--- end --

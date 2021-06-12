@@ -1,9 +1,0 @@
-4e2be1f208bb3713a13aa15066916a8864b51db9
--- package --
-OpenSSL 64-bit Windows Release
--- files --
--- source --
-OpenSSL_1_1_1k (6503afba18b24332d3160a013179258a8edff959) @ https://github.com/openssl/openssl.git
--- depends --
-zlib -> 96b983cf928ae6bf82ba20eed2015e76efac0352
--- end --

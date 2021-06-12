@@ -1,8 +1,0 @@
-06dd5ae6bf533592195151159eac18504fc2557b
--- package --
-gflags 64-bit Windows Debug
--- files --
--- source --
-v2.2.0 (9d2736aa99e6ded33bd4824c63adb41d7d5e806f) @ https://github.com/gflags/gflags.git
--- depends --
--- end --

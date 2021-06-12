@@ -1,9 +1,0 @@
-986a313a22cd94fba70855d65cd184eda78e463a
--- package --
-httplib 64-bit Darwin Release
--- files --
--- source --
-v0.8.9-windows-patch (2e4fbb5c286a3cad5e7f88304ffc0acfe2b8575c) @ https://github.com/kyotov/cpp-httplib.git
--- depends --
-OpenSSL -> 151741f20ae32dc836d9c198a8d886e8f9354ba6
--- end --

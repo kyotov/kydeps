@@ -1,8 +1,8 @@
 include_guard(GLOBAL)
 
 KyDepsInstall(zstd
-        https://github.com/facebook/zstd.git
-        v1.4.7
+        GIT_REPOSITORY https://github.com/facebook/zstd.git
+        GIT_REF v1.4.7
 
         SOURCE_SUBDIR build/cmake
 

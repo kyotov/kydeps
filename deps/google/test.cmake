@@ -1,5 +1,5 @@
 include_guard(GLOBAL)
 
 KyDepsInstall(GTest
-        https://github.com/google/googletest.git
-        release-1.10.0)
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_REF release-1.10.0)

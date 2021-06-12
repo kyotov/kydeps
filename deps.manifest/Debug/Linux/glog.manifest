@@ -1,9 +1,0 @@
-7a619ff30abc1928519841e3ff9727649bd3f06d
--- package --
-glog 64-bit Linux Debug
--- files --
--- source --
-v0.4.0 (09b1aaa971e0b2c658f2521c942ff7841e0cfec3) @ https://github.com/google/glog.git
--- depends --
-gflags -> 066490b2d8adde30f62e785792749e7c95dfea24
--- end --

@@ -1,8 +1,0 @@
-cf477e0e4450fb6d911237cb4b86de26caf941b7
--- package --
-zlib 64-bit Linux Debug
--- files --
--- source --
-kyotov-fix (68cf39d20a32cf9659e62b10f95fccc0575b0b31) @ https://github.com/kyotov/zlib.git
--- depends --
--- end --

@@ -1,8 +1,0 @@
-0153f5667e5fe6a25ba82e08e7c056e9dca86315
--- package --
-zlib 64-bit Darwin Release
--- files --
--- source --
-kyotov-fix (68cf39d20a32cf9659e62b10f95fccc0575b0b31) @ https://github.com/kyotov/zlib.git
--- depends --
--- end --

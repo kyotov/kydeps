@@ -1,9 +1,0 @@
-33fd97f288586ea391c2328b683d5ca093443e06
--- package --
-protobuf 64-bit Windows Debug
--- files --
--- source --
-v3.15.8 (436bd7880e458532901c58f4d9d1ea23fa7edd52) @ https://github.com/protocolbuffers/protobuf.git
--- depends --
-zlib -> f74d9ee78555187f598fd1ee7bb6bcfc3f2bce92
--- end --

@@ -1,10 +1,10 @@
 include_guard(GLOBAL)
 
-if (FALSE)
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
 
     KyDepsInstall(llvm
-            https://github.com/llvm/llvm-project.git
-            main
+            GIT_REPOSITORY https://github.com/llvm/llvm-project.git
+            GIT_REF main
             #        llvmorg-12.0.0
 
             SOURCE_SUBDIR llvm

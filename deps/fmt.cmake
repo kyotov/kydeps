@@ -1,8 +1,8 @@
 include_guard(GLOBAL)
 
 KyDepsInstall(fmt
-        https://github.com/fmtlib/fmt.git
-        7.1.3
+        GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+        GIT_REF 7.1.3
 
         CMAKE_ARGS
         -DFMT_TEST=FALSE)

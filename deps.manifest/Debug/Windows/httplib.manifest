@@ -1,9 +1,0 @@
-df9f7282acd01cd83f3cd1fbb8fb2b47627e505e
--- package --
-httplib 64-bit Windows Debug
--- files --
--- source --
-v0.8.9-windows-patch (2e4fbb5c286a3cad5e7f88304ffc0acfe2b8575c) @ https://github.com/kyotov/cpp-httplib.git
--- depends --
-OpenSSL -> 330adf14696dac60f17586a8bba136d286fb5eb6
--- end --

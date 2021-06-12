@@ -1,9 +1,0 @@
-330adf14696dac60f17586a8bba136d286fb5eb6
--- package --
-OpenSSL 64-bit Windows Debug
--- files --
--- source --
-OpenSSL_1_1_1k (6503afba18b24332d3160a013179258a8edff959) @ https://github.com/openssl/openssl.git
--- depends --
-zlib -> f74d9ee78555187f598fd1ee7bb6bcfc3f2bce92
--- end --

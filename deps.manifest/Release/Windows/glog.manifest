@@ -1,9 +1,0 @@
-d39bb778f76851eb68ad0aa02a1c2ce84c5ca507
--- package --
-glog 64-bit Windows Release
--- files --
--- source --
-v0.4.0 (09b1aaa971e0b2c658f2521c942ff7841e0cfec3) @ https://github.com/google/glog.git
--- depends --
-gflags -> 9e19173742c668e096f131429a678129901046de
--- end --
