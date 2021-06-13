@@ -20,13 +20,12 @@ ac910f55f9b60f5b6d08724a136603ad18f007c7
 
 include_guard(GLOBAL)
 
-include(perl)
 include(zlib)
 
-KyDepsPopulate("openssl"
+KyDepsPopulate(OpenSSL ac910f55f9b60f5b6d08724a136603ad18f007c7
     "file://C:/kamen/clion/kydeps_new/cmake-build-debug/_/OpenSSL_ac910f55f9b60f5b6d08724a136603ad18f007c7/package.zip"
-    "2213d9ebf1ce35681e19af33c92d88863de0f7d7")
+    016c34cd735f663c61d756cadb1a8ba778bc1d6c)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/openssl/OpenSSL_ac910f55f9b60f5b6d08724a136603ad18f007c7/install")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/OpenSSL/OpenSSL_ac910f55f9b60f5b6d08724a136603ad18f007c7/install")
 
 find_package(OpenSSL REQUIRED MODULE)

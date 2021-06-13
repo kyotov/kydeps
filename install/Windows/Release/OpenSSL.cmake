@@ -20,13 +20,12 @@ HASH
 
 include_guard(GLOBAL)
 
-include(perl)
 include(zlib)
 
-KyDepsPopulate("openssl"
+KyDepsPopulate(OpenSSL 47e39a4fec1130d9be561c1056a305e8bed34e46
     "file://C:/kamen/clion/kydeps_new/cmake-build-release/_/OpenSSL_47e39a4fec1130d9be561c1056a305e8bed34e46/package.zip"
-    "a36dbfccbdc6cdf59a39ad74d1afd9700ce05eb6")
+    4152015b2fd1253f39d1e2feda4b81b307a8f068)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/openssl/OpenSSL_47e39a4fec1130d9be561c1056a305e8bed34e46/install")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/OpenSSL/OpenSSL_47e39a4fec1130d9be561c1056a305e8bed34e46/install")
 
-find_package(OpenSSL REQUIRED MODULE)
+find_package(OpenSSL REQUIRED)

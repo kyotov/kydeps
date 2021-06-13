@@ -17,9 +17,9 @@ HASH
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("zstd"
+KyDepsPopulate(zstd 1c0d396f25037c7ee5c9519d0439fec6601b1dca
     "file://C:/kamen/clion/kydeps_new/cmake-build-debug/_/zstd_1c0d396f25037c7ee5c9519d0439fec6601b1dca/package.zip"
-    "619c7915259915bf5f0a6c48fae6f44f44557444")
+    23e5575bec5cc35609fd30f5e21d1642d8918f0c)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/zstd/zstd_1c0d396f25037c7ee5c9519d0439fec6601b1dca/install")
 

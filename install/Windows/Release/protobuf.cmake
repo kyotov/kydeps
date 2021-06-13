@@ -20,9 +20,9 @@ include_guard(GLOBAL)
 
 include(zlib)
 
-KyDepsPopulate("protobuf"
+KyDepsPopulate(protobuf 532c4e282d3326954391ee48aa83a7115eb4c22a
     "file://C:/kamen/clion/kydeps_new/cmake-build-release/_/protobuf_532c4e282d3326954391ee48aa83a7115eb4c22a/package.zip"
-    "6889dc93fa291fc6f98ff4a5f69d32c4206f5e1d")
+    10ae5b77d720d315ad3d02440ba957e43c4f9f43)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/protobuf/protobuf_532c4e282d3326954391ee48aa83a7115eb4c22a/install")
 

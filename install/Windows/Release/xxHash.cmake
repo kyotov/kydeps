@@ -17,10 +17,10 @@ fd879d41ee597b60b7bac6a811894c186b695967
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("xxhash"
+KyDepsPopulate(xxHash fd879d41ee597b60b7bac6a811894c186b695967
     "file://C:/kamen/clion/kydeps_new/cmake-build-release/_/xxHash_fd879d41ee597b60b7bac6a811894c186b695967/package.zip"
-    "99409292867ace8d4594b9d2f7ede3544021b3df")
+    f02edff09b9bd6b545c160a20e6afc7e3e3800d3)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/xxhash/xxHash_fd879d41ee597b60b7bac6a811894c186b695967/install")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/xxHash/xxHash_fd879d41ee597b60b7bac6a811894c186b695967/install")
 
 find_package(xxHash REQUIRED NO_MODULE)

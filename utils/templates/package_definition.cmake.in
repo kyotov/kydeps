@@ -1,18 +1,18 @@
 #[[ -------------------------------------------
 
-@X_MANIFEST@
+@KYDEPS_MANIFEST@
 HASH
-@X_HASH@
+@KYDEPS_HASH@
 
 -------------------------------------------- ]]
 
 include_guard(GLOBAL)
-@X_DEPENDS@
+@DEPENDS@
 
-KyDepsPopulate("@X_CONTENT@"
-    "@X_URL@"
-    "@X_SHA1@")
+KyDepsPopulate(@KYDEPS_NAME@ @KYDEPS_HASH@
+    "@KYDEPS_URL@"
+    @SHA1@)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/@X_CONTENT@/@PACKAGE_NAME@_@X_HASH@/install")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/@KYDEPS_NAME@/@KYDEPS_NAME@_@KYDEPS_HASH@/install")
 
-find_package(@PACKAGE_NAME@ REQUIRED @X_FIND_PACKAGE_OPTIONS@)
+@KYDEPS_FIND_OVERRIDE@

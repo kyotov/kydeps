@@ -17,10 +17,10 @@ d9d1d8687800613f9bae648c2ff75a90c213675c
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("gtest"
+KyDepsPopulate(GTest d9d1d8687800613f9bae648c2ff75a90c213675c
     "file://C:/kamen/clion/kydeps_new/cmake-build-release/_/GTest_d9d1d8687800613f9bae648c2ff75a90c213675c/package.zip"
-    "dd86316f233ddfcf31f610365e5804ee65a89577")
+    381c2db71d6ee1e779992e2336acb9dce08a6532)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/gtest/GTest_d9d1d8687800613f9bae648c2ff75a90c213675c/install")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/GTest/GTest_d9d1d8687800613f9bae648c2ff75a90c213675c/install")
 
 find_package(GTest REQUIRED NO_MODULE)

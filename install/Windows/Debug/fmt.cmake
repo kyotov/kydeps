@@ -17,9 +17,9 @@ ac8e0dca5820ee37fc9e527f9b3838fdebf265b1
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("fmt"
+KyDepsPopulate(fmt ac8e0dca5820ee37fc9e527f9b3838fdebf265b1
     "file://C:/kamen/clion/kydeps_new/cmake-build-debug/_/fmt_ac8e0dca5820ee37fc9e527f9b3838fdebf265b1/package.zip"
-    "72d02ce8ec8dc8b860f60c2a97cc25dcf7c03bad")
+    5b6778880ffdfc1c3e1daf007219a38d11411fbb)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/fmt/fmt_ac8e0dca5820ee37fc9e527f9b3838fdebf265b1/install")
 

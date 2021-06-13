@@ -17,10 +17,10 @@ HASH
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("xxhash"
+KyDepsPopulate(xxHash 341d3d002bd310fb4a7eb2720617bf908301c588
     "file://C:/kamen/clion/kydeps_new/cmake-build-debug/_/xxHash_341d3d002bd310fb4a7eb2720617bf908301c588/package.zip"
-    "46f4352e7191f9d0fb09591105d396078f9eef3c")
+    5ca540d42aeb1b20df1fdcef8310e1c50a74841a)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/xxhash/xxHash_341d3d002bd310fb4a7eb2720617bf908301c588/install")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/xxHash/xxHash_341d3d002bd310fb4a7eb2720617bf908301c588/install")
 
 find_package(xxHash REQUIRED NO_MODULE)

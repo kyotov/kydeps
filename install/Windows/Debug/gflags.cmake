@@ -17,9 +17,9 @@ HASH
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("gflags"
+KyDepsPopulate(gflags 112e3ec543485c0088707a8ff5cba6ceaf90da42
     "file://C:/kamen/clion/kydeps_new/cmake-build-debug/_/gflags_112e3ec543485c0088707a8ff5cba6ceaf90da42/package.zip"
-    "7b4475cb44c474e0347464f2597650c32e40f35d")
+    1666eb2b402ede27a890287d91b8a24ab98961b6)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/gflags/gflags_112e3ec543485c0088707a8ff5cba6ceaf90da42/install")
 

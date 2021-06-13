@@ -20,9 +20,9 @@ include_guard(GLOBAL)
 
 include(OpenSSL)
 
-KyDepsPopulate("httplib"
+KyDepsPopulate(httplib 1e95b768963423268995c832096c89edff5d8fba
     "file://C:/kamen/clion/kydeps_new/cmake-build-debug/_/httplib_1e95b768963423268995c832096c89edff5d8fba/package.zip"
-    "620de31e247d51c2409df6a3dd216cd7527f0565")
+    1cbdf86dcfde1c1632dda8718c7775da4d27b6b1)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/httplib/httplib_1e95b768963423268995c832096c89edff5d8fba/install")
 

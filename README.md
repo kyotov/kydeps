@@ -50,3 +50,11 @@ If you update the `kydeps` submodule to revision `e3eaecfddc822b46f4b330876e9709
 you may be able to play with uncommenting `CACHED` in the makefile and the dependencies will be
 downloaded from AWS/S3 instead of built.
 
+> // find_package(nginx REQUIRED NO_MODULE)
+```cmake
+find_program(NGINX
+    REQUIRED
+    NAMES nginx
+    PATHS "${CMAKE_BINARY_DIR}/.deps/nginx/nginx_85fd5a860268ba76bb744e4d086381816f2911a1/install"
+    NO_DEFAULT_PATH)
+```

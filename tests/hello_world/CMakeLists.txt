@@ -3,9 +3,9 @@ project(kydeps)
 
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-include(../install/KyDeps.cmake)
+include(../../install/KyDeps.cmake)
 
-set(FETCHCONTENT_QUIET ON)
+#set(FETCHCONTENT_QUIET ON)
 
 include(gflags)
 include(glog)
@@ -15,3 +15,6 @@ add_executable(main
 target_link_libraries(main
         gflags
         glog::glog)
+
+add_custom_target(run
+        COMMAND main)

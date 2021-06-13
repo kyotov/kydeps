@@ -17,9 +17,9 @@ HASH
 include_guard(GLOBAL)
 
 
-KyDepsPopulate("fmt"
+KyDepsPopulate(fmt 09145a3eb2d80f19b94ecba661030cb656363ea1
     "file://C:/kamen/clion/kydeps_new/cmake-build-release/_/fmt_09145a3eb2d80f19b94ecba661030cb656363ea1/package.zip"
-    "732341306f9e6bec49e329cdc96e395a1d439bb5")
+    9dbf595e1817f8b35f7253bb859db008b470bbcf)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/fmt/fmt_09145a3eb2d80f19b94ecba661030cb656363ea1/install")
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.release/build/llvm_40f7469d39b1abf958caca0a5620653937b5c772/src/llvm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.y/build/llvm_40f7469d39b1abf958caca0a5620653937b5c772/src/llvm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/GTest_35e4fe81d850e6dd157127dc89edfede6a347919/src/GTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/OpenSSL_330adf14696dac60f17586a8bba136d286fb5eb6/src/OpenSSL" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/OpenSSL_330adf14696dac60f17586a8bba136d286fb5eb6/src/OpenSSL/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/OpenSSL_330adf14696dac60f17586a8bba136d286fb5eb6/src/OpenSSL/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/fmt_3d8a7009b70e2641084b4fe1fe1627cd3a5eee38/src/fmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/gflags_06dd5ae6bf533592195151159eac18504fc2557b/src/gflags" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/gflags_06dd5ae6bf533592195151159eac18504fc2557b/src/gflags/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/glog_4203870f63db65637a74308079454c1d1f6b1f20/src/glog" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/httplib_df9f7282acd01cd83f3cd1fbb8fb2b47627e505e/src/httplib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/llvm_08d496180368b477254bf8d37b9fbe151b3de15b/src/llvm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/protobuf_33fd97f288586ea391c2328b683d5ca093443e06/src/protobuf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/protobuf_33fd97f288586ea391c2328b683d5ca093443e06/src/protobuf/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/protobuf_33fd97f288586ea391c2328b683d5ca093443e06/src/protobuf/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/xxHash_dfb7b40ce609a624e2913870786d4105f259861d/src/xxHash" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/zlib_f74d9ee78555187f598fd1ee7bb6bcfc3f2bce92/src/zlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/build/zstd_6cd2979fa0aedae72051ee582641ef62a2dff08c/src/zstd" vcs="Git" />
+  </component>
+</project>

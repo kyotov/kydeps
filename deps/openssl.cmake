@@ -2,6 +2,9 @@ include_guard(GLOBAL)
 
 include(zlib)
 
+set(OpenSSL_FIND_OVERRIDE [[find_package(OpenSSL REQUIRED)]])
+set(OpenSSL_DEPENDS_OVERRIDE zlib)
+
 if (WIN32)
     # based on https://stackoverflow.com/a/41815728/4720732
 
@@ -55,7 +58,7 @@ else ()
 
             CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./config no-shared no-dso --prefix=<INSTALL_DIR> --openssldir=<INSTALL_DIR>
             BUILD_COMMAND make -C <SOURCE_DIR> build_libs
-            INSTALL_COMMAND make -C <SOURCE_DIR> install_dev)
-endif ()
+            INSTALL_COMMAND make -C <SOURCE_DIR> install_dev
 
-set(OpenSSL_FIND_PACKAGE_OPTIONS MODULE)
+            DEPENDS zlib)
+endif ()

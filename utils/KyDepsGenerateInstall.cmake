@@ -1,41 +1,31 @@
-message(STATUS "KyDeps Install Generator")
-
 function(main)
-
     include(${CONFIG})
+    message(STATUS "KyDeps Install Generator : ${KYDEPS_NAME}")
 
-    foreach (PACKAGE_NAME ${KYDEPS_PACKAGE_NAMES})
-
-        foreach (VAR MANIFEST HASH FIND_PACKAGE_OPTIONS)
-            set(X_${VAR} ${${PACKAGE_NAME}_${VAR}})
-        endforeach ()
-
-        if ("${X_FIND_PACKAGE_OPTIONS}" STREQUAL "")
-            set(X_FIND_PACKAGE_OPTIONS NO_MODULE)
-        endif ()
-
-        set(X_DEPENDS)
-        foreach (DEP ${${PACKAGE_NAME}_DEPENDS})
-            string(APPEND X_DEPENDS "\ninclude(${DEP})")
-        endforeach ()
-
-        string(TOLOWER "${PACKAGE_NAME}" X_CONTENT)
-
-        set(X_LOCAL_PACKAGE_PATH "${${PACKAGE_NAME}_ROOT_PATH}/package.zip")
-        set(X_URL "file://${X_LOCAL_PACKAGE_PATH}")
-
-        file(SHA1 "${X_LOCAL_PACKAGE_PATH}" X_SHA1)
-
-        configure_file(
-                ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/templates/package_redirect.cmake.in
-                ${KYDEPS_TARGET_DIR}/${PACKAGE_NAME}.cmake
-                @ONLY)
-
-        configure_file(
-                ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/templates/package_definition.cmake.in
-                ${KYDEPS_TARGET_SUBDIR}/${PACKAGE_NAME}.cmake
-                @ONLY)
+    set(DEPENDS)
+    foreach (DEP ${KYDEPS_DEPENDS})
+        string(APPEND DEPENDS "\ninclude(${DEP})")
     endforeach ()
+
+    if ("${KYDEPS_BUILD_TYPE_OVERRIDE}" STREQUAL "")
+        set(KYDEPS_BUILD_TYPE_OVERRIDE [[${CMAKE_BUILD_TYPE}]])
+    endif ()
+
+    if ("${KYDEPS_FIND_OVERRIDE}" STREQUAL "")
+        set(KYDEPS_FIND_OVERRIDE "find_package(${KYDEPS_NAME} REQUIRED NO_MODULE)")
+    endif ()
+
+    file(SHA1 "${KYDEPS_ROOT_PATH}/package.zip" SHA1)
+
+    configure_file(
+            ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/templates/package_redirect.cmake.in
+            ${KYDEPS_DIR}/${KYDEPS_NAME}.cmake
+            @ONLY)
+
+    configure_file(
+            ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/templates/package_definition.cmake.in
+            ${KYDEPS_DIR}/${KYDEPS_SUBDIR}/${KYDEPS_NAME}.cmake
+            @ONLY)
 
 endfunction()
 

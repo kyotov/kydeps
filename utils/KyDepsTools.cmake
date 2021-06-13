@@ -250,6 +250,8 @@ function(package_build PACKAGE_NAME)
     check_not_empty(${PACKAGE_NAME}_HASH)
     check_not_empty(${PACKAGE_NAME}_ROOT_PATH)
 
+    dump_package_config(${PACKAGE_NAME})
+
     set(DIR ${${PACKAGE_NAME}_ROOT_PATH})
 
     ExternalProject_Add(${PACKAGE_NAME}
@@ -303,13 +305,17 @@ function(package_build PACKAGE_NAME)
     endif ()
 
     add_custom_command(
-            OUTPUT ${DIR}/complete
-            COMMAND ${CMAKE_COMMAND} -E touch ${DIR}/complete
-            DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT})
+            OUTPUT ${CMAKE_SOURCE_DIR}/install/${PACKAGE_NAME}.cmake
+            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/utils/KyDepsGenerateInstall.cmake"
+            DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT}
+    )
+
+    add_custom_target(${PACKAGE_NAME}-done ALL
+            DEPENDS ${CMAKE_SOURCE_DIR}/install/${PACKAGE_NAME}.cmake)
 
 endfunction()
 
-#-------------------- dump_config_value
+#-------------------- dump_package_config_item
 
 function(dump_config_value VARIABLE_NAME)
     set(VALUE "${${VARIABLE_NAME}}")
@@ -318,30 +324,27 @@ function(dump_config_value VARIABLE_NAME)
     file(APPEND ${CONFIG_FILE} ${TERM})
 endfunction()
 
-#-------------------- dump_config
+#-------------------- dump_package_config
 
-function(dump_config)
-    set(KYDEPS_PACKAGE_NAMES ${PACKAGE_NAMES})
-    set(KYDEPS_TARGET_DIR "${CMAKE_SOURCE_DIR}/install")
-    set(KYDEPS_TARGET_SUBDIR "${KYDEPS_TARGET_DIR}/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}")
-    set(KYDEPS_TEMPLATE "${CMAKE_SOURCE_DIR}/utils/template.cmake.in")
+function(dump_package_config PACKAGE_NAME)
+    set(${PACKAGE_NAME}_NAME "${PACKAGE_NAME}")
+    set(${PACKAGE_NAME}_DIR "${CMAKE_SOURCE_DIR}/install")
+    set(${PACKAGE_NAME}_SUBDIR "${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}")
 
-    set(CONFIG_FILE "${CMAKE_BINARY_DIR}/_/config.cmake")
+    if (KYDEPS_UPLOAD)
+        set(${PACKAGE_NAME}_URL "${KYDEPS_URL_PREFIX}/${PACKAGE_NAME}_${${PACKAGE_NAME}_HASH}.zip")
+    else ()
+        set(${PACKAGE_NAME}_URL "file://${${PACKAGE_NAME}_ROOT_PATH}/package.zip")
+    endif ()
 
+    if (NOT "${${PACKAGE_NAME}_DEPENDS_OVERRIDE}" STREQUAL "")
+        set(${PACKAGE_NAME}_DEPENDS "${${PACKAGE_NAME}_DEPENDS_OVERRIDE}")
+    endif ()
+
+    set(CONFIG_FILE "${${PACKAGE_NAME}_ROOT_PATH}/config.cmake")
     file(WRITE ${CONFIG_FILE} "")
-    dump_config_value(KYDEPS_PACKAGE_NAMES)
-    dump_config_value(KYDEPS_TARGET_DIR)
-    dump_config_value(KYDEPS_TARGET_SUBDIR)
-    dump_config_value(KYDEPS_TEMPLATE)
-    dump_config_value(KYDEPS_URL_PREFIX_DEFAULT)
-    file(APPEND ${CONFIG_FILE} "\n")
-
-    foreach (PACKAGE_NAME ${PACKAGE_NAMES})
-        file(APPEND ${CONFIG_FILE} "#\n# ${PACKAGE_NAME}\n#\n")
-        foreach (VAR ROOT_PATH FETCH_LOCATION REVISION HASH DEPENDS MANIFEST FIND_PACKAGE_OPTIONS)
-            dump_config_value(${PACKAGE_NAME}_${VAR})
-        endforeach ()
-        file(APPEND ${CONFIG_FILE} "\n")
+    foreach (VAR NAME DIR SUBDIR URL ROOT_PATH FETCH_LOCATION REVISION HASH DEPENDS BUILD_TYPE_OVERRIDE FIND_OVERRIDE MANIFEST)
+        file(APPEND ${CONFIG_FILE} "set(KYDEPS_${VAR} \"${${PACKAGE_NAME}_${VAR}}\")\n")
     endforeach ()
 endfunction()
 
@@ -350,6 +353,12 @@ endfunction()
 function(KyDepsInstall PACKAGE_NAME)
     list(APPEND CMAKE_MESSAGE_INDENT "${PACKAGE_NAME} : ")
 
+    if (NOT "${${PACKAGE_NAME}_BUILD_TYPE_OVERRIDE}" STREQUAL "" AND
+            NOT "${${PACKAGE_NAME}_BUILD_TYPE_OVERRIDE}" STREQUAL "${CMAKE_BUILD_TYPE}")
+        message(STATUS "SKIPPED")
+        return()
+    endif ()
+
     package_parse_fetch_location(${PACKAGE_NAME} ${ARGN})
     package_generate_manifest(${PACKAGE_NAME})
     package_build(${PACKAGE_NAME} ${${PACKAGE_NAME}_ARGS})
@@ -357,13 +366,8 @@ function(KyDepsInstall PACKAGE_NAME)
     list(APPEND PACKAGE_NAMES ${PACKAGE_NAME})
     parent_scope(PACKAGE_NAMES)
 
-    parent_scope(${PACKAGE_NAME}_FETCH_LOCATION)
-    parent_scope(${PACKAGE_NAME}_DEPENDS)
-    parent_scope(${PACKAGE_NAME}_MANIFEST)
-    parent_scope(${PACKAGE_NAME}_REVISION)
     parent_scope(${PACKAGE_NAME}_HASH)
     parent_scope(${PACKAGE_NAME}_ROOT_PATH)
-    parent_scope(${PACKAGE_NAME}_PREFIX_PATH)
 
     list(POP_BACK CMAKE_MESSAGE_INDENT)
 endfunction()
