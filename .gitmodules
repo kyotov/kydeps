@@ -1,3 +1,4 @@
 [submodule "install"]
 	path = install
 	url = https://github.com/kyotov/kydeps-install.git
+	branch = main

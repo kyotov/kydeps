@@ -4,10 +4,11 @@ project(kydeps)
 list(APPEND CMAKE_MESSAGE_INDENT "  KyDeps : ")
 list(APPEND CMAKE_MODULE_PATH
         ${CMAKE_SOURCE_DIR}/cmake
+        ${CMAKE_SOURCE_DIR}/install
         ${CMAKE_SOURCE_DIR}/definitions)
 
-include(KyDepsTools)
 include(KyDepsOptions)
+include(KyDepsTools)
 
 set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_URL_PREFIX "https://kydeps.s3.us-east-2.amazonaws.com")
