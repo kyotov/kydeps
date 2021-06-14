@@ -207,8 +207,8 @@ function(package_generate_manifest PACKAGE_NAME)
         file(GLOB FILES
                 RELATIVE ${CMAKE_SOURCE_DIR}
                 ${CMAKE_SOURCE_DIR}/CMakeLists.txt
-                ${CMAKE_SOURCE_DIR}/utils/**
-                ${CMAKE_SOURCE_DIR}/deps/${PACKAGE_NAME}.cmake)
+                ${CMAKE_SOURCE_DIR}/cmake/**
+                ${CMAKE_SOURCE_DIR}/definitions/${PACKAGE_NAME}.cmake)
 
         foreach (FILE ${FILES})
             file(SHA1 ${CMAKE_SOURCE_DIR}/${FILE} HASH)
@@ -240,19 +240,34 @@ function(package_generate_manifest PACKAGE_NAME)
 
 endfunction()
 
-#-------------------- package_install
+#-------------------- rig_cmake_command
 
-function(package_build PACKAGE_NAME)
+function(rig_cmake_command)
 
-    check_not_empty(${PACKAGE_NAME}_FETCH_LOCATION)
-    check_not_empty(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION)
-    check_not_empty(${PACKAGE_NAME}_REVISION)
-    check_not_empty(${PACKAGE_NAME}_HASH)
-    check_not_empty(${PACKAGE_NAME}_ROOT_PATH)
+    get_property(KYDEPS_COMPILE_OPTIONS DIRECTORY PROPERTY COMPILE_OPTIONS)
+    string(JOIN " " KYDEPS_COMPILE_OPTIONS_STR ${KYDEPS_COMPILE_OPTIONS})
+    # message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using COMPILE_OPTIONS = ${KYDEPS_COMPILE_OPTIONS_STR}")
 
-    dump_package_config(${PACKAGE_NAME})
+    get_property(KYDEPS_LINK_OPTIONS DIRECTORY PROPERTY LINK_OPTIONS)
+    string(JOIN " " KYDEPS_LINK_OPTIONS_STR ${KYDEPS_LINK_OPTIONS})
+    # message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using LINK_OPTIONS = ${KYDEPS_LINK_OPTIONS_STR}")
 
-    set(DIR ${${PACKAGE_NAME}_ROOT_PATH})
+    set(CMAKE_COMMAND
+            ${CMAKE_COMMAND} -E env
+            CFLAGS=${KYDEPS_COMPILE_OPTIONS_STR}
+            CXXFLAGS=${KYDEPS_COMPILE_OPTIONS_STR}
+            LDFLAGS=${KYDEPS_LINK_OPTIONS_STR}
+            ${CMAKE_COMMAND})
+
+    parent_scope(CMAKE_COMMAND)
+
+endfunction()
+
+#-------------------- package_build_external_project
+
+function(package_build_external_project PACKAGE_NAME)
+
+    rig_cmake_command()
 
     ExternalProject_Add(${PACKAGE_NAME}
             ${${PACKAGE_NAME}_LOCAL_FETCH_LOCATION}
@@ -272,6 +287,9 @@ function(package_build PACKAGE_NAME)
             USES_TERMINAL_INSTALL TRUE
             USES_TERMINAL_TEST TRUE
 
+            CMAKE_CACHE_ARGS
+            -DCMAKE_PREFIX_PATH:STRING=${${PACKAGE_NAME}_PREFIX_PATH}
+
             CMAKE_ARGS
             -DBUILD_SHARED_LIBS=FALSE
             -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
@@ -284,6 +302,24 @@ function(package_build PACKAGE_NAME)
 
             ${ARGN})
 
+endfunction()
+
+#-------------------- package_build
+
+function(package_build PACKAGE_NAME)
+
+    check_not_empty(${PACKAGE_NAME}_FETCH_LOCATION)
+    check_not_empty(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION)
+    check_not_empty(${PACKAGE_NAME}_REVISION)
+    check_not_empty(${PACKAGE_NAME}_HASH)
+    check_not_empty(${PACKAGE_NAME}_ROOT_PATH)
+
+    dump_package_config(${PACKAGE_NAME})
+
+    set(DIR ${${PACKAGE_NAME}_ROOT_PATH})
+
+    package_build_external_project(${PACKAGE_NAME} ${ARGN})
+
     add_custom_command(
             OUTPUT ${DIR}/package.zip
             COMMAND ${CMAKE_COMMAND} -E tar c ${DIR}/package.zip --format=zip ${DIR}/install
@@ -291,7 +327,7 @@ function(package_build PACKAGE_NAME)
 
     if (KYDEPS_UPLOAD)
 
-        set(PACKAGE_S3_URI ${KYDEPS_S3_PREFIX_DEFAULT}/${PACKAGE_NAME}_${HASH}.zip)
+        set(PACKAGE_S3_URI ${KYDEPS_S3_PREFIX}/${PACKAGE_NAME}_${${PACKAGE_NAME}_HASH}.zip)
 
         add_custom_command(
                 OUTPUT ${DIR}/uploaded
@@ -300,13 +336,13 @@ function(package_build PACKAGE_NAME)
                 DEPENDS ${DIR}/package.zip
         )
 
-        set(UPLOAD_OUTPUT ${PATH}/uploaded)
+        set(UPLOAD_OUTPUT ${DIR}/uploaded)
 
     endif ()
 
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/install/${PACKAGE_NAME}.cmake
-            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/utils/KyDepsGenerateInstall.cmake"
+            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
             DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT}
     )
 

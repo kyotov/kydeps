@@ -3,16 +3,18 @@ project(kydeps)
 
 list(APPEND CMAKE_MESSAGE_INDENT "  KyDeps : ")
 list(APPEND CMAKE_MODULE_PATH
-        ${CMAKE_SOURCE_DIR}/utils
-        ${CMAKE_SOURCE_DIR}/deps)
+        ${CMAKE_SOURCE_DIR}/cmake
+        ${CMAKE_SOURCE_DIR}/definitions)
 
 include(KyDepsTools)
 include(KyDepsOptions)
-include(KyDepsEpilogue)
+#include(KyDepsEpilogue)
 
 #
 # local config
 #
+set(KYDEPS_UPLOAD ON)
+
 set(KYDEPS_PACKAGE_CACHE_DIRECTORY "c:/kamen/kydeps_cache")
 set(KYDEPS_PACKAGE_CACHE_FROZEN TRUE)
 #
@@ -24,7 +26,7 @@ set_if_empty(KYDEPS_S3_PREFIX "s3://kydeps")
 set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${CMAKE_BINARY_DIR}/content_cache")
 set_if_empty(KYDEPS_PACKAGE_CACHE_FROZEN FALSE)
 
-file(GLOB_RECURSE KYDEPS_PACKAGES RELATIVE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/deps/**)
+file(GLOB_RECURSE KYDEPS_PACKAGES RELATIVE ${CMAKE_SOURCE_DIR}/definitions ${CMAKE_SOURCE_DIR}/definitions/**)
 list(TRANSFORM KYDEPS_PACKAGES REPLACE "\\.cmake$" "")
 
 set_if_empty(KYDEPS_RELAX_PACKAGE_HASH ON)

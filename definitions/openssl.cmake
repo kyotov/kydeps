@@ -27,7 +27,7 @@ if (WIN32)
 
             USES_TERMINAL_BUILD TRUE
 
-            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ${BIN_PERL} Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR> --openssldir=<INSTALL_DIR> CC=@cl ${CMAKE_C_FLAGS} -I${zlib_ROOT_PATH}/install/include
+            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ${BIN_PERL} Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR> --openssldir=<INSTALL_DIR> CC=cl ${CMAKE_C_FLAGS} -I${zlib_ROOT_PATH}/install/include
 
             # NOTE: there is some non-determinism in the configuration that looks like `RANLIB => "CODE(0x273a5f0)"`
             #       ranlib is not used on windows, so we just remove the lines about it to remove the non-determinism

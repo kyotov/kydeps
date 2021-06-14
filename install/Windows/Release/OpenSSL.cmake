@@ -23,8 +23,8 @@ include_guard(GLOBAL)
 include(zlib)
 
 KyDepsPopulate(OpenSSL 47e39a4fec1130d9be561c1056a305e8bed34e46
-    "file://C:/kamen/clion/kydeps_new/cmake-build-release/_/OpenSSL_47e39a4fec1130d9be561c1056a305e8bed34e46/package.zip"
-    4152015b2fd1253f39d1e2feda4b81b307a8f068)
+    "https://kydeps.s3.us-east-2.amazonaws.com/OpenSSL_47e39a4fec1130d9be561c1056a305e8bed34e46.zip"
+    3c54982904e1f77a4e3aa92bc9d875779c36f008)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/OpenSSL/OpenSSL_47e39a4fec1130d9be561c1056a305e8bed34e46/install")
 
