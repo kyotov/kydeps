@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.18)
 project(kydeps)
 
+include(install/KyDepsOptions.cmake)
+
 list(APPEND CMAKE_MESSAGE_INDENT "  KyDeps : ")
 list(APPEND CMAKE_MODULE_PATH
         ${CMAKE_SOURCE_DIR}/cmake
-        ${CMAKE_SOURCE_DIR}/install
         ${CMAKE_SOURCE_DIR}/definitions)
 
-include(KyDepsOptions)
 include(KyDepsTools)
 
 set_if_empty(KYDEPS_UPLOAD OFF)

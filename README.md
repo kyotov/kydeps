@@ -58,3 +58,6 @@ find_program(NGINX
     PATHS "${CMAKE_BINARY_DIR}/.deps/nginx/nginx_85fd5a860268ba76bb744e4d086381816f2911a1/install"
     NO_DEFAULT_PATH)
 ```
+
+
+`cmake -D KYDEPS_UPLOAD=TRUE -D KYDEPS_PACKAGE_CACHE_FROZEN=TRUE -P build.cmake`
