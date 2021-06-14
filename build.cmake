@@ -13,6 +13,10 @@ foreach (BUILD_TYPE ${BUILD_TYPES})
     set(BINARY_DIR "${ROOT}/build/${BUILD_TYPE}")
     file(MAKE_DIRECTORY "${BINARY_DIR}")
 
-    execute_and_check(${CMAKE_COMMAND} -S ${ROOT} -B ${BINARY_DIR} -G Ninja -D CMAKE_BUILD_TYPE=${BUILD_TYPE})
+    execute_and_check(${CMAKE_COMMAND} -S ${ROOT} -B ${BINARY_DIR} -G Ninja
+            -D KYDEPS_UPLOAD=${KYDEPS_UPLOAD}
+            -D KYDEPS_PACKAGE_CACHE_FROZEN=${KYDEPS_PACKAGE_CACHE_FROZEN}
+            -D CMAKE_BUILD_TYPE=${BUILD_TYPE})
+
     execute_and_check(${CMAKE_COMMAND} --build ${BINARY_DIR} --config ${BUILD_TYPE})
 endforeach ()
