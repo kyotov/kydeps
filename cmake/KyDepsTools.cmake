@@ -3,25 +3,7 @@ include_guard(GLOBAL)
 include(ExternalProject)
 include(FetchContent)
 include(CMakePrintHelpers)
-
-#-------------------- set_if_empty
-
-macro(set_if_empty NAME)
-    if ("${${NAME}}" STREQUAL "")
-        message(STATUS "${NAME} not specified, using default `${ARGN}`")
-        set(${NAME} ${ARGN})
-    else ()
-        message(STATUS "${NAME} = ${${NAME}}")
-    endif ()
-endmacro()
-
-#-------------------- check_not_empty
-
-macro(check_not_empty NAME)
-    if ("${${NAME}}" STREQUAL "")
-        message(FATAL_ERROR "required ${NAME} is not specified")
-    endif ()
-endmacro()
+include(KyDepsCommon)
 
 #-------------------- check_result
 
@@ -30,13 +12,6 @@ function(check_result RESULT MESSAGE)
         message(FATAL_ERROR ${ARG_MESSAGE})
     endif ()
 endfunction()
-
-#-------------------- parent_scope
-
-macro(parent_scope NAME)
-    message(DEBUG "${NAME} -> ${${NAME}}")
-    set(${NAME} ${${NAME}} PARENT_SCOPE)
-endmacro()
 
 #-------------------- get_git_revision
 
@@ -280,12 +255,12 @@ function(package_build_external_project PACKAGE_NAME)
             STAMP_DIR "${DIR}/stamp"
             TMP_DIR "${DIR}/tmp"
 
-            USES_TERMINAL_DOWNLOAD TRUE
-            USES_TERMINAL_UPDATE TRUE
-            USES_TERMINAL_CONFIGURE TRUE
-            USES_TERMINAL_BUILD TRUE
-            USES_TERMINAL_INSTALL TRUE
-            USES_TERMINAL_TEST TRUE
+            USES_TERMINAL_DOWNLOAD ${KYDEPS_USES_TERMINAL}
+            USES_TERMINAL_UPDATE ${KYDEPS_USES_TERMINAL}
+            USES_TERMINAL_CONFIGURE ${KYDEPS_USES_TERMINAL}
+            USES_TERMINAL_BUILD ${KYDEPS_USES_TERMINAL}
+            USES_TERMINAL_INSTALL ${KYDEPS_USES_TERMINAL}
+            USES_TERMINAL_TEST ${KYDEPS_USES_TERMINAL}
 
             CMAKE_CACHE_ARGS
             -DCMAKE_PREFIX_PATH:STRING=${${PACKAGE_NAME}_PREFIX_PATH}

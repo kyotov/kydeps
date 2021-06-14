@@ -18,8 +18,8 @@ include_guard(GLOBAL)
 
 
 KyDepsPopulate(zstd 1c0d396f25037c7ee5c9519d0439fec6601b1dca
-    "https://kydeps.s3.us-east-2.amazonaws.com/zstd_1c0d396f25037c7ee5c9519d0439fec6601b1dca.zip"
-    1183e3fbbee7d2a12d9953d0ebe99d584e33b403)
+    "file://C:/kamen/clion/kydeps_new/build/Debug/_/zstd_1c0d396f25037c7ee5c9519d0439fec6601b1dca/package.zip"
+    0c988b3d6f3fdee05d2c0a86711634b92567480b)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/zstd/zstd_1c0d396f25037c7ee5c9519d0439fec6601b1dca/install")
 

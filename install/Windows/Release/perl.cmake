@@ -19,7 +19,7 @@ include_guard(GLOBAL)
 
 KyDepsPopulate(perl fc6dec7e8728ff02b2f044baa7d5b14b215f52ca
     "https://kydeps.s3.us-east-2.amazonaws.com/perl_fc6dec7e8728ff02b2f044baa7d5b14b215f52ca.zip"
-    052ced8f7f09ae4dd1c37c2e8fd42b6ee689577d)
+    0c444015c0c17449c07dd94fde49658cd754ebb1)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/perl/perl_fc6dec7e8728ff02b2f044baa7d5b14b215f52ca/install")
 

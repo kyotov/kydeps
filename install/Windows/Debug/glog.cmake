@@ -21,8 +21,8 @@ include_guard(GLOBAL)
 include(gflags)
 
 KyDepsPopulate(glog 1c0dbb59f1380a5097722edb97aec55a48f2421c
-    "https://kydeps.s3.us-east-2.amazonaws.com/glog_1c0dbb59f1380a5097722edb97aec55a48f2421c.zip"
-    313995297d2ad470de389675b8cae8cd73979e4e)
+    "file://C:/kamen/clion/kydeps_new/build/Debug/_/glog_1c0dbb59f1380a5097722edb97aec55a48f2421c/package.zip"
+    6ff0a8f777ad5125e53f97d6e516c42e04617271)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/glog/glog_1c0dbb59f1380a5097722edb97aec55a48f2421c/install")
 

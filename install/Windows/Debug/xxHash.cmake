@@ -18,8 +18,8 @@ include_guard(GLOBAL)
 
 
 KyDepsPopulate(xxHash 341d3d002bd310fb4a7eb2720617bf908301c588
-    "https://kydeps.s3.us-east-2.amazonaws.com/xxHash_341d3d002bd310fb4a7eb2720617bf908301c588.zip"
-    f6234980c82a5ca6c2789f092fb74ad4419b8f42)
+    "file://C:/kamen/clion/kydeps_new/build/Debug/_/xxHash_341d3d002bd310fb4a7eb2720617bf908301c588/package.zip"
+    4f575e8442e4678d587461c3b9f2caa9a18cb0fd)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/.deps/xxHash/xxHash_341d3d002bd310fb4a7eb2720617bf908301c588/install")
 
