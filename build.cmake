@@ -25,7 +25,7 @@ endforeach ()
 
 execute_and_check(
         WORKING_DIRECTORY "${ROOT}/install"
-        COMMAND ${GIT} commit -am 'automated ${BINARY_DIR} artifact update')
+        COMMAND ${GIT} commit -am "automated ${BUILD_TYPE} artifact update on ${CMAKE_SYSTEM_NAME}")
 
 execute_and_check(
         WORKING_DIRECTORY "${ROOT}/install"
