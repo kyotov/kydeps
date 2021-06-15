@@ -3,13 +3,21 @@ include_guard(GLOBAL)
 #-------------------- execute_and_check
 
 function(execute_and_check)
-    set(COMMAND ${ARGN})
-    message(STATUS "RUNNING: ${COMMAND}")
+    cmake_parse_arguments(X
+            ""
+            ""
+            "COMMAND"
+            ${ARGN})
+
+    message("${X_COMMAND}")
+#    set(COMMAND ${ARGN})
+    message(STATUS "RUNNING: ${X_COMMAND}")
     execute_process(
-            COMMAND ${COMMAND}
+            ${ARGN}
+#            COMMAND ${COMMAND}
             RESULT_VARIABLE EXIT_CODE)
     if (NOT EXIT_CODE EQUAL 0)
-        message(FATAL_ERROR "FAILED: ${COMMAND}")
+        message(FATAL_ERROR "FAILED(${EXIT_CODE}): ${X_COMMAND}")
     endif ()
 endfunction()
 
