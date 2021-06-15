@@ -25,6 +25,10 @@ endforeach ()
 
 execute_and_check(
         WORKING_DIRECTORY "${ROOT}/install"
+        COMMAND ${GIT} pull --ff-only origin main)
+
+execute_and_check(
+        WORKING_DIRECTORY "${ROOT}/install"
         COMMAND ${GIT} commit -am "automated artifact update")
 
 execute_and_check(
