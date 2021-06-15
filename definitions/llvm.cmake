@@ -11,7 +11,7 @@ KyDepsInstall(llvm
         SOURCE_SUBDIR llvm
 
         BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target clang-tidy
-        INSTALL_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target install-clang-tidy
+        INSTALL_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target install-clang-tidy tools/clang/lib/Headers
 
         CMAKE_CACHE_ARGS
         "-DLLVM_ENABLE_PROJECTS:LIST=clang;clang-tools-extra"
