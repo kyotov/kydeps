@@ -55,7 +55,7 @@ downloaded from AWS/S3 instead of built.
 find_program(NGINX
     REQUIRED
     NAMES nginx
-    PATHS "${CMAKE_BINARY_DIR}/.deps/nginx/nginx_85fd5a860268ba76bb744e4d086381816f2911a1/install"
+    PATHS "${CMAKE_BINARY_DIR}/_deps/nginx/nginx_85fd5a860268ba76bb744e4d086381816f2911a1/install"
     NO_DEFAULT_PATH)
 ```
 
