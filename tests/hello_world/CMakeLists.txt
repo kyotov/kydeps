@@ -13,8 +13,8 @@ include(glog)
 add_executable(main
         main.cpp)
 target_link_libraries(main
-        gflags
-        glog::glog)
+        PRIVATE gflags
+        PRIVATE glog::glog)
 
 add_custom_target(run
         COMMAND main)
