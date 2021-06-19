@@ -33,6 +33,39 @@
     <mapping directory="$PROJECT_DIR$/build/build/xxHash_dfb7b40ce609a624e2913870786d4105f259861d/src/xxHash" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/build/build/zlib_f74d9ee78555187f598fd1ee7bb6bcfc3f2bce92/src/zlib" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/build/build/zstd_6cd2979fa0aedae72051ee582641ef62a2dff08c/src/zstd" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/GTest/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/OpenSSL/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/OpenSSL/data/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/OpenSSL/data/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/OpenSSL/data/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/fmt/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/gflags/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/gflags/data/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/glog/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/httplib/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/llvm/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/protobuf/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/protobuf/data/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/protobuf/data/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/xxHash/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/zlib/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Linux/zstd/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/GTest/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/OpenSSL/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/OpenSSL/data/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/OpenSSL/data/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/OpenSSL/data/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/fmt/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/gflags/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/gflags/data/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/glog/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/httplib/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/protobuf/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/protobuf/data/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/protobuf/data/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/xxHash/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/zlib/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cache.old/Windows/zstd/data" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cache/GTest/data" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cache/OpenSSL/data" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cache/OpenSSL/data/boringssl" vcs="Git" />

@@ -72,7 +72,7 @@ function(package_parse_fetch_location PACKAGE_NAME)
                 GIT_TAG ${X_GIT_REF})
 
         set(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION
-                GIT_REPOSITORY "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}/data"
+                GIT_REPOSITORY "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}"
                 GIT_TAG ${X_GIT_REF})
 
         message(STATUS "${X_GIT_REF} @ ${X_GIT_REPOSITORY}")
@@ -96,7 +96,7 @@ function(package_parse_fetch_location PACKAGE_NAME)
         set(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION
                 DOWNLOAD_COMMAND
                 ${CMAKE_COMMAND} -E copy_directory
-                "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}/data"
+                "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}"
                 <SOURCE_DIR>)
 
         set(${PACKAGE_NAME}_REVISION "${X_URL_HASH}")
@@ -123,25 +123,25 @@ function(package_cache PACKAGE_NAME)
 
     check_not_empty(${PACKAGE_NAME}_FETCH_LOCATION)
 
-    set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
+    set(BUILD_DIR "${CMAKE_BINARY_DIR}/cache/${PACKAGE_NAME}")
 
-    file(LOCK "${DIR}" DIRECTORY)
+    file(LOCK "${KYDEPS_PACKAGE_CACHE_DIRECTORY}" DIRECTORY)
 
     if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
 
         FetchContent_Populate(${PACKAGE_NAME}-CACHE
                 ${${PACKAGE_NAME}_FETCH_LOCATION}
 
-                SOURCE_DIR "${DIR}/data"
-                BINARY_DIR "${DIR}/build"
-                SUBBUILD_DIR "${DIR}/sub-build")
+                SOURCE_DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}"
+                BINARY_DIR "${BUILD_DIR}"
+                SUBBUILD_DIR "${BUILD_DIR}")
 
     endif ()
 
     if ("${${PACKAGE_NAME}_FETCH_PROTOCOL}" STREQUAL "GIT")
         execute_process(
                 COMMAND git rev-parse HEAD
-                WORKING_DIRECTORY "${DIR}/data"
+                WORKING_DIRECTORY "${CACHE_DIR}"
                 RESULT_VARIABLE EXIT_CODE
                 OUTPUT_VARIABLE ${PACKAGE_NAME}_REVISION
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -150,7 +150,7 @@ function(package_cache PACKAGE_NAME)
         check_not_empty(${PACKAGE_NAME}_REVISION)
     endif ()
 
-    file(LOCK "${DIR}" DIRECTORY RELEASE)
+    file(LOCK "${KYDEPS_PACKAGE_CACHE_DIRECTORY}" DIRECTORY RELEASE)
 
     message(DEBUG "revision -> ${${PACKAGE_NAME}_REVISION}")
 

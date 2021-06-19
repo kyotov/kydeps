@@ -5,6 +5,9 @@
     <excludeRoots>
       <file path="$PROJECT_DIR$/build" />
       <file path="$PROJECT_DIR$/cache" />
+      <file path="$PROJECT_DIR$/cache.old" />
+      <file path="$PROJECT_DIR$/cmake-build-release" />
+      <file path="$PROJECT_DIR$/cmake-build-release-wsl" />
     </excludeRoots>
   </component>
 </project>
