@@ -65,10 +65,7 @@ else ()
             URL http://nginx.org/download/nginx-1.20.1.tar.gz
             URL_HASH 6b4ab4eff3c617e133819f43fdfc14708e593a79
 
-            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR>
-            ./configure --prefix=. --builddir=<BINARY_DIR> ${OPTIONS}
-
+            CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./configure --prefix=. --builddir=<BINARY_DIR> ${OPTIONS}
             BUILD_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> make -j
-
             INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_if_different <BINARY_DIR>/nginx <INSTALL_DIR>/nginx)
 endif ()
