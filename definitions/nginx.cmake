@@ -66,7 +66,7 @@ else ()
             URL_HASH 6b4ab4eff3c617e133819f43fdfc14708e593a79
 
             CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR>
-            ./configure --prefix=install --builddir=<BINARY_DIR> ${OPTIONS}
+            ./configure --prefix=. --builddir=<BINARY_DIR> ${OPTIONS}
 
             BUILD_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> make -j
 
