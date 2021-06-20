@@ -82,6 +82,22 @@
     <mapping directory="$PROJECT_DIR$/cache/xxHash/data" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cache/zlib/data" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cache/zstd/data" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/GTest_ea9ff9f7106de10642bcd7e0bf097ecb3b82866a/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/OpenSSL_b5bd2ab1a7e787ef7e2923b4913ae37d7a026dba/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/OpenSSL_b5bd2ab1a7e787ef7e2923b4913ae37d7a026dba/src/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/OpenSSL_b5bd2ab1a7e787ef7e2923b4913ae37d7a026dba/src/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/OpenSSL_b5bd2ab1a7e787ef7e2923b4913ae37d7a026dba/src/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/fmt_a69858176588cdd54ecc0eb37628932e7ff233ea/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/gflags_afa49c02697482ed94252907117788831539d3ad/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/gflags_afa49c02697482ed94252907117788831539d3ad/src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/glog_643a8b98173d618227ea1cbd9006f8d532c2a99e/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/httplib_dc017f0d143b37e17d3ec0395b072c42664991e9/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/protobuf_24285335327133df10f04d15c01a0268a022b19b/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/protobuf_24285335327133df10f04d15c01a0268a022b19b/src/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/protobuf_24285335327133df10f04d15c01a0268a022b19b/src/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/xxHash_0893e4b9a59880118848fdaeaad15626ed87b6e6/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/zlib_09cd73acd9a82c16476f553cdb8db5743423d316/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_/zstd_f9a20ff4e1cc744245e0445347871bbc70cae017/src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/install" vcs="Git" />
   </component>
 </project>

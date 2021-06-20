@@ -13,26 +13,6 @@ function(check_result RESULT MESSAGE)
     endif ()
 endfunction()
 
-#-------------------- get_git_revision
-
-function(get_git_revision GIT_REPO_DIRECTORY GIT_REF GIT_REVISION)
-
-    execute_process(
-            COMMAND git show-ref ${GIT_REF}
-            RESULT_VARIABLE EXIT_CODE
-            OUTPUT_VARIABLE GIT_REVISION
-            OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-    if (NOT EXIT_CODE EQUAL 0)
-        message(FATAL_ERROR "unable to resolve reference ${GIT_REF}")
-    endif ()
-
-    string(REGEX REPLACE "^([^ ]*) .*$" "\\1" GIT_REVISION ${GIT_REVISION})
-
-    parent_scope(GIT_REVISION)
-
-endfunction()
-
 #-------------------- get_flavor
 
 function(get_flavor OUTPUT_VARIABLE)
@@ -43,9 +23,79 @@ function(get_flavor OUTPUT_VARIABLE)
 
 endfunction()
 
-#-------------------- package_parse_fetch_location
+#-------------------- package_cache_git
 
-function(package_parse_fetch_location PACKAGE_NAME)
+function(package_cache_git GIT_REPOSITORY GIT_REF)
+
+    set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
+    file(MAKE_DIRECTORY "${DIR}")
+
+    file(LOCK "${DIR}" DIRECTORY)
+
+    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
+        if (EXISTS "${DIR}/data")
+            execute_and_check(
+                    WORKING_DIRECTORY "${DIR}/data"
+                    COMMAND "${GIT}" fetch --all)
+        else ()
+            execute_and_check(
+                    WORKING_DIRECTORY "${DIR}"
+                    COMMAND "${GIT}" clone --bare "${GIT_REPOSITORY}" data)
+        endif ()
+    endif ()
+
+    file(LOCK "${DIR}" DIRECTORY RELEASE)
+
+    get_git_revision("${DIR}/data" "${GIT_REF}" ${PACKAGE_NAME}_REVISION)
+    set(${PACKAGE_NAME}_SOURCE "${GIT_REF} @ ${GIT_REPOSITORY} (${${PACKAGE_NAME}_REVISION})")
+    set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${DIR}/data" GIT_TAG ${GIT_REF})
+
+    parent_scope(${PACKAGE_NAME}_SOURCE)
+    parent_scope(${PACKAGE_NAME}_LOCATION)
+    parent_scope(${PACKAGE_NAME}_REVISION)
+
+endfunction()
+
+#-------------------- package_cache_url
+
+function(package_cache_url URL URL_HASH)
+
+    set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
+    file(MAKE_DIRECTORY "${DIR}")
+
+    file(LOCK "${DIR}" DIRECTORY)
+
+    string(REGEX REPLACE "^.*/([^/]+)$" "\\1" FILENAME "${URL}")
+
+    set(FILEPATH "${DIR}/data/${FILENAME}")
+
+    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
+        file(DOWNLOAD "${URL}" "${FILEPATH}"
+                EXPECTED_HASH "SHA1=${URL_HASH}")
+    else ()
+        file(SHA1 "${FILEPATH}" COMPUTED_HASH)
+        if (NOT "${COMPUTED_HASH}" STREQUAL "${URL_HASH}")
+            message(FATAL_ERROR "hash mismatch for '${FILEPATH}'
+                    EXPECTED SHA1 = ${URL_HASH}
+                    COMPUTED SHA1 = ${COMPUTED_HASH}")
+        endif ()
+    endif ()
+
+    file(LOCK "${DIR}" DIRECTORY RELEASE)
+
+    set(${PACKAGE_NAME}_SOURCE "${URL} (${URL_HASH})")
+    set(${PACKAGE_NAME}_LOCATION URL "file://${FILEPATH}")
+    set(${PACKAGE_NAME}_REVISION "${URL_HASH}")
+
+    parent_scope(${PACKAGE_NAME}_SOURCE)
+    parent_scope(${PACKAGE_NAME}_LOCATION)
+    parent_scope(${PACKAGE_NAME}_REVISION)
+
+endfunction()
+
+#-------------------- package_fetch
+
+function(package_fetch PACKAGE_NAME)
 
     cmake_parse_arguments(
             X
@@ -65,17 +115,7 @@ function(package_parse_fetch_location PACKAGE_NAME)
             message(FATAL_ERROR "GIT_REPOSITORY specified but GIT_REF not specified")
         endif ()
 
-        set(${PACKAGE_NAME}_FETCH_PROTOCOL "GIT")
-
-        set(${PACKAGE_NAME}_FETCH_LOCATION
-                GIT_REPOSITORY ${X_GIT_REPOSITORY}
-                GIT_TAG ${X_GIT_REF})
-
-        set(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION
-                GIT_REPOSITORY "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}"
-                GIT_TAG ${X_GIT_REF})
-
-        message(STATUS "${X_GIT_REF} @ ${X_GIT_REPOSITORY}")
+        package_cache_git("${X_GIT_REPOSITORY}" "${X_GIT_REF}")
 
     elseif (DEFINED X_URL)
 
@@ -87,75 +127,20 @@ function(package_parse_fetch_location PACKAGE_NAME)
             message(FATAL_ERROR "URL specified but URL_HASH not specified")
         endif ()
 
-        set(${PACKAGE_NAME}_FETCH_PROTOCOL "URL")
-
-        set(${PACKAGE_NAME}_FETCH_LOCATION
-                URL ${X_URL}
-                URL_HASH SHA1=${X_URL_HASH})
-
-        set(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION
-                DOWNLOAD_COMMAND
-                ${CMAKE_COMMAND} -E copy_directory
-                "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}"
-                <SOURCE_DIR>)
-
-        set(${PACKAGE_NAME}_REVISION "${X_URL_HASH}")
-
-        message(STATUS "${X_URL} (SHA1=${X_URL_HASH})")
+        package_cache_url("${X_URL}" "${X_URL_HASH}")
 
     endif ()
+
+    message(NOTICE "${${PACKAGE_NAME}_SOURCE}")
 
     set(${PACKAGE_NAME}_DEPENDS ${X_DEPENDS})
     set(${PACKAGE_NAME}_ARGS ${X_UNPARSED_ARGUMENTS} DEPENDS ${X_DEPENDS})
 
-    parent_scope(${PACKAGE_NAME}_FETCH_PROTOCOL)
-    parent_scope(${PACKAGE_NAME}_FETCH_LOCATION)
-    parent_scope(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION)
-    parent_scope(${PACKAGE_NAME}_REVISION)
     parent_scope(${PACKAGE_NAME}_DEPENDS)
     parent_scope(${PACKAGE_NAME}_ARGS)
-
-endfunction()
-
-#-------------------- package_cache
-
-function(package_cache PACKAGE_NAME)
-
-    check_not_empty(${PACKAGE_NAME}_FETCH_LOCATION)
-
-    set(BUILD_DIR "${CMAKE_BINARY_DIR}/cache/${PACKAGE_NAME}")
-
-    file(LOCK "${KYDEPS_PACKAGE_CACHE_DIRECTORY}" DIRECTORY)
-
-    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
-
-        FetchContent_Populate(${PACKAGE_NAME}-CACHE
-                ${${PACKAGE_NAME}_FETCH_LOCATION}
-
-                SOURCE_DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}"
-                BINARY_DIR "${BUILD_DIR}"
-                SUBBUILD_DIR "${BUILD_DIR}")
-
-    endif ()
-
-    if ("${${PACKAGE_NAME}_FETCH_PROTOCOL}" STREQUAL "GIT")
-        execute_process(
-                COMMAND git rev-parse HEAD
-                WORKING_DIRECTORY "${CACHE_DIR}"
-                RESULT_VARIABLE EXIT_CODE
-                OUTPUT_VARIABLE ${PACKAGE_NAME}_REVISION
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-        check_result(${EXIT_CODE} "error determining revision")
-    else ()
-        check_not_empty(${PACKAGE_NAME}_REVISION)
-    endif ()
-
-    file(LOCK "${KYDEPS_PACKAGE_CACHE_DIRECTORY}" DIRECTORY RELEASE)
-
-    message(DEBUG "revision -> ${${PACKAGE_NAME}_REVISION}")
-
+    parent_scope(${PACKAGE_NAME}_SOURCE)
+    parent_scope(${PACKAGE_NAME}_LOCATION)
     parent_scope(${PACKAGE_NAME}_REVISION)
-    parent_scope(${PACKAGE_NAME}_CACHE_ROOT_DIR)
 
 endfunction()
 
@@ -163,18 +148,13 @@ endfunction()
 
 function(package_generate_manifest PACKAGE_NAME)
 
-    check_not_empty(${PACKAGE_NAME}_FETCH_LOCATION)
+    check_not_empty(${PACKAGE_NAME}_SOURCE)
 
     get_flavor(FLAVOR)
 
-    package_cache(${PACKAGE_NAME})
-
     set(MANIFEST
             "${PACKAGE_NAME}"
-            "${${PACKAGE_NAME}_FETCH_LOCATION}"
-            "REVISION"
-            "${${PACKAGE_NAME}_REVISION}"
-            "FLAVOR"
+            "${${PACKAGE_NAME}_SOURCE}"
             "${FLAVOR}")
 
     if (NOT KYDEPS_RELAX_PACKAGE_HASH)
@@ -245,7 +225,7 @@ function(package_build_external_project PACKAGE_NAME)
     rig_cmake_command()
 
     ExternalProject_Add(${PACKAGE_NAME}
-            ${${PACKAGE_NAME}_LOCAL_FETCH_LOCATION}
+            ${${PACKAGE_NAME}_LOCATION}
 
             PREFIX ${CMAKE_BINARY_DIR}/_
 
@@ -283,8 +263,7 @@ endfunction()
 
 function(package_build PACKAGE_NAME)
 
-    check_not_empty(${PACKAGE_NAME}_FETCH_LOCATION)
-    check_not_empty(${PACKAGE_NAME}_LOCAL_FETCH_LOCATION)
+    check_not_empty(${PACKAGE_NAME}_LOCATION)
     check_not_empty(${PACKAGE_NAME}_REVISION)
     check_not_empty(${PACKAGE_NAME}_HASH)
     check_not_empty(${PACKAGE_NAME}_ROOT_PATH)
@@ -315,14 +294,9 @@ function(package_build PACKAGE_NAME)
 
     endif ()
 
-    add_custom_command(
-            OUTPUT ${CMAKE_SOURCE_DIR}/install/${PACKAGE_NAME}.cmake
-            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
-            DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT}
-    )
-
     add_custom_target(${PACKAGE_NAME}-done ALL
-            DEPENDS ${CMAKE_SOURCE_DIR}/install/${PACKAGE_NAME}.cmake)
+            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
+            DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT})
 
 endfunction()
 
@@ -370,7 +344,7 @@ function(KyDepsInstall PACKAGE_NAME)
         return()
     endif ()
 
-    package_parse_fetch_location(${PACKAGE_NAME} ${ARGN})
+    package_fetch(${PACKAGE_NAME} ${ARGN})
     package_generate_manifest(${PACKAGE_NAME})
     package_build(${PACKAGE_NAME} ${${PACKAGE_NAME}_ARGS})
 
