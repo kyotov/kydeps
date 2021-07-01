@@ -32,6 +32,6 @@ KyDepsInstall(Boost
         GIT_REPOSITORY https://github.com/boostorg/boost.git
         GIT_REF boost-1.76.0
 
-        CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> cmd /c bootstrap.bat
+        CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./bootstrap.sh
         BUILD_COMMAND ${CMAKE_COMMAND} -E echo "skipped"
-        INSTALL_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> b2 ${Boost_CONFIG} install)
+        INSTALL_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./b2 ${Boost_CONFIG} install)
