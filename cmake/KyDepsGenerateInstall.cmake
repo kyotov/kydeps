@@ -15,7 +15,13 @@ function(main)
         set(KYDEPS_FIND_OVERRIDE "find_package(${KYDEPS_NAME} REQUIRED NO_MODULE)")
     endif ()
 
-    file(SHA1 "${KYDEPS_ROOT_PATH}/package.zip" SHA1)
+    if (EXISTS "${KYDEPS_ROOT_PATH}/package.zip")
+        set(ZIP "${KYDEPS_ROOT_PATH}/package.zip")
+    elseif (EXISTS "${KYDEPS_ROOT_PATH}/remote_stage_2.zip")
+        set(ZIP "${KYDEPS_ROOT_PATH}/remote_stage_2.zip")
+    endif ()
+
+    file(SHA1 "${ZIP}" SHA1)
 
     configure_file(
             ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/templates/package_redirect.cmake.in

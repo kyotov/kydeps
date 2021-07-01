@@ -28,10 +28,17 @@ set(Boost_FIND_OVERRIDE [[
     find_package(Boost 1.76.0 REQUIRED COMPONENTS ALL NO_MODULE)
 ]])
 
+set(Boost_Windows_BOOTSTRAP cmd /c "<SOURCE_DIR>/bootstrap.bat")
+if (DEFINED Boost_${CMAKE_SYSTEM_NAME}_BOOTSTRAP)
+    set(Boost_BOOTSTRAP ${Boost_${CMAKE_SYSTEM_NAME}_BOOTSTRAP})
+else ()
+    set(Boost_BOOTSTRAP ./bootstrap.sh)
+endif ()
+
 KyDepsInstall(Boost
         GIT_REPOSITORY https://github.com/boostorg/boost.git
         GIT_REF boost-1.76.0
 
-        CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./bootstrap.sh
+        CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ${Boost_BOOTSTRAP}
         BUILD_COMMAND ${CMAKE_COMMAND} -E echo "skipped"
-        INSTALL_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./b2 ${Boost_CONFIG} install)
+        INSTALL_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> "<SOURCE_DIR>/b2" ${Boost_CONFIG} install)

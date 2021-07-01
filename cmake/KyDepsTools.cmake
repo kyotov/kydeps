@@ -315,8 +315,7 @@ function(package_build PACKAGE_NAME)
         add_custom_target(${PACKAGE_NAME}
                 DEPENDS ${DIR}/remote_stage_2.zip)
 
-        add_custom_target(${PACKAGE_NAME}-done ALL
-                DEPENDS ${DIR}/remote_stage_2.zip)
+        set(DONE_DEPENDS "${DIR}/remote_stage_2.zip")
     else ()
 
         package_build_external_project(${PACKAGE_NAME} ${ARGN})
@@ -339,10 +338,12 @@ function(package_build PACKAGE_NAME)
 
         endif ()
 
-        add_custom_target(${PACKAGE_NAME}-done ALL
-                COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
-                DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT})
+        set(DONE_DEPENDS "${DIR}/package.zip" ${UPLOAD_OUTPUT})
     endif ()
+
+    add_custom_target(${PACKAGE_NAME}-done ALL
+            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
+            DEPENDS ${DONE_DEPENDS})
 
 endfunction()
 
