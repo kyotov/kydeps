@@ -34,7 +34,11 @@ if (KYDEPS_UPLOAD)
 
     execute_and_check(
             WORKING_DIRECTORY "${ROOT}/install"
-            COMMAND ${GIT} commit -am "automated artifact update")
+            COMMAND ${GIT} add .)
+
+    execute_and_check(
+            WORKING_DIRECTORY "${ROOT}/install"
+            COMMAND ${GIT} commit -m "automated artifact update")
 
     execute_and_check(
             WORKING_DIRECTORY "${ROOT}/install"
