@@ -2,6 +2,72 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/GTest_17aa5bb0a2e1646de774e7b715a8d17ac86f7a38/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/GTest_a102673bb83a3f42009e76b13f68d4b0370f0f8d/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_2551b6079a1d221198bdff9c023ee0b3bf797138/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_2551b6079a1d221198bdff9c023ee0b3bf797138/src/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_2551b6079a1d221198bdff9c023ee0b3bf797138/src/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_2551b6079a1d221198bdff9c023ee0b3bf797138/src/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_de5d6f5f010014e3f777f11f06b974240a4e43b8/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_de5d6f5f010014e3f777f11f06b974240a4e43b8/src/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_de5d6f5f010014e3f777f11f06b974240a4e43b8/src/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/OpenSSL_de5d6f5f010014e3f777f11f06b974240a4e43b8/src/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/fmt_2221ec2ac89a6c88baecd2c54dabb75f1a4f31bb/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/fmt_26254ccc45d4e594db864c9b6991410c9d0e2e3f/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/gflags_ebdd099682ee7c4f8024f589f870b6bf7afa437d/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/gflags_ebdd099682ee7c4f8024f589f870b6bf7afa437d/src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/gflags_f959ad056b09e2a7f924f89c9ab6221c039ba316/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/gflags_f959ad056b09e2a7f924f89c9ab6221c039ba316/src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/glog_17ddf181b95053fd6ec29cf41af32cad849fb902/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/glog_1b214d846ff29391342b8590ccb2128cd5440bd0/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/httplib_d3173a38bbe8a78f906cf21a6f8b1f087e88198b/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/httplib_d554f6ad591686a78c84a2a45752b4eb9e46eabd/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/protobuf_32793ceb02866071ded30a9141c37ab4ecee75ce/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/protobuf_32793ceb02866071ded30a9141c37ab4ecee75ce/src/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/protobuf_32793ceb02866071ded30a9141c37ab4ecee75ce/src/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/protobuf_7768186ebe3a8e6347b9050a140943b2f2bf9fd3/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/protobuf_7768186ebe3a8e6347b9050a140943b2f2bf9fd3/src/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/protobuf_7768186ebe3a8e6347b9050a140943b2f2bf9fd3/src/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/xxHash_1e3bdb50c8b74271fef6490bb9149e27dea34dab/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/xxHash_26fa9b72861ca0863365f1e00e3141d78957174d/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/zlib_177f32fcc7bf2a6d723d849cb7b12d5d3f891269/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/zlib_26192a7c4ad794e011431ea00e3e0d8d5109b0a6/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/zstd_7332d140fb31b9a78315f6f272b2fec8083601ad/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Debug/_/zstd_c61e1fef2ed72ba253c1b33cf1e34090853bace3/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/GTest_6589a829f0c301a0f9c7f654d82fb15ddbf71fc0/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/GTest_90841d1e6757f08a1f96f1ef70568b7886993d45/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_4b1d711d0adf6198e422350eee544c2d61cab2b7/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_4b1d711d0adf6198e422350eee544c2d61cab2b7/src/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_4b1d711d0adf6198e422350eee544c2d61cab2b7/src/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_4b1d711d0adf6198e422350eee544c2d61cab2b7/src/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_89eeadb47965e49df4d570023d2e3b6c232fb1cb/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_89eeadb47965e49df4d570023d2e3b6c232fb1cb/src/boringssl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_89eeadb47965e49df4d570023d2e3b6c232fb1cb/src/krb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/OpenSSL_89eeadb47965e49df4d570023d2e3b6c232fb1cb/src/pyca-cryptography" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/fmt_5e791207c543f972153327588d4601e030ea4add/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/fmt_9c06514b5cdad8157b0dc31005554c40c76b25a7/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/gflags_1911f453eea76c9b0bdabd2406076c70a5b445c0/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/gflags_1911f453eea76c9b0bdabd2406076c70a5b445c0/src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/gflags_32a5d4d7c40d880c177a718d21ae70243c1fe792/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/gflags_32a5d4d7c40d880c177a718d21ae70243c1fe792/src/doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/glog_394a33c4bf6de055d52171b74377ffd070257665/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/glog_739156575adf5a81f1ce3da6c50364ea04210af8/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/httplib_4dc282f6a6eb8a4caf9e303bfeceb182badb1c1a/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/httplib_6cdbe6cb9275fd6be7fe26bbceb460b8af231d22/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/llvm_6c5a4ad9d6e6048b2c2e1ec3826ff724ea60017a/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/llvm_f3310b76c66d66fe8f5b975f4a43e34dab6feb6b/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/protobuf_888b009c154177afbecd59980f5d03395a5dd932/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/protobuf_888b009c154177afbecd59980f5d03395a5dd932/src/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/protobuf_888b009c154177afbecd59980f5d03395a5dd932/src/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/protobuf_f7c9ad797a792e1032c99bef5e97083bedae3d0e/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/protobuf_f7c9ad797a792e1032c99bef5e97083bedae3d0e/src/third_party/benchmark" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/protobuf_f7c9ad797a792e1032c99bef5e97083bedae3d0e/src/third_party/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/xxHash_26632fe74f0e2cd5c167d3146e41387f4b8336f3/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/xxHash_aee146698730b28e4da1da4b51c1ea9a39c84e49/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/zlib_b57037d789c3670802146ce0864b3ff261695fbb/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/zlib_b850195fd7f2d9bf9e150dd7a9e37d3757b941ed/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/zstd_51e48bcd86668556605b7d73626946550f607946/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build.2/Release/_/zstd_e91daed88b2c2f29228d506c68f0ada9bc5fc51c/src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/build.release/build/llvm_40f7469d39b1abf958caca0a5620653937b5c772/src/llvm" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/build.y/build/llvm_40f7469d39b1abf958caca0a5620653937b5c772/src/llvm" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/build/Debug/_/OpenSSL_ac910f55f9b60f5b6d08724a136603ad18f007c7/src" vcs="Git" />

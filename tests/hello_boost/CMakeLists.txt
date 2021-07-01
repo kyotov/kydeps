@@ -8,14 +8,16 @@ include(../../install/KyDeps.cmake)
 
 #set(FETCHCONTENT_QUIET ON)
 
-include(gflags)
-include(glog)
+set(Boost_USE_STATIC_RUNTIME ON)
+include(boost)
+
+#set(Boost_DEBUG ON)
+#find_package(Boost 1.70 REQUIRED COMPONENTS regex)
 
 add_executable(main
         main.cpp)
 target_link_libraries(main
-        PRIVATE gflags
-        PRIVATE glog::glog)
+        PRIVATE Boost::regex)
 
 add_custom_target(run
         COMMAND main)

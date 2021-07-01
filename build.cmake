@@ -5,9 +5,12 @@ include(cmake/KyDepsCommon.cmake)
 set(ROOT ".")
 set(BUILD_TYPES Debug Release)
 
+set_if_empty(KYDEPS_TARGET all)
 set_if_empty(KYDEPS_UPLOAD FALSE)
+set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${ROOT}/build/cache")
 set_if_empty(KYDEPS_PACKAGE_CACHE_FROZEN FALSE)
-set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${ROOT}/cache")
+
+get_filename_component(KYDEPS_PACKAGE_CACHE_DIRECTORY "${KYDEPS_PACKAGE_CACHE_DIRECTORY}" ABSOLUTE)
 
 find_program(GIT NAMES git REQUIRED)
 
@@ -17,20 +20,23 @@ foreach (BUILD_TYPE ${BUILD_TYPES})
 
     execute_and_check(COMMAND ${CMAKE_COMMAND} -S ${ROOT} -B ${BINARY_DIR} -G Ninja
             -D KYDEPS_UPLOAD=${KYDEPS_UPLOAD}
+            -D KYDEPS_PACKAGE_CACHE_DIRECTORY=${KYDEPS_PACKAGE_CACHE_DIRECTORY}
             -D KYDEPS_PACKAGE_CACHE_FROZEN=${KYDEPS_PACKAGE_CACHE_FROZEN}
             -D CMAKE_BUILD_TYPE=${BUILD_TYPE})
 
-    execute_and_check(COMMAND ${CMAKE_COMMAND} --build ${BINARY_DIR} --config ${BUILD_TYPE})
+    execute_and_check(COMMAND ${CMAKE_COMMAND} --build ${BINARY_DIR} --config ${BUILD_TYPE} --target ${KYDEPS_TARGET})
 endforeach ()
 
-execute_and_check(
-        WORKING_DIRECTORY "${ROOT}/install"
-        COMMAND ${GIT} pull --ff-only origin main)
+if (KYDEPS_UPLOAD)
+    execute_and_check(
+            WORKING_DIRECTORY "${ROOT}/install"
+            COMMAND ${GIT} pull --ff-only origin main)
 
-execute_and_check(
-        WORKING_DIRECTORY "${ROOT}/install"
-        COMMAND ${GIT} commit -am "automated artifact update")
+    execute_and_check(
+            WORKING_DIRECTORY "${ROOT}/install"
+            COMMAND ${GIT} commit -am "automated artifact update")
 
-execute_and_check(
-        WORKING_DIRECTORY "${ROOT}/install"
-        COMMAND ${GIT} push origin HEAD:main)
+    execute_and_check(
+            WORKING_DIRECTORY "${ROOT}/install"
+            COMMAND ${GIT} push origin HEAD:main)
+endif ()

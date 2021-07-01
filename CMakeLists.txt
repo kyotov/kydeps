@@ -10,6 +10,7 @@ list(APPEND CMAKE_MODULE_PATH
 
 include(KyDepsTools)
 
+set_if_empty(KYDEPS_QUICK ON)
 set_if_empty(KYDEPS_UPLOAD OFF)
 set_if_empty(KYDEPS_URL_PREFIX "https://kydeps.s3.us-east-2.amazonaws.com")
 set_if_empty(KYDEPS_S3_PREFIX "s3://kydeps")

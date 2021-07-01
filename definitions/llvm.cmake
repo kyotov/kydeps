@@ -5,7 +5,7 @@ set(llvm_FIND_OVERRIDE [[find_program(CLANG_TIDY REQUIRED NAMES clang-tidy)]])
 
 KyDepsInstall(llvm
         GIT_REPOSITORY https://github.com/llvm/llvm-project.git
-        GIT_REF main
+        GIT_REF 28b01c59c93d10ed3a775dd13ff827048b59cda8 # latest for 2021-06-30
 
         SOURCE_SUBDIR llvm
 

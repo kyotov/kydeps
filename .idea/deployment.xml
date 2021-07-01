@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
+      <paths name="WSL (1fe9d0fd-6ee7-47d2-9b19-10b2238e7e8c)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="WSL (442c1b52-0313-42d9-9abf-530248b51864)">
         <serverdata>
           <mappings>
@@ -45,6 +52,20 @@
         </serverdata>
       </paths>
       <paths name="mac (cba2e01f-7b80-42b9-823b-79d7d3dfdb81)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="mac (f389f927-9270-47cf-a816-d8de141b7910)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="oldbam (02950800-1664-4c7a-84b8-c904aad7a382)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

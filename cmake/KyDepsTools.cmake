@@ -48,7 +48,12 @@ function(package_cache_git GIT_REPOSITORY GIT_REF)
 
     get_git_revision("${DIR}/data" "${GIT_REF}" ${PACKAGE_NAME}_REVISION)
     set(${PACKAGE_NAME}_SOURCE "${GIT_REF} @ ${GIT_REPOSITORY} (${${PACKAGE_NAME}_REVISION})")
-    set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${DIR}/data" GIT_TAG ${GIT_REF})
+
+    if (${PACKAGE_NAME}_DISABLE_GIT_CACHE)
+        set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${GIT_REPOSITORY}" GIT_TAG ${GIT_REF})
+    else ()
+        set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${DIR}/data" GIT_TAG ${GIT_REF})
+    endif ()
 
     parent_scope(${PACKAGE_NAME}_SOURCE)
     parent_scope(${PACKAGE_NAME}_LOCATION)
@@ -270,33 +275,74 @@ function(package_build PACKAGE_NAME)
 
     dump_package_config(${PACKAGE_NAME})
 
+    set(PACKAGE_FILE_NAME "${PACKAGE_NAME}_${${PACKAGE_NAME}_HASH}.zip")
+    set(PACKAGE_S3_URI ${KYDEPS_S3_PREFIX}/${PACKAGE_FILE_NAME})
+
     set(DIR ${${PACKAGE_NAME}_ROOT_PATH})
 
-    package_build_external_project(${PACKAGE_NAME} ${ARGN})
-
-    add_custom_command(
-            OUTPUT ${DIR}/package.zip
-            COMMAND ${CMAKE_COMMAND} -E tar c ${DIR}/package.zip --format=zip ${DIR}/install
-            DEPENDS ${DIR}/stamp/${PACKAGE_NAME}-install)
-
-    if (KYDEPS_UPLOAD)
-
-        set(PACKAGE_S3_URI ${KYDEPS_S3_PREFIX}/${PACKAGE_NAME}_${${PACKAGE_NAME}_HASH}.zip)
-
-        add_custom_command(
-                OUTPUT ${DIR}/uploaded
-                COMMAND aws s3 cp ${DIR}/package.zip ${PACKAGE_S3_URI}
-                COMMAND ${CMAKE_COMMAND} -E touch ${DIR}/uploaded
-                DEPENDS ${DIR}/package.zip
-        )
-
-        set(UPLOAD_OUTPUT ${DIR}/uploaded)
-
+    # Determine if we can reuse remote bits. This happens when all of the following hold:
+    #
+    #   1. KYDEPS_QUICK is ON
+    #   2. ${DIR}/package.zip (i.e. previous local build) does not exist
+    #   3. ${PACKAGE_S3_URI} (i.e. remote cached bits) exist
+    #
+    # NOTE: If a local build has been performed at all before in this dir, remote bits are not reused.
+    #       This is largely because we are not sure if the local build is not more current than anything remote.
+    #       Thus we stay on the safe side and rebuild (hopefully incrementally) locally.
+    #
+    if (KYDEPS_QUICK AND NOT EXISTS "${DIR}/package.zip")
+        if (EXISTS "${DIR}/remote_package.zip")
+            set(USE_REMOTE TRUE)
+        else ()
+            execute_process(
+                    COMMAND aws s3 ls "${PACKAGE_S3_URI}"
+                    RESULT_VARIABLE EXIT_CODE)
+            if (EXIT_CODE EQUAL 0)
+                set(USE_REMOTE TRUE)
+            endif ()
+        endif ()
     endif ()
 
-    add_custom_target(${PACKAGE_NAME}-done ALL
-            COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
-            DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT})
+    if (USE_REMOTE)
+        message(DEBUG "reusing remote bits in quick mode!")
+
+        if (NOT EXISTS "${DIR}/remote_stage_2.zip")
+            execute_and_check(COMMAND aws s3 cp "${PACKAGE_S3_URI}" "${DIR}/remote_stage_1.zip")
+            file(ARCHIVE_EXTRACT INPUT "${DIR}/remote_stage_1.zip" DESTINATION "${CMAKE_BINARY_DIR}")
+            file(RENAME "${DIR}/remote_stage_1.zip" "${DIR}/remote_stage_2.zip")
+        endif ()
+
+        add_custom_target(${PACKAGE_NAME}
+                DEPENDS ${DIR}/remote_stage_2.zip)
+
+        add_custom_target(${PACKAGE_NAME}-done ALL
+                DEPENDS ${DIR}/remote_stage_2.zip)
+    else ()
+
+        package_build_external_project(${PACKAGE_NAME} ${ARGN})
+
+        add_custom_command(
+                OUTPUT ${DIR}/package.zip
+                COMMAND ${CMAKE_COMMAND} -E tar c ${DIR}/package.zip --format=zip ${DIR}/install
+                DEPENDS ${DIR}/stamp/${PACKAGE_NAME}-install)
+
+        if (KYDEPS_UPLOAD)
+
+            add_custom_command(
+                    OUTPUT "${DIR}/uploaded"
+                    COMMAND aws s3 cp "${DIR}/package.zip" "${PACKAGE_S3_URI}"
+                    COMMAND ${CMAKE_COMMAND} -E touch "${DIR}/uploaded"
+                    DEPENDS "${DIR}/package.zip"
+            )
+
+            set(UPLOAD_OUTPUT "${DIR}/uploaded")
+
+        endif ()
+
+        add_custom_target(${PACKAGE_NAME}-done ALL
+                COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
+                DEPENDS ${DIR}/package.zip ${UPLOAD_OUTPUT})
+    endif ()
 
 endfunction()
 
