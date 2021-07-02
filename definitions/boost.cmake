@@ -37,7 +37,7 @@ endif ()
 
 KyDepsInstall(Boost
         GIT_REPOSITORY https://github.com/boostorg/boost.git
-        GIT_REF boost-1.76.0
+        GIT_REF ccb2ab3b4384a16deafaa849de509bce2b2cbada # boost-1.76.0
 
         CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ${Boost_BOOTSTRAP}
         BUILD_COMMAND ${CMAKE_COMMAND} -E echo "skipped"

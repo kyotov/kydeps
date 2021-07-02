@@ -5,14 +5,6 @@ include(FetchContent)
 include(CMakePrintHelpers)
 include(KyDepsCommon)
 
-#-------------------- check_result
-
-function(check_result RESULT MESSAGE)
-    if (NOT "${RESULT}" EQUAL "0")
-        message(FATAL_ERROR ${ARG_MESSAGE})
-    endif ()
-endfunction()
-
 #-------------------- get_flavor
 
 function(get_flavor OUTPUT_VARIABLE)
@@ -29,10 +21,10 @@ function(package_cache_git GIT_REPOSITORY GIT_REF)
 
     set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
     file(MAKE_DIRECTORY "${DIR}")
+    check_git_revision("${DIR}/data" "${GIT_REF}" X)
 
-    file(LOCK "${DIR}" DIRECTORY)
-
-    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
+    if (NOT X_FOUND)
+        file(LOCK "${DIR}" DIRECTORY)
         if (EXISTS "${DIR}/data")
             execute_and_check(
                     WORKING_DIRECTORY "${DIR}/data"
@@ -42,12 +34,11 @@ function(package_cache_git GIT_REPOSITORY GIT_REF)
                     WORKING_DIRECTORY "${DIR}"
                     COMMAND "${GIT}" clone --bare "${GIT_REPOSITORY}" data)
         endif ()
+        file(LOCK "${DIR}" DIRECTORY RELEASE)
     endif ()
 
-    file(LOCK "${DIR}" DIRECTORY RELEASE)
-
-    get_git_revision("${DIR}/data" "${GIT_REF}" ${PACKAGE_NAME}_REVISION)
-    set(${PACKAGE_NAME}_SOURCE "${GIT_REF} @ ${GIT_REPOSITORY} (${${PACKAGE_NAME}_REVISION})")
+    set(${PACKAGE_NAME}_REVISION "${GIT_REF}")
+    set(${PACKAGE_NAME}_SOURCE "${GIT_REPOSITORY} (${GIT_REF})")
 
     if (${PACKAGE_NAME}_DISABLE_GIT_CACHE)
         set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${GIT_REPOSITORY}" GIT_TAG ${GIT_REF})
@@ -74,9 +65,8 @@ function(package_cache_url URL URL_HASH)
 
     set(FILEPATH "${DIR}/data/${FILENAME}")
 
-    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
-        file(DOWNLOAD "${URL}" "${FILEPATH}"
-                EXPECTED_HASH "SHA1=${URL_HASH}")
+    if (NOT EXISTS "${FILEPATH}")
+        file(DOWNLOAD "${URL}" "${FILEPATH}" EXPECTED_HASH "SHA1=${URL_HASH}")
     else ()
         file(SHA1 "${FILEPATH}" COMPUTED_HASH)
         if (NOT "${COMPUTED_HASH}" STREQUAL "${URL_HASH}")
@@ -136,7 +126,7 @@ function(package_fetch PACKAGE_NAME)
 
     endif ()
 
-    message(NOTICE "${${PACKAGE_NAME}_SOURCE}")
+    message(STATUS "${${PACKAGE_NAME}_SOURCE}")
 
     set(${PACKAGE_NAME}_DEPENDS ${X_DEPENDS})
     set(${PACKAGE_NAME}_ARGS ${X_UNPARSED_ARGUMENTS} DEPENDS ${X_DEPENDS})
@@ -295,19 +285,21 @@ function(package_build PACKAGE_NAME)
             set(USE_REMOTE TRUE)
         else ()
             execute_process(
-                    COMMAND aws s3 ls "${PACKAGE_S3_URI}"
-                    RESULT_VARIABLE EXIT_CODE)
-            if (EXIT_CODE EQUAL 0)
+                    COMMAND aws s3 cp "${PACKAGE_S3_URI}" "${DIR}/remote_stage_1.zip"
+                    ERROR_QUIET
+                    RESULT_VARIABLE RESULT)
+            if (RESULT EQUAL 0)
                 set(USE_REMOTE TRUE)
+            else ()
+                message(STATUS "UGH! ${PACKAGE_S3_URI} missing, falling back to regular build!")
             endif ()
         endif ()
     endif ()
 
     if (USE_REMOTE)
-        message(DEBUG "reusing remote bits in quick mode!")
+        message(STATUS "QUICK: remote bits found, will reuse them!")
 
         if (NOT EXISTS "${DIR}/remote_stage_2.zip")
-            execute_and_check(COMMAND aws s3 cp "${PACKAGE_S3_URI}" "${DIR}/remote_stage_1.zip")
             file(ARCHIVE_EXTRACT INPUT "${DIR}/remote_stage_1.zip" DESTINATION "${CMAKE_BINARY_DIR}")
             file(RENAME "${DIR}/remote_stage_1.zip" "${DIR}/remote_stage_2.zip")
         endif ()
@@ -317,7 +309,6 @@ function(package_build PACKAGE_NAME)
 
         set(DONE_DEPENDS "${DIR}/remote_stage_2.zip")
     else ()
-
         package_build_external_project(${PACKAGE_NAME} ${ARGN})
 
         add_custom_command(

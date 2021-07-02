@@ -2,6 +2,14 @@ include_guard(GLOBAL)
 
 find_program(GIT NAMES git REQUIRED)
 
+#-------------------- check_result
+
+function(check_result RESULT MESSAGE)
+    if (NOT "${RESULT}" EQUAL "0")
+        message(FATAL_ERROR ${ARG_MESSAGE})
+    endif ()
+endfunction()
+
 #-------------------- parent_scope
 
 macro(parent_scope NAME)
@@ -59,17 +67,33 @@ macro(check_not_empty NAME)
     endif ()
 endmacro()
 
-#-------------------- get_git_revision
+#-------------------- check_git_revision
 
-function(get_git_revision GIT_REPO_DIRECTORY GIT_REF GIT_REVISION)
+function(check_git_revision GIT_REPO_DIRECTORY GIT_REVISION FOUND_VARIABLE)
 
-    execute_and_check(
-            OUTPUT_VARIABLE ${GIT_REVISION}
+    execute_process(
+            RESULT_VARIABLE RESULT
+            OUTPUT_VARIABLE OUTPUT
             OUTPUT_STRIP_TRAILING_WHITESPACE
             WORKING_DIRECTORY "${GIT_REPO_DIRECTORY}"
-#            COMMAND "${GIT}" show-ref --hash "${GIT_REF}")
-            COMMAND "${GIT}" log -n 1 --format=%H "${GIT_REF}")
+            COMMAND "${GIT}" log -n 1 --format=%H "${GIT_REVISION}")
 
-    parent_scope(${GIT_REVISION})
+    if (NOT RESULT EQUAL 0)
+        set(${FOUND_VARIABLE} FALSE)
+    else ()
+        set(${FOUND_VARIABLE} TRUE)
+
+        if (NOT "${OUTPUT}" STREQUAL "${GIT_REVISION}")
+            message(FATAL_ERROR "
+                ERROR:
+                * in repository `${GIT_REPO_DIRECTORY}`
+                * looking for revision `${GIT_REVISION}`
+                * but found `${OUTPUT}`
+
+                Make sure to specify a valid revision!")
+        endif ()
+    endif ()
+
+    parent_scope(${FOUND_VARIABLE})
 
 endfunction()

@@ -2,7 +2,7 @@ include_guard(GLOBAL)
 
 KyDepsInstall(gflags
         GIT_REPOSITORY https://github.com/gflags/gflags.git
-        GIT_REF v2.2.0
+        GIT_REF f8a0efe03aa69b3336d8e228b37d4ccb17324b88 # v2.2.0
 
         CMAKE_ARGS
         -DREGISTER_INSTALL_PREFIX=FALSE

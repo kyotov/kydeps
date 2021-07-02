@@ -60,4 +60,4 @@ find_program(NGINX
 ```
 
 
-`cmake -D KYDEPS_UPLOAD=TRUE -D KYDEPS_PACKAGE_CACHE_FROZEN=TRUE -P build.cmake`
+`cmake -D KYDEPS_UPLOAD=TRUE -P build.cmake`

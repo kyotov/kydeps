@@ -16,7 +16,6 @@ set_if_empty(KYDEPS_URL_PREFIX "https://kydeps.s3.us-east-2.amazonaws.com")
 set_if_empty(KYDEPS_S3_PREFIX "s3://kydeps")
 
 set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${CMAKE_SOURCE_DIR}/build/cache")
-set_if_empty(KYDEPS_PACKAGE_CACHE_FROZEN TRUE)
 
 set_if_empty(KYDEPS_USES_TERMINAL TRUE)
 
