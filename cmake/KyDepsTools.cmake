@@ -21,9 +21,9 @@ function(package_cache_git GIT_REPOSITORY GIT_REF)
 
     set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
     file(MAKE_DIRECTORY "${DIR}")
-    check_git_revision("${DIR}/data" "${GIT_REF}" X)
+    check_git_revision("${DIR}/data" "${GIT_REF}" FOUND)
 
-    if (NOT X_FOUND)
+    if (NOT FOUND)
         file(LOCK "${DIR}" DIRECTORY)
         if (EXISTS "${DIR}/data")
             execute_and_check(
@@ -285,7 +285,8 @@ function(package_build PACKAGE_NAME)
             set(USE_REMOTE TRUE)
         else ()
             execute_process(
-                    COMMAND aws s3 cp "${PACKAGE_S3_URI}" "${DIR}/remote_stage_1.zip"
+                    COMMAND aws s3 ls "${PACKAGE_S3_URI}"
+                    OUTPUT_QUIET
                     ERROR_QUIET
                     RESULT_VARIABLE RESULT)
             if (RESULT EQUAL 0)
@@ -300,6 +301,7 @@ function(package_build PACKAGE_NAME)
         message(STATUS "QUICK: remote bits found, will reuse them!")
 
         if (NOT EXISTS "${DIR}/remote_stage_2.zip")
+            execute_and_check(COMMAND aws s3 cp "${PACKAGE_S3_URI}" "${DIR}/remote_stage_1.zip")
             file(ARCHIVE_EXTRACT INPUT "${DIR}/remote_stage_1.zip" DESTINATION "${CMAKE_BINARY_DIR}")
             file(RENAME "${DIR}/remote_stage_1.zip" "${DIR}/remote_stage_2.zip")
         endif ()

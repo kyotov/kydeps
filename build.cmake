@@ -5,7 +5,6 @@ include(cmake/KyDepsCommon.cmake)
 set(ROOT ".")
 set(BUILD_TYPES Debug Release)
 
-set_if_empty(KYDEPS_TARGET all)
 set_if_empty(KYDEPS_UPLOAD FALSE)
 set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${ROOT}/build/cache")
 
@@ -22,7 +21,7 @@ foreach (BUILD_TYPE ${BUILD_TYPES})
             -D KYDEPS_PACKAGE_CACHE_DIRECTORY=${KYDEPS_PACKAGE_CACHE_DIRECTORY}
             -D CMAKE_BUILD_TYPE=${BUILD_TYPE})
 
-    execute_and_check(COMMAND ${CMAKE_COMMAND} --build ${BINARY_DIR} --config ${BUILD_TYPE} --target ${KYDEPS_TARGET})
+    execute_and_check(COMMAND ${CMAKE_COMMAND} --build ${BINARY_DIR} --config ${BUILD_TYPE})
 endforeach ()
 
 if (KYDEPS_UPLOAD)
