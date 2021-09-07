@@ -67,7 +67,6 @@ function(get_git_revision GIT_REPO_DIRECTORY GIT_REF GIT_REVISION)
             OUTPUT_VARIABLE ${GIT_REVISION}
             OUTPUT_STRIP_TRAILING_WHITESPACE
             WORKING_DIRECTORY "${GIT_REPO_DIRECTORY}"
-#            COMMAND "${GIT}" show-ref --hash "${GIT_REF}")
             COMMAND "${GIT}" log -n 1 --format=%H "${GIT_REF}")
 
     parent_scope(${GIT_REVISION})
