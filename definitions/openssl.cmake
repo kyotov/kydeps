@@ -20,12 +20,13 @@ if (WIN32)
 
     KyDepsInstall(OpenSSL
             GIT_REPOSITORY https://github.com/openssl/openssl.git
-            GIT_REF OpenSSL_1_1_1k
+            GIT_REF fd78df59b0f656aefe96e39533130454aa957c00 # OpenSSL_1_1_1k
 
-            # avoid updating any of the git submodules ... we don't need them (also they make filenames too long on windows)
-            GIT_SUBMODULES " " #krb5 boringssl
+            # avoid updating any of the git submodules ... we don't need them (also they make filenames too long on windows)	
+            # GIT_SUBMODULES " " #krb5 boringssl
+            # [update] it just does not work :(
 
-            USES_TERMINAL_BUILD TRUE
+            # USES_TERMINAL_BUILD TRUE
 
             CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ${BIN_PERL} Configure VC-WIN64A-masm zlib no-shared no-zlib-dynamic threads --prefix=<INSTALL_DIR> --openssldir=<INSTALL_DIR> CC=cl ${CMAKE_C_FLAGS} -I${zlib_ROOT_PATH}/install/include
 
@@ -54,7 +55,7 @@ if (WIN32)
 else ()
     KyDepsInstall(OpenSSL
             GIT_REPOSITORY https://github.com/openssl/openssl.git
-            GIT_REF OpenSSL_1_1_1k
+            GIT_REF fd78df59b0f656aefe96e39533130454aa957c00 # OpenSSL_1_1_1k
 
             CONFIGURE_COMMAND ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> ./config no-shared no-dso --prefix=<INSTALL_DIR> --openssldir=<INSTALL_DIR>
             BUILD_COMMAND make -C <SOURCE_DIR> build_libs

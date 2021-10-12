@@ -4,7 +4,7 @@ include(sqlite3)
 
 kydepsinstall(SqliteOrm
         GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git
-        GIT_REF 1.6
+        GIT_REF 4c6a46bd4dcfba14a650e0fafb86331526878587 # 1.6
 
         CMAKE_ARGS
         -DSQLITE_ORM_ENABLE_CXX_17=ON

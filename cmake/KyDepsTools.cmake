@@ -16,86 +16,8 @@ endfunction()
 #-------------------- get_flavor
 
 function(get_flavor OUTPUT_VARIABLE)
-
     math(EXPR BIT "8 * ${CMAKE_SIZEOF_VOID_P}")
-
     set(${OUTPUT_VARIABLE} "${BIT}-bit ${CMAKE_SYSTEM_NAME} ${CMAKE_BUILD_TYPE}" PARENT_SCOPE)
-
-endfunction()
-
-#-------------------- package_cache_git
-
-function(package_cache_git GIT_REPOSITORY GIT_REF)
-
-    set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
-    file(MAKE_DIRECTORY "${DIR}")
-
-    file(LOCK "${DIR}" DIRECTORY)
-
-    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
-        if (EXISTS "${DIR}/data")
-            execute_and_check(
-                    WORKING_DIRECTORY "${DIR}/data"
-                    COMMAND "${GIT}" fetch --all)
-        else ()
-            execute_and_check(
-                    WORKING_DIRECTORY "${DIR}"
-                    COMMAND "${GIT}" clone --bare "${GIT_REPOSITORY}" data)
-        endif ()
-    endif ()
-
-    file(LOCK "${DIR}" DIRECTORY RELEASE)
-
-    get_git_revision("${DIR}/data" "${GIT_REF}" ${PACKAGE_NAME}_REVISION)
-    set(${PACKAGE_NAME}_SOURCE "${GIT_REF} @ ${GIT_REPOSITORY} (${${PACKAGE_NAME}_REVISION})")
-
-    if (${PACKAGE_NAME}_DISABLE_GIT_CACHE)
-        set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${GIT_REPOSITORY}" GIT_TAG ${GIT_REF})
-    else ()
-        set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${DIR}/data" GIT_TAG ${GIT_REF})
-    endif ()
-
-    parent_scope(${PACKAGE_NAME}_SOURCE)
-    parent_scope(${PACKAGE_NAME}_LOCATION)
-    parent_scope(${PACKAGE_NAME}_REVISION)
-
-endfunction()
-
-#-------------------- package_cache_url
-
-function(package_cache_url URL URL_HASH)
-
-    set(DIR "${KYDEPS_PACKAGE_CACHE_DIRECTORY}/${PACKAGE_NAME}")
-    file(MAKE_DIRECTORY "${DIR}")
-
-    file(LOCK "${DIR}" DIRECTORY)
-
-    string(REGEX REPLACE "^.*/([^/]+)$" "\\1" FILENAME "${URL}")
-
-    set(FILEPATH "${DIR}/data/${FILENAME}")
-
-    if (NOT KYDEPS_PACKAGE_CACHE_FROZEN)
-        file(DOWNLOAD "${URL}" "${FILEPATH}"
-                EXPECTED_HASH "SHA1=${URL_HASH}")
-    else ()
-        file(SHA1 "${FILEPATH}" COMPUTED_HASH)
-        if (NOT "${COMPUTED_HASH}" STREQUAL "${URL_HASH}")
-            message(FATAL_ERROR "hash mismatch for '${FILEPATH}'
-                    EXPECTED SHA1 = ${URL_HASH}
-                    COMPUTED SHA1 = ${COMPUTED_HASH}")
-        endif ()
-    endif ()
-
-    file(LOCK "${DIR}" DIRECTORY RELEASE)
-
-    set(${PACKAGE_NAME}_SOURCE "${URL} (${URL_HASH})")
-    set(${PACKAGE_NAME}_LOCATION URL "file://${FILEPATH}")
-    set(${PACKAGE_NAME}_REVISION "${URL_HASH}")
-
-    parent_scope(${PACKAGE_NAME}_SOURCE)
-    parent_scope(${PACKAGE_NAME}_LOCATION)
-    parent_scope(${PACKAGE_NAME}_REVISION)
-
 endfunction()
 
 #-------------------- package_fetch
@@ -120,7 +42,9 @@ function(package_fetch PACKAGE_NAME)
             message(FATAL_ERROR "GIT_REPOSITORY specified but GIT_REF not specified")
         endif ()
 
-        package_cache_git("${X_GIT_REPOSITORY}" "${X_GIT_REF}")
+        set(${PACKAGE_NAME}_SOURCE "${X_GIT_REF} @ ${X_GIT_REPOSITORY}")
+        set(${PACKAGE_NAME}_LOCATION GIT_REPOSITORY "${X_GIT_REPOSITORY}" GIT_TAG "${X_GIT_REF}")
+        set(${PACKAGE_NAME}_REVISION "${X_GIT_REF}")
 
     elseif (DEFINED X_URL)
 
@@ -132,11 +56,11 @@ function(package_fetch PACKAGE_NAME)
             message(FATAL_ERROR "URL specified but URL_HASH not specified")
         endif ()
 
-        package_cache_url("${X_URL}" "${X_URL_HASH}")
+        set(${PACKAGE_NAME}_SOURCE "${X_URL_HASH} @ ${X_URL}")
+        set(${PACKAGE_NAME}_LOCATION URL "${X_URL}" URL_HASH "SHA1=${X_URL_HASH}")
+        set(${PACKAGE_NAME}_REVISION "${X_URL_HASH}")
 
     endif ()
-
-    message(NOTICE "${${PACKAGE_NAME}_SOURCE}")
 
     set(${PACKAGE_NAME}_DEPENDS ${X_DEPENDS})
     set(${PACKAGE_NAME}_ARGS ${X_UNPARSED_ARGUMENTS} DEPENDS ${X_DEPENDS})
@@ -260,6 +184,8 @@ function(package_build_external_project PACKAGE_NAME)
             -DCMAKE_POLICY_DEFAULT_CMP0097=NEW
             -DCMAKE_INSTALL_MESSAGE=NEVER
 
+            UPDATE_COMMAND ${CMAKE_COMMAND} -E touch ${DIR}/stamp/${PACKAGE_NAME}-update
+
             ${ARGN})
 
 endfunction()
@@ -341,9 +267,14 @@ function(package_build PACKAGE_NAME)
         set(DONE_DEPENDS "${DIR}/package.zip" ${UPLOAD_OUTPUT})
     endif ()
 
-    add_custom_target(${PACKAGE_NAME}-done ALL
+    add_custom_command(
+            OUTPUT ${DIR}/stamp/${PACKAGE_NAME}-done
             COMMAND ${CMAKE_COMMAND} -D "CONFIG=${DIR}/config.cmake" -P "${CMAKE_SOURCE_DIR}/cmake/KyDepsGenerateInstall.cmake"
+            COMMAND ${CMAKE_COMMAND} -E touch ${DIR}/stamp/${PACKAGE_NAME}-done
             DEPENDS ${DONE_DEPENDS})
+
+    add_custom_target(${PACKAGE_NAME}-done ALL
+            DEPENDS ${DIR}/stamp/${PACKAGE_NAME}-done)
 
 endfunction()
 

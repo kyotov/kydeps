@@ -4,7 +4,7 @@ include(zlib)
 
 KyDepsInstall(protobuf
         GIT_REPOSITORY https://github.com/protocolbuffers/protobuf.git
-        GIT_REF v3.15.8
+        GIT_REF 436bd7880e458532901c58f4d9d1ea23fa7edd52 # v3.15.8
 
         SOURCE_SUBDIR cmake
 

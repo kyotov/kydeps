@@ -3,11 +3,13 @@ message(NOTICE "KyDeps Local Build")
 include(cmake/KyDepsCommon.cmake)
 
 set(ROOT ".")
-set(BUILD_TYPES Debug Release)
+set(BUILD_DIR "build_")
+
+set_if_empty(BUILD_TYPES Debug Release)
 
 set_if_empty(KYDEPS_TARGET all)
 set_if_empty(KYDEPS_UPLOAD FALSE)
-set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${ROOT}/build/cache")
+set_if_empty(KYDEPS_PACKAGE_CACHE_DIRECTORY "${ROOT}/${BUILD_DIR}/cache")
 set_if_empty(KYDEPS_PACKAGE_CACHE_FROZEN FALSE)
 
 get_filename_component(KYDEPS_PACKAGE_CACHE_DIRECTORY "${KYDEPS_PACKAGE_CACHE_DIRECTORY}" ABSOLUTE)
@@ -19,7 +21,7 @@ if (KYDEPS_CONFIG_FILE)
 endif ()
 
 foreach (BUILD_TYPE ${BUILD_TYPES})
-    set(BINARY_DIR "${ROOT}/build/${BUILD_TYPE}")
+    set(BINARY_DIR "${ROOT}/${BUILD_DIR}/${BUILD_TYPE}")
     file(MAKE_DIRECTORY "${BINARY_DIR}")
 
     execute_and_check(COMMAND ${CMAKE_COMMAND} -S ${ROOT} -B ${BINARY_DIR} -G Ninja
