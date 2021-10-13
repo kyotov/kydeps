@@ -3,7 +3,7 @@ message(NOTICE "KyDeps Local Build")
 include(cmake/KyDepsCommon.cmake)
 
 set(ROOT ".")
-set(BUILD_DIR "build_")
+set(BUILD_DIR "build__")
 
 set_if_empty(BUILD_TYPES Debug Release)
 

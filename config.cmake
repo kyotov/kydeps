@@ -4,9 +4,10 @@ set(KYDEPS_QUICK OFF
 set(BUILD_TYPES Debug
 	CACHE STRING "build types to build" FORCE)
 
-set(_KYDEPS_PACKAGES
+set(KYDEPS_PACKAGES
 #	folly
 #	libevent
 #	watchman
-	google/log
+#	google/log
+	libssh
         CACHE STRING "packages to build" FORCE)

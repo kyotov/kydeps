@@ -130,11 +130,11 @@ function(rig_cmake_command)
 
     get_property(KYDEPS_COMPILE_OPTIONS DIRECTORY PROPERTY COMPILE_OPTIONS)
     string(JOIN " " KYDEPS_COMPILE_OPTIONS_STR ${KYDEPS_COMPILE_OPTIONS})
-    # message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using COMPILE_OPTIONS = ${KYDEPS_COMPILE_OPTIONS_STR}")
+    message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using COMPILE_OPTIONS = ${KYDEPS_COMPILE_OPTIONS_STR}")
 
     get_property(KYDEPS_LINK_OPTIONS DIRECTORY PROPERTY LINK_OPTIONS)
     string(JOIN " " KYDEPS_LINK_OPTIONS_STR ${KYDEPS_LINK_OPTIONS})
-    # message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using LINK_OPTIONS = ${KYDEPS_LINK_OPTIONS_STR}")
+    message(NOTICE "${CMAKE_CURRENT_LIST_FILE}: Using LINK_OPTIONS = ${KYDEPS_LINK_OPTIONS_STR}")
 
     set(CMAKE_COMMAND
             ${CMAKE_COMMAND} -E env
@@ -273,8 +273,10 @@ function(package_build PACKAGE_NAME)
             COMMAND ${CMAKE_COMMAND} -E touch ${DIR}/stamp/${PACKAGE_NAME}-done
             DEPENDS ${DONE_DEPENDS})
 
-    add_custom_target(${PACKAGE_NAME}-done ALL
+    add_custom_target(${PACKAGE_NAME}-done
             DEPENDS ${DIR}/stamp/${PACKAGE_NAME}-done)
+
+    add_dependencies(all-done ${PACKAGE_NAME}-done)
 
 endfunction()
 
