@@ -25,8 +25,6 @@ file(GLOB_RECURSE KYDEPS_PACKAGES_DEFAULT RELATIVE ${CMAKE_SOURCE_DIR}/definitio
 list(TRANSFORM KYDEPS_PACKAGES_DEFAULT REPLACE "\\.cmake$" "")
 set_if_empty(KYDEPS_PACKAGES ${KYDEPS_PACKAGES_DEFAULT})
 
-add_custom_target(all-done ALL)
-
 foreach (PACKAGE ${KYDEPS_PACKAGES})
     include(${PACKAGE})
 endforeach ()
