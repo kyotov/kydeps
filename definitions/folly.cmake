@@ -16,6 +16,7 @@ KyDepsInstall(folly
         GIT_REF 5b38d6fa96ca8719970a28f9a87d245365dbf2ce # v2021.10.04.00
 
 	CMAKE_ARGS
+	-DBoost_USE_STATIC_LIBS=ON
 	-DBoost_USE_STATIC_RUNTIME=ON
 
 	DEPENDS gflags glog double-conversion fmt libevent zlib OpenSSL Boost)
